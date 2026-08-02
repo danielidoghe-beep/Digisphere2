@@ -442,3 +442,94 @@ header{
 }
 
 }
+/*=========================
+    HOW IT WORKS
+=========================*/
+
+.how-it-works{
+    background:#fafafa;
+    padding:110px 26px;
+    border-top:1px solid #ececec;
+    border-bottom:1px solid #ececec;
+}
+
+.how-title{
+    text-align:center;
+    margin-bottom:90px;
+}
+
+.how-title span{
+    color:#63b317;
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.how-title h2{
+    margin-top:16px;
+    font-size:58px;
+    line-height:1;
+    font-weight:900;
+    color:#111;
+}
+
+.steps{
+    display:flex;
+    flex-direction:column;
+    gap:90px;
+}
+
+.step-number{
+    color:#63b317;
+    font-size:58px;
+    font-weight:900;
+    margin-bottom:25px;
+}
+
+.step h3{
+    font-size:36px;
+    font-weight:800;
+    color:#111;
+    margin-bottom:16px;
+}
+
+.step p{
+    font-size:22px;
+    line-height:1.7;
+    color:#555;
+    max-width:700px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.how-it-works{
+    padding:90px 26px;
+}
+
+.how-title{
+    margin-bottom:70px;
+}
+
+.how-title h2{
+    font-size:38px;
+}
+
+.steps{
+    gap:70px;
+}
+
+.step-number{
+    font-size:46px;
+}
+
+.step h3{
+    font-size:24px;
+}
+
+.step p{
+    font-size:18px;
+}
+
+}
