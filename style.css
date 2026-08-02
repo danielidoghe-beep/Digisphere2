@@ -633,3 +633,116 @@ header{
 }
 
 }
+/*=========================
+    TESTIMONIALS
+=========================*/
+
+.testimonials{
+    background:#fafafa;
+    padding:100px 24px;
+    border-top:1px solid #ececec;
+}
+
+.testimonial-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.testimonial-title span{
+    color:#63b317;
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.testimonial-title h2{
+    margin-top:16px;
+    font-size:52px;
+    font-weight:900;
+    line-height:1;
+    color:#111;
+}
+
+.testimonial-card{
+    background:#fff;
+    border:1px solid #e7e7e7;
+    border-radius:12px;
+    padding:30px;
+    margin-bottom:28px;
+}
+
+.stars{
+    color:#FFB400;
+    font-size:28px;
+    letter-spacing:3px;
+    margin-bottom:24px;
+}
+
+.testimonial-card p{
+    color:#444;
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.reviewer{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.google-logo{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#4285F4;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:900;
+}
+
+.reviewer h4{
+    font-size:22px;
+    font-weight:700;
+    color:#111;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.testimonials{
+    padding:80px 20px;
+}
+
+.testimonial-title h2{
+    font-size:36px;
+}
+
+.stars{
+    font-size:22px;
+}
+
+.testimonial-card{
+    padding:28px;
+    border-radius:10px;
+}
+
+.testimonial-card p{
+    font-size:18px;
+}
+
+.reviewer h4{
+    font-size:18px;
+}
+
+.google-logo{
+    width:34px;
+    height:34px;
+    font-size:18px;
+}
+
+}
