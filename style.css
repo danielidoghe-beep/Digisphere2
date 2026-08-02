@@ -1171,24 +1171,20 @@ font-size:24px;
 }
 /* MOBILE MENU */
 
-#menu-toggle{
-    display:none;
-}
-
 .mobile-menu{
     position:fixed;
-    top:90px;
+    top:72px;
     left:0;
     width:100%;
-    height:calc(100vh - 90px);
+    height:calc(100vh - 72px);
     background:#fafafa;
-    transform:translateY(-120%);
+    transform:translateY(-100%);
     transition:.35s ease;
     z-index:999;
     overflow:auto;
 }
 
-#menu-toggle:checked ~ .mobile-menu{
+.mobile-menu.active{
     transform:translateY(0);
 }
 
