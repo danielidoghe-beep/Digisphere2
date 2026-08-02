@@ -40,13 +40,13 @@
             <span></span>
             <span></span>
 
-        </label>
+        </div>
 
     </div>
 
 </header>
 
-<nav class="mobile-menu">
+<nav class="mobile-menu" id="mobileMenu">
 
     <div class="menu-content">
 
@@ -689,5 +689,13 @@ BROWSE SERVICES
     </div>
 
 </footer>
-</body>
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("active");
+});
+</script>
+    </body>
 </html>
