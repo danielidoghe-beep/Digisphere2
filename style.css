@@ -1236,3 +1236,156 @@ font-size:24px;
     background:#63b317;
     color:#fff !important;
 }
+/* ==========================
+   BROWSE PAGE
+========================== */
+
+.browse-header{
+    padding:120px 25px 70px;
+    background:#fff;
+}
+
+.browse-header span{
+    color:#63b317;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.browse-header h1{
+    font-size:56px;
+    line-height:0.95;
+    font-weight:900;
+    margin:18px 0 25px;
+    color:#111;
+}
+
+.browse-header p{
+    font-size:20px;
+    line-height:1.8;
+    color:#555;
+    max-width:650px;
+}
+
+.browse-card{
+    background:#fff;
+    border:1px solid #e8e8e8;
+    border-radius:20px;
+    padding:35px;
+    margin:35px 20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.04);
+}
+
+.browse-card .service-number{
+    font-size:58px;
+    font-weight:900;
+    color:#d8d8d8;
+    margin-bottom:15px;
+}
+
+.browse-card h5{
+    color:#63b317;
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.browse-card h2{
+    font-size:34px;
+    font-weight:900;
+    margin-bottom:18px;
+    color:#111;
+}
+
+.browse-card p{
+    font-size:18px;
+    color:#555;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.service-list{
+    margin:25px 0;
+    padding-left:20px;
+}
+
+.service-list li{
+    margin-bottom:14px;
+    color:#555;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.browse-card .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.browse-card .tags span{
+    border:1px solid #ddd;
+    background:#f7f7f7;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.browse-card .service-btn{
+    display:inline-block;
+    background:#63b317;
+    color:#fff;
+    text-decoration:none;
+    padding:16px 32px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.browse-card .service-btn:hover{
+    background:#4f9312;
+}
+
+@media(max-width:768px){
+
+.browse-header{
+    padding:90px 22px 50px;
+}
+
+.browse-header h1{
+    font-size:42px;
+}
+
+.browse-header p{
+    font-size:17px;
+}
+
+.browse-card{
+    margin:20px 15px;
+    padding:25px;
+}
+
+.browse-card .service-number{
+    font-size:44px;
+}
+
+.browse-card h2{
+    font-size:26px;
+}
+
+.browse-card p{
+    font-size:16px;
+}
+
+.service-list li{
+    font-size:15px;
+}
+
+.browse-card .service-btn{
+    width:100%;
+    text-align:center;
+}
+
+}
