@@ -1389,19 +1389,4 @@ font-size:24px;
 }
 
 }
-.mobile-menu{
-    position:fixed;
-    top:82px;
-    left:0;
-    width:100%;
-    height:calc(100vh - 82px);
-    background:#fff;
-    transform:translateY(-100%);
-    transition:.35s ease;
-    z-index:999;
-    overflow-y:auto;
-}
 
-.mobile-menu.active{
-    transform:translateY(0);
-}
