@@ -1,0 +1,332 @@
+/* ==========================
+   GLOBAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    color:#111;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+    height:82px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 22px;
+    border-bottom:1px solid #ececec;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo h2{
+    font-size:24px;
+    font-weight:800;
+    color:#111;
+}
+
+/* Logo */
+
+.logo-icon{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.logo-icon span{
+    width:22px;
+    height:6px;
+    background:#63b317;
+    border-radius:30px;
+    transform:skew(-25deg);
+}
+
+.header-icons{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.moon{
+    font-size:30px;
+    cursor:pointer;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    cursor:pointer;
+}
+
+.menu span{
+    width:34px;
+    height:4px;
+    background:#111;
+    border-radius:20px;
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+    max-width:900px;
+    margin:auto;
+    padding:90px 25px 70px;
+    text-align:center;
+}
+
+.hero h1{
+    display:flex;
+    flex-direction:column;
+    line-height:.95;
+}
+
+.hero h1 span{
+    font-size:78px;
+    font-weight:900;
+}
+
+.black{
+    color:#111;
+}
+
+.green{
+    color:#63b317;
+}
+
+.hero p{
+    margin:45px auto;
+    max-width:720px;
+    font-size:30px;
+    line-height:1.6;
+    color:#555;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+}
+
+.btn{
+    width:320px;
+    text-decoration:none;
+    text-align:center;
+    padding:22px 0;
+    border-radius:18px;
+    font-weight:800;
+    font-size:26px;
+    transition:.3s;
+}
+
+.green-btn{
+    background:#63b317;
+    color:#fff;
+    box-shadow:0 10px 20px rgba(99,179,23,.25);
+}
+
+.green-btn:hover{
+    transform:translateY(-2px);
+}
+
+.white-btn{
+    background:#f8f8f8;
+    color:#111;
+    border:1px solid #ddd;
+}
+
+/* ==========================
+   GREEN BAR
+========================== */
+
+.ticker{
+    margin-top:80px;
+    background:#63b317;
+    color:#fff;
+    height:60px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    font-weight:700;
+    font-size:20px;
+}
+
+/* ==========================
+   STATS
+========================== */
+
+.stats{
+    padding:90px 20px;
+    text-align:center;
+}
+
+.stat{
+    margin-bottom:75px;
+}
+
+.stat h2{
+    color:#63b317;
+    font-size:64px;
+    font-weight:900;
+}
+
+.stat p{
+    font-size:24px;
+    font-weight:800;
+    color:#111;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.logo h2{
+    font-size:20px;
+}
+
+.hero{
+    padding:70px 22px 50px;
+}
+
+.hero h1 span{
+    font-size:38px;
+}
+
+.hero p{
+    font-size:18px;
+    margin:35px auto;
+}
+
+.btn{
+    width:275px;
+    font-size:18px;
+    padding:18px 0;
+    border-radius:14px;
+}
+
+.ticker{
+    font-size:14px;
+    height:52px;
+}
+
+.stat{
+    margin-bottom:55px;
+}
+
+.stat h2{
+    font-size:48px;
+}
+
+.stat p{
+    font-size:18px;
+}
+
+.moon{
+    font-size:22px;
+}
+
+.menu span{
+    width:28px;
+    height:3px;
+}
+
+header{
+    height:72px;
+    padding:0 18px;
+}
+
+}
+/* ==========================
+   MOBILE MENU
+========================== */
+
+#menu-toggle{
+    display:none;
+}
+
+.mobile-menu{
+    position:fixed;
+    top:82px;
+    right:-280px;
+    width:280px;
+    height:100vh;
+    background:#fff;
+    box-shadow:-5px 0 25px rgba(0,0,0,.1);
+    transition:.35s ease;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    padding:40px 25px;
+    gap:25px;
+}
+
+.mobile-menu a{
+    text-decoration:none;
+    color:#111;
+    font-size:18px;
+    font-weight:600;
+}
+
+#menu-toggle:checked ~ .mobile-menu{
+    right:0;
+}
+
+.mobile-menu a:hover{
+    color:#63b317;
+}
+/* ==========================
+   FEATURES
+========================== */
+
+.features{
+    padding:70px 20px 100px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.feature-box{
+    background:#fff;
+    border:1px solid #e8e8e8;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.feature-box h3{
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.feature-box p{
+    color:#666;
+    line-height:1.7;
+}
