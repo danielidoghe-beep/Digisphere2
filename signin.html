@@ -75,23 +75,27 @@
 
         </div>
 
-        <form>
-
+        <form id="loginForm">
+          <div id="message"></div>
             <label>Email</label>
 
             <input
-                type="email"
-                placeholder="you@example.com"
-            >
+    type="email"
+    id="email"
+    placeholder="you@example.com"
+    required
+>
 
             <label>Password</label>
 
             <div class="password-box">
 
-                <input
-                    type="password"
-                    placeholder="Enter your password"
-                >
+<input
+    type="password"
+    id="password"
+    placeholder="Enter your password"
+    required
+>
 
               <button type="button" class="eye-btn">
 
@@ -128,13 +132,14 @@ stroke-linejoin="round">
 
             </div>
 
-            <button class="signin-btn">
+            <button
+    type="submit"
+    id="loginBtn"
+    class="signin-btn">
+    Sign in
+</button>
 
-                Sign in
-
-            </button>
-
-        </form>
+        <form id="loginForm">
 
         <div class="signup-link">
 
@@ -151,6 +156,66 @@ stroke-linejoin="round">
     </div>
 
 </section>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+  authDomain: "digisphere-66fdf.firebaseapp.com",
+  projectId: "digisphere-66fdf",
+  storageBucket: "digisphere-66fdf.firebasestorage.app",
+  messagingSenderId: "834194884246",
+  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+  measurementId: "G-19QS4036V7"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const form = document.getElementById("loginForm");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    loginBtn.textContent = "Signing in...";
+    loginBtn.disabled = true;
+
+    message.style.display = "none";
+
+    try {
+
+        await signInWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
+        );
+
+        message.className = "success-message";
+        message.textContent = "Login successful! Redirecting...";
+        message.style.display = "block";
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
+
+    } catch (error) {
+
+        message.className = "error-message";
+        message.textContent = "Invalid email or password.";
+
+        message.style.display = "block";
+
+        loginBtn.textContent = "Sign in";
+        loginBtn.disabled = false;
+    }
+});
+</script>
 </body>
 </html>
