@@ -1140,14 +1140,13 @@ font-size:24px;
     width:100%;
     height:calc(100vh - 72px);
     background:#fafafa;
-    transform:translateY(-100%);
-    transition:.35s ease;
     z-index:999;
-    overflow:auto;
+    display:none;
+    overflow-y:auto;
 }
 
 .mobile-menu.active{
-    transform:translateY(0);
+    display:block;
 }
 
 .menu-content{
