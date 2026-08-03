@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account - Digisphere</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+<h2>Digisphere</h2>
+
+</div>
+
+<div class="header-icons">
+
+<div class="moon">☾</div>
+
+<div class="menu">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="signup-page">
+
+<div class="signup-container">
+
+<h1>Create account</h1>
+
+<p class="signup-subtitle">
+
+Create your Digisphere account to continue.
+
+</p>
+
+<a href="#" class="google-btn">
+
+<img
+src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+class="google-icon"
+alt="Google">
+
+<span>Continue with Google</span>
+
+</a>
+
+<div class="divider">
+
+<span></span>
+
+<p>or create account with email</p>
+
+<span></span>
+
+</div>
+
+<div id="signupMessage"></div>
+
+<form id="signupForm">
+
+<div class="name-row">
+
+<div class="input-group">
+
+<label>First name</label>
+
+<input
+type="text"
+id="firstName"
+placeholder="John"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Last name</label>
+
+<input
+type="text"
+id="lastName"
+placeholder="Doe"
+required>
+
+</div>
+
+</div>
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="you@example.com"
+required>
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Minimum 8 characters"
+required>
+
+<button
+type="button"
+class="eye-btn">
+
+<svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+
+<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+
+<circle cx="12" cy="12" r="3"/>
+
+</svg>
+
+</button>
+
+</div>
+
+<div class="terms">
+
+<label>
+
+<input type="checkbox" required>
+
+<span>
+
+I agree to the Terms of Service and Privacy Policy
+
+</span>
+
+</label>
+
+</div>
+
+<button
+type="submit"
+class="signup-btn"
+id="signupBtn">
+
+Create account
+
+</button>
+
+<div class="signin-link">
+
+Already have an account?
+
+<a href="signin.html">
+
+Sign in
+
+</a>
+
+</div>
+</form>
+
+</div>
+
+</section>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+updateProfile
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+
+authDomain: "digisphere-66fdf.firebaseapp.com",
+
+projectId: "digisphere-66fdf",
+
+storageBucket: "digisphere-66fdf.firebasestorage.app",
+
+messagingSenderId: "834194884246",
+
+appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+
+measurementId: "G-19QS4036V7"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+getAnalytics(app);
+
+const auth = getAuth(app);
+
+const form = document.getElementById("signupForm");
+
+const signupBtn = document.getElementById("signupBtn");
+
+const message = document.getElementById("signupMessage");
+
+const passwordInput = document.getElementById("password");
+
+const eyeBtn = document.querySelector(".eye-btn");
+
+eyeBtn.addEventListener("click",()=>{
+
+if(passwordInput.type==="password"){
+
+passwordInput.type="text";
+
+}else{
+
+passwordInput.type="password";
+
+}
+
+});
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+const firstName=document.getElementById("firstName").value.trim();
+
+const lastName=document.getElementById("lastName").value.trim();
+
+const email=document.getElementById("email").value.trim();
+
+const password=passwordInput.value;
+
+signupBtn.disabled=true;
+
+signupBtn.textContent="Creating account...";
+
+message.className="";
+
+message.style.display="none";
+
+createUserWithEmailAndPassword(auth,email,password)
+
+.then(async(userCredential)=>{
+
+await updateProfile(userCredential.user,{
+
+displayName:firstName+" "+lastName
+
+});
+
+message.className="success";
+
+message.textContent="✅ Account created successfully! Redirecting...";
+
+signupBtn.disabled=false;
+
+signupBtn.textContent="Create account";
+
+setTimeout(()=>{
+
+window.location.href="signin.html";
+
+},2000);
+
+})
+
+.catch((error)=>{
+
+message.className="error";
+
+message.textContent=error.message;
+
+signupBtn.disabled=false;
+
+signupBtn.textContent="Create account";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
