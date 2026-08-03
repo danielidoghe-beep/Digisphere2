@@ -1138,7 +1138,7 @@ font-size:24px;
     top:72px;
     left:0;
     width:100%;
-    height:calc(100vh - 72px);
+    height:45vh;
     background:#fafafa;
     z-index:999;
     display:none;
