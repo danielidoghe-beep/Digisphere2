@@ -1150,38 +1150,38 @@ font-size:24px;
 }
 
 .menu-content{
-    padding:40px 28px 60px;
+    padding:20px;
 }
 
 .menu-content h2{
-    font-size:48px;
+    font-size:28px;
     font-weight:800;
-    margin-bottom:20px;
+    margin-bottom:12px;
 }
 
 .menu-content hr{
     border:none;
     border-top:1px solid #ddd;
-    margin-bottom:40px;
+    margin-bottom:20px;
 }
 
 .menu-content a{
     display:block;
     text-decoration:none;
     color:#111;
-    font-size:34px;
-    margin-bottom:32px;
+    font-size:20px;
+    margin-bottom:16px;
 }
 
 .menu-signin,
 .menu-start{
     display:block;
     text-align:center;
-    padding:22px;
+    padding:14px;
     border-radius:18px;
-    font-size:22px !important;
+    font-size:16px !important;
     font-weight:700;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .menu-signin{
