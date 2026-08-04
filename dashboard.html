@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dashboard - digisphere</title>
+<title>Dashboard - Digisphere</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -21,65 +21,329 @@
 
 <body>
 
-<header>
+<header class="dashboard-header">
 
-<div class="menu-btn">
+    <div class="menu-btn">
+        ☰
+    </div>
 
-☰
+    <div class="wallet-pill">
+        ₦<span id="walletBalance">0</span>
+    </div>
 
-</div>
+    <div class="theme-btn">
+        ☾
+    </div>
 
-<div class="wallet-badge">
+    <div class="notification-btn" id="notificationBtn">
 
-₦<span id="walletBalance">0</span>
+        🔔
 
-</div>
+        <span id="notificationCount">
+            0
+        </span>
 
-<div class="header-right">
+    </div>
 
-<div class="moon">☾</div>
-
-<div class="notification-icon" id="notificationBtn">
-
-🔔
-
-<span id="notificationCount">0</span>
-
-</div>
-
-<div class="profile-circle" id="profileLetter">
-
-D
-
-</div>
-
-</div>
+    <div class="profile-circle" id="profileLetter">
+        D
+    </div>
 
 </header>
 
 <section class="dashboard">
 
-<div class="welcome">
+    <div class="welcome">
 
-<h1>
+        <h1>
 
-Welcome back,
+            Welcome back,
 
-<span id="userName">
+            <span id="userName">
+                Loading...
+            </span>
 
-Loading...
+            👋
 
-</span>
+        </h1>
 
-👋
+        <p>
+            Here's what's going on with your account
+        </p>
 
-</h1>
+    </div>
+    <!-- Wallet Card -->
 
-<p>
+<div class="dashboard-card">
 
-Here's what's going on with your account
+    <p class="card-title">
+        Wallet balance
+    </p>
 
-</p>
+    <h2 class="card-amount">
+
+        ₦<span id="walletCard">
+
+            0.00
+
+        </span>
+
+    </h2>
+
+    <a href="wallet.html" class="card-link">
+
+        View wallet →
+
+    </a>
+
+</div>
+
+<!-- Purchases Card -->
+
+<div class="dashboard-card">
+
+    <p class="card-title">
+
+        Total purchases
+
+    </p>
+
+    <h2 id="purchaseCount">
+
+        No purchases yet
+
+    </h2>
+
+    <a href="orders.html" class="card-link">
+
+        View orders →
+
+    </a>
+
+</div>
+
+<!-- Inventory Card -->
+
+<div class="dashboard-card">
+
+    <p class="card-title">
+
+        Available inventory
+
+    </p>
+
+    <h2 id="inventory">
+
+        0
+
+    </h2>
+
+    <span id="inventoryText">
+
+        Loading...
+
+    </span>
+
+</div>
+
+<h3 class="section-title">
+
+    Quick Actions
+
+</h3>
+
+<div class="quick-grid">
+
+    <div class="quick-card">
+
+        <div class="quick-icon blue">
+
+            ⬢
+
+        </div>
+
+        <h4>
+
+            Buy Logs
+
+        </h4>
+
+        <p>
+
+            Social media accounts, VPNs, proxies and more.
+
+        </p>
+
+    </div>
+
+    <div class="quick-card">
+
+        <div class="quick-icon purple">
+
+            🛠
+
+        </div>
+
+        <h4>
+
+            Buy Tools
+
+        </h4>
+
+        <p>
+
+            Updates and digital tools.
+
+        </p>
+
+    </div>
+
+    <div class="quick-card">
+
+        <div class="quick-icon green">
+
+            💳
+
+        </div>
+
+        <h4>
+
+            Top Up Wallet
+
+        </h4>
+
+        <p>
+
+            Add funds to your wallet balance.
+
+        </p>
+
+    </div>
+
+    <div class="quick-card">
+
+        <div class="quick-icon orange">
+
+            🎧
+
+        </div>
+
+        <h4>
+
+            Get Support
+
+        </h4>
+
+        <p>
+
+            Open a support ticket and chat with our team.
+
+        </p>
+
+    </div>
+
+</div>
+<!-- Support Tickets -->
+
+<h3 class="section-title">
+
+    Support Tickets
+
+</h3>
+
+<div class="support-box">
+
+    <div class="support-message">
+
+        Manage your support tickets in the dedicated support page.
+
+    </div>
+
+    <a href="support.html" class="support-btn">
+
+        GO TO SUPPORT
+
+    </a>
+
+</div>
+
+<!-- Recent Orders -->
+
+<div class="recent-header">
+
+    <h3>
+
+        Recent Orders
+
+    </h3>
+
+    <a href="orders.html">
+
+        VIEW ALL
+
+    </a>
+
+</div>
+
+<div class="recent-card">
+
+    <div class="recent-icon">
+
+        🕒
+
+    </div>
+
+    <div>
+
+        <h4>
+
+            No recent orders
+
+        </h4>
+
+        <p>
+
+            You haven't made any purchases yet — browse the store to get started.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- Need Help -->
+
+<div class="help-box">
+
+    <h3>
+
+        Need quick help?
+
+    </h3>
+
+    <p>
+
+        Reach support directly if you want a faster response outside tickets.
+
+    </p>
+
+    <a href="https://wa.me/2349117412352" class="whatsapp-btn">
+
+        WhatsApp Support
+
+    </a>
+
+    <a href="https://t.me/+Xbt-w6-TwsozYjY0" class="telegram-btn">
+
+        Telegram
+
+    </a>
+
+    <p class="support-email">
+
+        support@digisphere.com
+
+    </p>
 
 </div>
 
@@ -87,242 +351,37 @@ Here's what's going on with your account
 
 <div class="notification-popup" id="notificationPopup">
 
-<div class="popup-header">
+    <div class="popup-header">
 
-<h2>Notifications</h2>
+        <h2>
 
-<button id="markRead">
+            Notifications
 
-Mark all read
+        </h2>
 
-</button>
+        <button id="markRead">
 
-</div>
+            Mark all read
 
-<div id="notificationList">
+        </button>
 
-</div>
+    </div>
 
-<div class="popup-footer">
+    <div id="notificationList">
 
-<a href="notifications.html">
+        <!-- Firebase notifications appear here -->
 
-View all notifications
+    </div>
 
-</a>
+    <div class="popup-footer">
 
-</div>
+        <a href="notifications.html">
 
-</div>
+            View all notifications
 
-<!-- Wallet -->
+        </a>
 
-<div class="dashboard-card">
-
-<p>Wallet balance</p>
-
-<h2>
-
-₦<span id="walletCard">
-
-0
-
-</span>
-
-</h2>
-
-<a href="#">
-
-View wallet →
-
-</a>
-
-</div>
-
-<!-- Purchases -->
-
-<div class="dashboard-card">
-
-<p>Total purchases</p>
-
-<h2 id="purchaseCount">
-
-No purchases yet
-
-</h2>
-
-<a href="#">
-
-View orders →
-
-</a>
-
-</div>
-
-<!-- Inventory -->
-
-<div class="dashboard-card">
-
-<p>Available inventory</p>
-
-<h2 id="inventory">
-
-0
-
-</h2>
-
-<span id="inventoryText">
-
-Loading...
-
-</span>
-
-</div>
-
-<h3 class="section-title">
-
-Quick Actions
-
-</h3>
-
-<div class="quick-grid">
-  <div class="quick-card">
-
-<div class="quick-icon blue">⬡</div>
-
-<h4>Buy Logs</h4>
-
-<p>Social media accounts, VPNs, proxies and more.</p>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon purple">🛠</div>
-
-<h4>Buy Tools</h4>
-
-<p>Updates and digital tools.</p>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon green">💳</div>
-
-<h4>Top Up Wallet</h4>
-
-<p>Add funds to your wallet balance.</p>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon orange">🎧</div>
-
-<h4>Get Support</h4>
-
-<p>Open a support ticket and chat with our team.</p>
-
-</div>
-
-</div>
-
-<h3 class="section-title">
-
-Support Tickets
-
-</h3>
-
-<div class="support-box">
-
-<div class="support-message">
-
-Manage your support tickets in the dedicated support page.
-
-</div>
-
-<a href="support.html" class="support-btn">
-
-GO TO SUPPORT
-
-</a>
-
-</div>
-
-<div class="recent-header">
-
-<h3>
-
-Recent Orders
-
-</h3>
-
-<a href="#">
-
-VIEW ALL
-
-</a>
-
-</div>
-
-<div class="recent-card">
-
-<div class="recent-icon">
-
-🕒
-
-</div>
-
-<div>
-
-<h4>
-
-No recent orders
-
-</h4>
-
-<p>
-
-You haven't made any purchases yet — browse the store to get started.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="help-box">
-
-<h3>
-
-Need quick help?
-
-</h3>
-
-<p>
-
-Reach support directly if you want a faster response outside tickets.
-
-</p>
-
-<a href="wa.me//2349117412352" class="whatsapp-btn">
-
-WhatsApp Support
-
-</a>
-
-<a href="https://t.me/+Xbt-w6-TwsozYjY0" class="telegram-btn">
-
-Telegram
-
-</a>
-
-<p class="support-email">
-
-support@digisphere.com
-
-</p>
+    </div>
 
 </div>
 
@@ -334,29 +393,29 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebas
 
 import {
 getAuth,
-onAuthStateChanged,
-signOut
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 import {
 getFirestore,
 doc,
-setDoc,
 getDoc,
 collection,
-addDoc,
 getDocs,
-serverTimestamp
+query,
+orderBy
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
-  authDomain: "digisphere-66fdf.firebaseapp.com",
-  projectId: "digisphere-66fdf",
-  storageBucket: "digisphere-66fdf.firebasestorage.app",
-  messagingSenderId: "834194884246",
-  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
-  measurementId: "G-19QS4036V7"
+
+apiKey:"AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+authDomain:"digisphere-66fdf.firebaseapp.com",
+projectId:"digisphere-66fdf",
+storageBucket:"digisphere-66fdf.firebasestorage.app",
+messagingSenderId:"834194884246",
+appId:"1:834194884246:web:72672ca253c3d7dd9d24b7",
+measurementId:"G-19QS4036V7"
+
 };
 
 const app = initializeApp(firebaseConfig);
@@ -364,95 +423,115 @@ const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 
 const auth = getAuth(app);
+
 const db = getFirestore(app);
-const userName=document.getElementById("userName");
-const profileLetter=document.getElementById("profileLetter");
 
-const walletBalance=document.getElementById("walletBalance");
-const walletCard=document.getElementById("walletCard");
+/* Elements */
 
-const notificationCount=document.getElementById("notificationCount");
-const notificationBtn=document.getElementById("notificationBtn");
-const notificationPopup=document.getElementById("notificationPopup");
-const notificationList=document.getElementById("notificationList");
-const markRead=document.getElementById("markRead");
+const userName = document.getElementById("userName");
 
-notificationBtn.onclick=()=>{
+const profileLetter = document.getElementById("profileLetter");
+
+const walletBalance = document.getElementById("walletBalance");
+
+const walletCard = document.getElementById("walletCard");
+
+const purchaseCount = document.getElementById("purchaseCount");
+
+const inventory = document.getElementById("inventory");
+
+const inventoryText = document.getElementById("inventoryText");
+
+const notificationBtn = document.getElementById("notificationBtn");
+
+const notificationPopup = document.getElementById("notificationPopup");
+
+const notificationList = document.getElementById("notificationList");
+
+const notificationCount = document.getElementById("notificationCount");
+
+const markRead = document.getElementById("markRead");
+
+/* Notification Popup */
+
+notificationBtn.onclick = ()=>{
 
 notificationPopup.classList.toggle("show");
 
 };
 
-markRead.onclick=()=>{
+document.addEventListener("click",(e)=>{
 
-notificationCount.textContent="0";
+if(
+!notificationPopup.contains(e.target)
+&&
+!notificationBtn.contains(e.target)
+){
 
-};
+notificationPopup.classList.remove("show");
 
-onAuthStateChanged(auth, async(user)=>{
+}
+
+});
+
+/* User */
+
+onAuthStateChanged(auth,async(user)=>{
 
 if(!user){
 
 window.location.href="signin.html";
+
 return;
 
 }
 
-const uid=user.uid;
-await addDoc(
-collection(db,"users",uid,"notifications"),
-{
-title:"✅ Login Successful",
-message:"You logged into your Digisphere account successfully.",
-time:"Just now",
-read:false,
-createdAt:serverTimestamp()
-}
-);
-const userRef=doc(db,"users",uid);
+const userRef = doc(db,"users",user.uid);
 
-const snap=await getDoc(userRef);
+const snap = await getDoc(userRef);
 
-if(!snap.exists()){
+if(snap.exists()){
 
-await setDoc(userRef,{
+const data = snap.data();
 
-name:user.displayName || "",
+userName.textContent = data.name || "User";
 
-email:user.email,
+profileLetter.textContent =
+(data.name || "U")
+.charAt(0)
+.toUpperCase();
 
-wallet:0,
+walletBalance.textContent =
+Number(data.wallet || 0).toFixed(2);
 
-createdAt:serverTimestamp()
+walletCard.textContent =
+Number(data.wallet || 0).toFixed(2);
 
-});
+purchaseCount.textContent =
+data.purchases || "No purchases yet";
 
 }
 
-const data=(await getDoc(userRef)).data();
-
-userName.textContent=data.name || "User";
-
-profileLetter.textContent=(data.name || "U").charAt(0).toUpperCase();
-
-walletBalance.textContent=data.wallet.toFixed(2);
-
-walletCard.textContent=data.wallet.toFixed(2);
-
-loadNotifications(uid);
+loadNotifications(user.uid);
 
 });
-  async function loadNotifications(uid){
 
-const list=document.getElementById("notificationList");
+/* Notifications */
 
-list.innerHTML="";
+async function loadNotifications(uid){
 
-const querySnapshot=await getDocs(collection(db,"users",uid,"notifications"));
+notificationList.innerHTML="";
 
 let unread=0;
 
-querySnapshot.forEach((docSnap)=>{
+const q=query(
+collection(db,"users",uid,"notifications"),
+orderBy("createdAt","desc")
+);
+
+const snap=await getDocs(q);
+
+snap.forEach(docSnap=>{
 
 const data=docSnap.data();
 
@@ -462,7 +541,7 @@ unread++;
 
 }
 
-list.innerHTML+=`
+notificationList.innerHTML += `
 
 <div class="notify-card">
 
@@ -470,7 +549,7 @@ list.innerHTML+=`
 
 <p>${data.message}</p>
 
-<small>${data.time}</small>
+<small>${data.time || ""}</small>
 
 </div>
 
@@ -478,7 +557,7 @@ list.innerHTML+=`
 
 });
 
-notificationCount.textContent=unread;
+notificationCount.textContent = unread;
 
 }
 
