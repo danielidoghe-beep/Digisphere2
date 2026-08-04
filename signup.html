@@ -282,9 +282,9 @@ signupBtn.disabled=true;
 
 signupBtn.textContent="Creating account...";
 
-message.className="";
-
-message.style.display="none";
+message.className = "message";
+message.style.display = "none";
+message.textContent = "";
 
 createUserWithEmailAndPassword(auth,email,password)
 
@@ -297,8 +297,8 @@ displayName:firstName+" "+lastName
 });
 
 message.className = "message success";
-
-message.textContent="✅ Account created successfully! Redirecting...";
+message.style.display = "block";
+message.innerHTML = "✅ Account created successfully! Redirecting to Sign In...";
 
 signupBtn.disabled=false;
 
@@ -315,8 +315,8 @@ window.location.href="signin.html";
 .catch((error)=>{
 
 message.className = "message error";
-
-message.textContent=error.message;
+message.style.display = "block";
+message.textContent = error.message;
 
 signupBtn.disabled=false;
 
