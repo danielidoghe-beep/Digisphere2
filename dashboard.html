@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard - digisphere</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="menu-btn">
+
+☰
+
+</div>
+
+<div class="wallet-badge">
+
+₦<span id="walletBalance">0</span>
+
+</div>
+
+<div class="header-right">
+
+<div class="moon">☾</div>
+
+<div class="notification-icon" id="notificationBtn">
+
+🔔
+
+<span id="notificationCount">0</span>
+
+</div>
+
+<div class="profile-circle" id="profileLetter">
+
+D
+
+</div>
+
+</div>
+
+</header>
+
+<section class="dashboard">
+
+<div class="welcome">
+
+<h1>
+
+Welcome back,
+
+<span id="userName">
+
+Loading...
+
+</span>
+
+👋
+
+</h1>
+
+<p>
+
+Here's what's going on with your account
+
+</p>
+
+</div>
+
+<!-- Notification Popup -->
+
+<div class="notification-popup" id="notificationPopup">
+
+<div class="popup-header">
+
+<h2>Notifications</h2>
+
+<button id="markRead">
+
+Mark all read
+
+</button>
+
+</div>
+
+<div id="notificationList">
+
+</div>
+
+<div class="popup-footer">
+
+<a href="notifications.html">
+
+View all notifications
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Wallet -->
+
+<div class="dashboard-card">
+
+<p>Wallet balance</p>
+
+<h2>
+
+₦<span id="walletCard">
+
+0
+
+</span>
+
+</h2>
+
+<a href="#">
+
+View wallet →
+
+</a>
+
+</div>
+
+<!-- Purchases -->
+
+<div class="dashboard-card">
+
+<p>Total purchases</p>
+
+<h2 id="purchaseCount">
+
+No purchases yet
+
+</h2>
+
+<a href="#">
+
+View orders →
+
+</a>
+
+</div>
+
+<!-- Inventory -->
+
+<div class="dashboard-card">
+
+<p>Available inventory</p>
+
+<h2 id="inventory">
+
+0
+
+</h2>
+
+<span id="inventoryText">
+
+Loading...
+
+</span>
+
+</div>
+
+<h3 class="section-title">
+
+Quick Actions
+
+</h3>
+
+<div class="quick-grid">
+  <div class="quick-card">
+
+<div class="quick-icon blue">⬡</div>
+
+<h4>Buy Logs</h4>
+
+<p>Social media accounts, VPNs, proxies and more.</p>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon purple">🛠</div>
+
+<h4>Buy Tools</h4>
+
+<p>Updates and digital tools.</p>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon green">💳</div>
+
+<h4>Top Up Wallet</h4>
+
+<p>Add funds to your wallet balance.</p>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon orange">🎧</div>
+
+<h4>Get Support</h4>
+
+<p>Open a support ticket and chat with our team.</p>
+
+</div>
+
+</div>
+
+<h3 class="section-title">
+
+Support Tickets
+
+</h3>
+
+<div class="support-box">
+
+<div class="support-message">
+
+Manage your support tickets in the dedicated support page.
+
+</div>
+
+<a href="support.html" class="support-btn">
+
+GO TO SUPPORT
+
+</a>
+
+</div>
+
+<div class="recent-header">
+
+<h3>
+
+Recent Orders
+
+</h3>
+
+<a href="#">
+
+VIEW ALL
+
+</a>
+
+</div>
+
+<div class="recent-card">
+
+<div class="recent-icon">
+
+🕒
+
+</div>
+
+<div>
+
+<h4>
+
+No recent orders
+
+</h4>
+
+<p>
+
+You haven't made any purchases yet — browse the store to get started.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="help-box">
+
+<h3>
+
+Need quick help?
+
+</h3>
+
+<p>
+
+Reach support directly if you want a faster response outside tickets.
+
+</p>
+
+<a href="wa.me//2349117412352" class="whatsapp-btn">
+
+WhatsApp Support
+
+</a>
+
+<a href="https://t.me/+Xbt-w6-TwsozYjY0" class="telegram-btn">
+
+Telegram
+
+</a>
+
+<p class="support-email">
+
+support@digisphere.com
+
+</p>
+
+</div>
+
+</section>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+collection,
+addDoc,
+getDocs,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+  authDomain: "digisphere-66fdf.firebaseapp.com",
+  projectId: "digisphere-66fdf",
+  storageBucket: "digisphere-66fdf.firebasestorage.app",
+  messagingSenderId: "834194884246",
+  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+  measurementId: "G-19QS4036V7"
+};
+
+const app = initializeApp(firebaseConfig);
+
+getAnalytics(app);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+const userName=document.getElementById("userName");
+const profileLetter=document.getElementById("profileLetter");
+
+const walletBalance=document.getElementById("walletBalance");
+const walletCard=document.getElementById("walletCard");
+
+const notificationCount=document.getElementById("notificationCount");
+const notificationBtn=document.getElementById("notificationBtn");
+const notificationPopup=document.getElementById("notificationPopup");
+const notificationList=document.getElementById("notificationList");
+const markRead=document.getElementById("markRead");
+
+notificationBtn.onclick=()=>{
+
+notificationPopup.classList.toggle("show");
+
+};
+
+markRead.onclick=()=>{
+
+notificationCount.textContent="0";
+
+};
+
+onAuthStateChanged(auth, async(user)=>{
+
+if(!user){
+
+window.location.href="signin.html";
+return;
+
+}
+
+const uid=user.uid;
+
+const userRef=doc(db,"users",uid);
+
+const snap=await getDoc(userRef);
+
+if(!snap.exists()){
+
+await setDoc(userRef,{
+
+name:user.displayName || "",
+
+email:user.email,
+
+wallet:0,
+
+createdAt:serverTimestamp()
+
+});
+
+}
+
+const data=(await getDoc(userRef)).data();
+
+userName.textContent=data.name || "User";
+
+profileLetter.textContent=(data.name || "U").charAt(0).toUpperCase();
+
+walletBalance.textContent=data.wallet.toFixed(2);
+
+walletCard.textContent=data.wallet.toFixed(2);
+
+loadNotifications(uid);
+
+});
+  async function loadNotifications(uid){
+
+const list=document.getElementById("notificationList");
+
+list.innerHTML="";
+
+const querySnapshot=await getDocs(collection(db,"users",uid,"notifications"));
+
+let unread=0;
+
+querySnapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+if(!data.read){
+
+unread++;
+
+}
+
+list.innerHTML+=`
+
+<div class="notify-card">
+
+<h4>${data.title}</h4>
+
+<p>${data.message}</p>
+
+<small>${data.time}</small>
+
+</div>
+
+`;
+
+});
+
+notificationCount.textContent=unread;
+
+}
+
+</script>
