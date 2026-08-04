@@ -1,0 +1,640 @@
+/*==================================
+        RESET
+==================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#111827;
+}
+
+a{
+    text-decoration:none;
+}
+
+button,
+input{
+    font-family:'Poppins',sans-serif;
+}
+
+/*==================================
+        WALLET PAGE
+==================================*/
+
+.wallet-page{
+    width:100%;
+    min-height:100vh;
+    background:#f5f7fb;
+}
+
+/*==================================
+        TOP BAR
+==================================*/
+
+.topbar{
+    height:75px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+    box-shadow:0 2px 15px rgba(0,0,0,.05);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.menu-btn{
+    width:46px;
+    height:46px;
+    border:none;
+    background:#f5f7fb;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    cursor:pointer;
+}
+
+.menu-btn span{
+    width:22px;
+    height:2px;
+    background:#111827;
+    margin:auto;
+}
+
+.wallet-pill{
+    margin-left:18px;
+    background:#65a30d;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:15px;
+    font-weight:700;
+}
+
+.topbar-right{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.theme-btn,
+.notification-btn{
+    width:46px;
+    height:46px;
+    border:none;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    cursor:pointer;
+    position:relative;
+}
+
+.theme-btn i,
+.notification-btn i{
+    font-size:18px;
+    color:#374151;
+}
+
+.notification-count{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    width:20px;
+    height:20px;
+    background:#ef4444;
+    color:#fff;
+    border-radius:50%;
+    font-size:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.profile-avatar{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#65a30d;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:18px;
+}
+
+/*==================================
+        CONTENT
+==================================*/
+
+.wallet-content{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px 50px;
+}
+
+.wallet-header h1{
+    font-size:34px;
+    font-weight:800;
+    color:#111827;
+}
+
+.wallet-header p{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:15px;
+}
+/*==================================
+      BALANCE CARD
+==================================*/
+
+.balance-card{
+    margin-top:30px;
+    background:linear-gradient(135deg,#67b51d 0%,#5aa315 100%);
+    border-radius:24px;
+    padding:30px;
+    color:#fff;
+    box-shadow:0 18px 40px rgba(103,181,29,.28);
+}
+
+.balance-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.balance-top span{
+    font-size:15px;
+    font-weight:600;
+    opacity:.95;
+}
+
+.balance-card h2{
+    margin-top:18px;
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.balance-card p{
+    margin-top:12px;
+    font-size:15px;
+    line-height:1.7;
+    opacity:.95;
+}
+
+/*==================================
+        TOP UP CARD
+==================================*/
+
+.topup-card{
+    margin-top:30px;
+    background:#fff;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 8px 30px rgba(0,0,0,.05);
+}
+
+.topup-title{
+    font-size:26px;
+    font-weight:800;
+    color:#111827;
+}
+
+.topup-text{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:15px;
+    line-height:1.7;
+}
+
+/*==================================
+      PAYMENT TABS
+==================================*/
+
+.payment-tabs{
+    display:flex;
+    gap:14px;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+.payment-tab{
+    flex:1;
+    height:52px;
+    border:2px solid #e5e7eb;
+    background:#fff;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.payment-tab.active{
+    background:#111827;
+    color:#fff;
+    border-color:#111827;
+}
+
+/*==================================
+        AMOUNT INPUT
+==================================*/
+
+.amount-group{
+    margin-bottom:22px;
+}
+
+.amount-group label{
+    display:block;
+    margin-bottom:10px;
+    font-size:14px;
+    font-weight:700;
+    color:#374151;
+}
+
+.amount-input{
+    height:58px;
+    display:flex;
+    align-items:center;
+    border:2px solid #e5e7eb;
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.amount-input span{
+    padding:0 18px;
+    font-size:18px;
+    font-weight:700;
+    color:#111827;
+}
+
+.amount-input input{
+    flex:1;
+    height:100%;
+    border:none;
+    outline:none;
+    font-size:18px;
+    font-weight:600;
+    padding-right:18px;
+    background:transparent;
+}
+
+/*==================================
+      QUICK AMOUNTS
+==================================*/
+
+.quick-amounts{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.quick-btn{
+    height:48px;
+    border:none;
+    background:#f3f4f6;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.quick-btn:hover{
+    background:#67b51d;
+    color:#fff;
+}
+
+/*==================================
+      PAYMENT BUTTON
+==================================*/
+
+.payment-btn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:16px;
+    background:#67b51d;
+    color:#fff;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.payment-btn:hover{
+    background:#5aa315;
+}
+
+.payment-btn:disabled{
+    background:#d1d5db;
+    color:#6b7280;
+    cursor:not-allowed;
+}
+/*==================================
+    RECENT TRANSACTIONS
+==================================*/
+
+.transactions-section{
+    margin-top:35px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    font-size:24px;
+    font-weight:800;
+    color:#111827;
+}
+
+.section-header a{
+    text-decoration:none;
+    color:#67b51d;
+    font-size:14px;
+    font-weight:700;
+}
+
+.transaction-card{
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    margin-bottom:18px;
+}
+
+.transaction-icon{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    background:#edf8e4;
+    color:#67b51d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.transaction-details{
+    flex:1;
+}
+
+.transaction-details h3{
+    font-size:17px;
+    font-weight:700;
+    color:#111827;
+    margin-bottom:6px;
+}
+
+.transaction-details p{
+    font-size:14px;
+    color:#6b7280;
+}
+
+.transaction-right{
+    text-align:right;
+}
+
+.transaction-amount{
+    display:block;
+    font-size:18px;
+    font-weight:800;
+    color:#111827;
+    margin-bottom:8px;
+}
+
+.transaction-status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.transaction-status.pending{
+    background:#fff7ed;
+    color:#ea580c;
+}
+
+.transaction-status.approved{
+    background:#ecfdf3;
+    color:#16a34a;
+}
+
+.transaction-status.declined{
+    background:#fef2f2;
+    color:#dc2626;
+}
+
+/*==================================
+      PAYMENT POPUP
+==================================*/
+
+.payment-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.payment-modal.show{
+    display:flex;
+}
+
+.payment-box{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:24px;
+    padding:30px;
+    animation:popup .25s ease;
+}
+
+.payment-box h2{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.payment-box p{
+    color:#6b7280;
+    margin-bottom:24px;
+}
+
+.payment-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid #ececec;
+}
+
+.payment-item span{
+    color:#6b7280;
+    font-size:15px;
+}
+
+.payment-item strong{
+    color:#111827;
+    font-size:16px;
+    font-weight:700;
+}
+
+.payment-note{
+    margin-top:22px;
+    padding:18px;
+    border-radius:14px;
+    background:#fff8e6;
+    color:#92400e;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.receipt-btn{
+    width:100%;
+    height:56px;
+    background:#25D366;
+    color:#fff;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:22px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+
+.receipt-btn:hover{
+    background:#1faa52;
+}
+
+.close-payment{
+    width:100%;
+    height:56px;
+    margin-top:14px;
+    border:none;
+    border-radius:16px;
+    background:#f3f4f6;
+    color:#111827;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/*==================================
+      TOAST MESSAGE
+==================================*/
+
+.toast{
+    position:fixed;
+    top:25px;
+    right:25px;
+    background:#fff7ed;
+    color:#ea580c;
+    padding:16px 20px;
+    border-left:5px solid #f97316;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-15px);
+    transition:.3s;
+    z-index:10000;
+}
+
+.toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.toast i{
+    font-size:20px;
+}
+
+/*==================================
+      ANIMATION
+==================================*/
+
+@keyframes popup{
+
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+/*==================================
+      MOBILE
+==================================*/
+
+@media(max-width:768px){
+
+    .wallet-content{
+        padding:20px 15px 100px;
+    }
+
+    .balance-card h2{
+        font-size:34px;
+    }
+
+    .quick-amounts{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .transaction-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .transaction-right{
+        text-align:left;
+        width:100%;
+    }
+
+    .payment-box{
+        padding:22px;
+    }
+
+}
