@@ -2,362 +2,342 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Dashboard - Digisphere</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<title>Dashboard - Digisphere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="dashboard-header">
+    <!-- =========================
+            HEADER
+    ========================== -->
 
-    <div class="menu-btn">
-        ☰
-    </div>
+    <header class="header">
 
-    <div class="wallet-pill">
-        ₦<span id="walletBalance">0</span>
-    </div>
+        <div class="menu-btn">
+            ☰
+        </div>
 
-    <div class="theme-btn">
-        ☾
-    </div>
+        <div class="wallet-pill">
+            ₦<span id="headerWallet">0</span>
+        </div>
 
-    <div class="notification-btn" id="notificationBtn">
+        <div class="header-right">
 
-        🔔
+            <button class="theme-btn">
+                ☾
+            </button>
 
-        <span id="notificationCount">
-            0
-        </span>
+            <button class="notification-btn" id="notificationBtn">
 
-    </div>
+                🔔
 
-    <div class="profile-circle" id="profileLetter">
-        D
-    </div>
+                <span class="notification-count" id="notificationCount">
+                    0
+                </span>
 
-</header>
+            </button>
 
-<section class="dashboard">
+            <div class="profile-avatar" id="profileLetter">
+                D
+            </div>
 
-    <div class="welcome">
+        </div>
+
+    </header>
+
+    <!-- =========================
+          DASHBOARD
+    ========================== -->
+
+    <main class="dashboard">
+            <!-- =========================
+            WELCOME
+    ========================== -->
+
+    <section class="welcome-section">
 
         <h1>
-
             Welcome back,
-
-            <span id="userName">
-                Loading...
-            </span>
-
-            👋
-
+            <span id="userName">Loading...</span> 👋
         </h1>
 
         <p>
             Here's what's going on with your account
         </p>
 
-    </div>
-    <!-- Wallet Card -->
+    </section>
 
-<div class="dashboard-card">
+    <!-- =========================
+            SUMMARY CARDS
+    ========================== -->
 
-    <p class="card-title">
-        Wallet balance
-    </p>
+    <section class="cards">
 
-    <h2 class="card-amount">
+        <!-- Wallet -->
 
-        ₦<span id="walletCard">
+        <div class="card">
 
-            0.00
+            <span class="card-title">
+                Wallet balance
+            </span>
 
-        </span>
+            <h2>
+                ₦<span id="walletBalance">0</span>
+            </h2>
 
-    </h2>
-
-    <a href="wallet.html" class="card-link">
-
-        View wallet →
-
-    </a>
-
-</div>
-
-<!-- Purchases Card -->
-
-<div class="dashboard-card">
-
-    <p class="card-title">
-
-        Total purchases
-
-    </p>
-
-    <h2 id="purchaseCount">
-
-        No purchases yet
-
-    </h2>
-
-    <a href="orders.html" class="card-link">
-
-        View orders →
-
-    </a>
-
-</div>
-
-<!-- Inventory Card -->
-
-<div class="dashboard-card">
-
-    <p class="card-title">
-
-        Available inventory
-
-    </p>
-
-    <h2 id="inventory">
-
-        0
-
-    </h2>
-
-    <span id="inventoryText">
-
-        Loading...
-
-    </span>
-
-</div>
-
-<h3 class="section-title">
-
-    Quick Actions
-
-</h3>
-
-<div class="quick-grid">
-
-    <div class="quick-card">
-
-        <div class="quick-icon blue">
-
-            ⬢
+            <a href="wallet.html">
+                View wallet →
+            </a>
 
         </div>
 
-        <h4>
+        <!-- Purchases -->
 
-            Buy Logs
+        <div class="card">
 
-        </h4>
+            <span class="card-title">
+                Total purchases
+            </span>
 
-        <p>
+            <h2 id="purchaseCount">
+                No purchases yet
+            </h2>
 
-            Social media accounts, VPNs, proxies and more.
-
-        </p>
-
-    </div>
-
-    <div class="quick-card">
-
-        <div class="quick-icon purple">
-
-            🛠
+            <a href="orders.html">
+                View orders →
+            </a>
 
         </div>
 
-        <h4>
+        <!-- Inventory -->
 
-            Buy Tools
+        <div class="card">
 
-        </h4>
+            <span class="card-title">
+                Available inventory
+            </span>
 
-        <p>
+            <h2 id="inventoryTotal">
+                0
+            </h2>
 
-            Updates and digital tools.
-
-        </p>
-
-    </div>
-
-    <div class="quick-card">
-
-        <div class="quick-icon green">
-
-            💳
+            <p id="inventoryText">
+                0 logs · 0 tools
+            </p>
 
         </div>
 
-        <h4>
+    </section>
+        <!-- =========================
+            QUICK ACTIONS
+    ========================== -->
 
-            Top Up Wallet
+    <section class="quick-actions">
 
-        </h4>
+        <h2 class="section-title">
 
-        <p>
+            Quick Actions
 
-            Add funds to your wallet balance.
+        </h2>
 
-        </p>
+        <div class="quick-grid">
 
-    </div>
+            <a href="logs.html" class="quick-card">
 
-    <div class="quick-card">
+                <div class="quick-icon blue">
+                    📦
+                </div>
 
-        <div class="quick-icon orange">
+                <h3>Buy Logs</h3>
 
-            🎧
+                <p>
+                    Social media accounts, VPNs, proxies and more.
+                </p>
+
+            </a>
+
+            <a href="tools.html" class="quick-card">
+
+                <div class="quick-icon purple">
+                    🛠
+                </div>
+
+                <h3>Buy Tools</h3>
+
+                <p>
+                    Updates and digital tools.
+                </p>
+
+            </a>
+
+            <a href="wallet.html" class="quick-card">
+
+                <div class="quick-icon green">
+                    💳
+                </div>
+
+                <h3>Top Up Wallet</h3>
+
+                <p>
+                    Add funds to your wallet balance.
+                </p>
+
+            </a>
+
+            <a href="support.html" class="quick-card">
+
+                <div class="quick-icon orange">
+                    🎧
+                </div>
+
+                <h3>Get Support</h3>
+
+                <p>
+                    Open a support ticket and chat with our team.
+                </p>
+
+            </a>
 
         </div>
 
-        <h4>
+    </section>
 
-            Get Support
+    <!-- =========================
+            SUPPORT
+    ========================== -->
 
-        </h4>
+    <section class="support-section">
 
-        <p>
+        <h2 class="section-title">
 
-            Open a support ticket and chat with our team.
+            Support Tickets
 
-        </p>
+        </h2>
 
-    </div>
+        <div class="support-card">
 
-</div>
-<!-- Support Tickets -->
+            <p>
 
-<h3 class="section-title">
+                Manage your support tickets in the dedicated support page.
 
-    Support Tickets
+            </p>
 
-</h3>
+            <a href="support.html" class="support-button">
 
-<div class="support-box">
+                GO TO SUPPORT
 
-    <div class="support-message">
+            </a>
 
-        Manage your support tickets in the dedicated support page.
+        </div>
 
-    </div>
+    </section>
+        <!-- =========================
+            RECENT ORDERS
+    ========================== -->
 
-    <a href="support.html" class="support-btn">
+    <section class="recent-section">
 
-        GO TO SUPPORT
+        <div class="section-header">
 
-    </a>
+            <h2>Recent Orders</h2>
 
-</div>
+            <a href="orders.html">VIEW ALL</a>
 
-<!-- Recent Orders -->
+        </div>
 
-<div class="recent-header">
+        <div class="recent-card">
 
-    <h3>
+            <div class="recent-icon">
 
-        Recent Orders
+                🕒
 
-    </h3>
+            </div>
 
-    <a href="orders.html">
+            <div>
 
-        VIEW ALL
+                <h3>No recent orders</h3>
 
-    </a>
+                <p>
+                    You haven't made any purchases yet —
+                    browse the store to get started.
+                </p>
 
-</div>
+            </div>
 
-<div class="recent-card">
+        </div>
 
-    <div class="recent-icon">
+    </section>
 
-        🕒
+    <!-- =========================
+            HELP CARD
+    ========================== -->
 
-    </div>
+    <section class="help-section">
 
-    <div>
+        <div class="help-card">
 
-        <h4>
+            <h2>
 
-            No recent orders
+                Need quick help?
 
-        </h4>
+            </h2>
 
-        <p>
+            <p>
 
-            You haven't made any purchases yet — browse the store to get started.
+                Reach support directly if you want a faster
+                response outside tickets.
 
-        </p>
+            </p>
 
-    </div>
+            <a
+                href="https://wa.me/2349117412352"
+                class="whatsapp-btn">
 
-</div>
+                WhatsApp Support
 
-<!-- Need Help -->
+            </a>
 
-<div class="help-box">
+            <a
+                href="https://t.me/+Xbt-w6-TwsozYjY0"
+                class="telegram-btn">
 
-    <h3>
+                Telegram
 
-        Need quick help?
+            </a>
 
-    </h3>
+            <p class="support-email">
 
-    <p>
+                support@digisphere.com
 
-        Reach support directly if you want a faster response outside tickets.
+            </p>
 
-    </p>
+        </div>
 
-    <a href="https://wa.me/2349117412352" class="whatsapp-btn">
+    </section>
 
-        WhatsApp Support
+</main>
 
-    </a>
+<!-- =========================
+      NOTIFICATION POPUP
+========================= -->
 
-    <a href="https://t.me/+Xbt-w6-TwsozYjY0" class="telegram-btn">
-
-        Telegram
-
-    </a>
-
-    <p class="support-email">
-
-        support@digisphere.com
-
-    </p>
-
-</div>
-
-<!-- Notification Popup -->
-
-<div class="notification-popup" id="notificationPopup">
+<div
+class="notification-popup"
+id="notificationPopup">
 
     <div class="popup-header">
 
-        <h2>
-
-            Notifications
-
-        </h2>
+        <h3>Notifications</h3>
 
         <button id="markRead">
 
@@ -369,15 +349,13 @@
 
     <div id="notificationList">
 
-        <!-- Firebase notifications appear here -->
-
     </div>
 
     <div class="popup-footer">
 
         <a href="notifications.html">
 
-            View all notifications
+            View all notifications →
 
         </a>
 
@@ -385,197 +363,7 @@
 
 </div>
 
-</section>
-<script type="module">
+<script type="module" src="dashboard.js"></script>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
-
-import {
-getAuth,
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-import {
-getFirestore,
-doc,
-getDoc,
-collection,
-getDocs,
-query,
-orderBy
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey:"AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
-authDomain:"digisphere-66fdf.firebaseapp.com",
-projectId:"digisphere-66fdf",
-storageBucket:"digisphere-66fdf.firebasestorage.app",
-messagingSenderId:"834194884246",
-appId:"1:834194884246:web:72672ca253c3d7dd9d24b7",
-measurementId:"G-19QS4036V7"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-getAnalytics(app);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-/* Elements */
-
-const userName = document.getElementById("userName");
-
-const profileLetter = document.getElementById("profileLetter");
-
-const walletBalance = document.getElementById("walletBalance");
-
-const walletCard = document.getElementById("walletCard");
-
-const purchaseCount = document.getElementById("purchaseCount");
-
-const inventory = document.getElementById("inventory");
-
-const inventoryText = document.getElementById("inventoryText");
-
-const notificationBtn = document.getElementById("notificationBtn");
-
-const notificationPopup = document.getElementById("notificationPopup");
-
-const notificationList = document.getElementById("notificationList");
-
-const notificationCount = document.getElementById("notificationCount");
-
-const markRead = document.getElementById("markRead");
-
-/* Notification Popup */
-
-notificationBtn.onclick = ()=>{
-
-notificationPopup.classList.toggle("show");
-
-};
-
-document.addEventListener("click",(e)=>{
-
-if(
-!notificationPopup.contains(e.target)
-&&
-!notificationBtn.contains(e.target)
-){
-
-notificationPopup.classList.remove("show");
-
-}
-
-});
-
-/* User */
-
-onAuthStateChanged(auth,async(user)=>{
-
-if(!user){
-
-window.location.href="signin.html";
-
-return;
-
-}
-
-const userRef = doc(db,"users",user.uid);
-
-const snap = await getDoc(userRef);
-
-if(snap.exists()){
-
-const data = snap.data();
-
-/* Name */
-
-userName.textContent =
-data.name || user.displayName || "User";
-
-/* Avatar */
-
-profileLetter.textContent =
-(data.name || user.displayName || "U")
-.charAt(0)
-.toUpperCase();
-
-/* Wallet */
-
-walletBalance.textContent =
-Number(data.wallet || 0).toFixed(2);
-
-walletCard.textContent =
-Number(data.wallet || 0).toFixed(2);
-
-/* Purchases */
-
-purchaseCount.textContent =
-data.totalPurchases || 0;
-
-/* Inventory */
-
-inventory.textContent =
-data.inventory || 0;
-
-inventoryText.textContent =
-`${data.logs || 0} Logs • ${data.tools || 0} Tools`;
-
-}
-
-loadNotifications(user.uid);
-
-});
-
-/* Notifications */
-
-async function loadNotifications(uid){
-
-notificationList.innerHTML="";
-
-let unread=0;
-
-const q=query(
-collection(db,"users",uid,"notifications"),
-orderBy("createdAt","desc")
-);
-
-const snap=await getDocs(q);
-
-snap.forEach(docSnap=>{
-
-const data=docSnap.data();
-
-if(!data.read){
-
-unread++;
-
-}
-
-notificationList.innerHTML += `
-
-<div class="notify-card">
-
-<h4>${data.title}</h4>
-
-<p>${data.message}</p>
-
-<small>${data.time || ""}</small>
-
-</div>
-
-`;
-
-});
-
-notificationCount.textContent = unread;
-
-}
-
-</script>
+</body>
+</html>
