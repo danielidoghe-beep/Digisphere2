@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Wallet | DigiSphere</title>
+
+    <link rel="stylesheet" href="wallet.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="wallet-page">
+  <!-- ==========================
+          TOP HEADER
+========================== -->
+
+<header class="topbar">
+
+    <button class="menu-btn" id="menuBtn">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+    <div class="wallet-pill">
+
+        ₦<span id="headerWalletBalance">0.00</span>
+
+    </div>
+
+    <div class="topbar-right">
+
+        <button class="theme-btn" id="themeBtn">
+
+            <i class="fa-regular fa-moon"></i>
+
+        </button>
+
+        <button class="notification-btn" id="notificationBtn">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-count" id="notificationCount">
+
+                0
+
+            </span>
+
+        </button>
+
+        <div class="profile-avatar" id="profileLetter">
+
+            D
+
+        </div>
+
+    </div>
+
+</header>
+
+<main class="wallet-content">
+  <!-- ==========================
+        WALLET HEADER
+========================== -->
+
+<section class="wallet-header">
+
+    <h1>Wallet</h1>
+
+    <p>
+
+        Deposit funds into your wallet and manage your transactions.
+
+    </p>
+
+</section>
+
+<!-- ==========================
+      AVAILABLE BALANCE
+========================== -->
+
+<section class="balance-card">
+
+    <div class="balance-top">
+
+        <span>
+
+            Available Balance
+
+        </span>
+
+    </div>
+
+    <h2>
+
+        ₦<span id="walletBalance">0.00</span>
+
+    </h2>
+
+    <p>
+
+        Your available balance can be used to purchase any product on DigiSphere.
+
+    </p>
+
+</section>
+<!-- ==========================
+        TOP UP WALLET
+========================== -->
+
+<section class="topup-card">
+
+    <h2 class="topup-title">
+
+        Top Up Wallet
+
+    </h2>
+
+    <p class="topup-text">
+
+        Choose your preferred payment method to fund your wallet.
+
+    </p>
+
+    <!-- Payment Tabs -->
+
+    <div class="payment-tabs">
+
+        <button
+            class="payment-tab active"
+            id="bankTab">
+
+            Bank Transfer
+
+        </button>
+
+        <button
+            class="payment-tab"
+            id="flutterwaveTab">
+
+            Flutterwave
+
+        </button>
+
+    </div>
+
+    <!-- Amount -->
+
+    <div class="amount-group">
+
+        <label>
+
+            Amount
+
+        </label>
+
+        <div class="amount-input">
+
+            <span>₦</span>
+
+            <input
+                type="number"
+                id="depositAmount"
+                placeholder="Enter amount">
+
+        </div>
+
+    </div>
+
+    <!-- Quick Amount -->
+
+    <div class="quick-amounts">
+
+        <button class="quick-btn" data-amount="1000">
+            ₦1,000
+        </button>
+
+        <button class="quick-btn" data-amount="5000">
+            ₦5,000
+        </button>
+
+        <button class="quick-btn" data-amount="10000">
+            ₦10,000
+        </button>
+
+        <button class="quick-btn" data-amount="20000">
+            ₦20,000
+        </button>
+
+    </div>
+
+    <!-- Open Payment -->
+
+    <button
+        id="openPaymentBtn"
+        class="payment-btn">
+
+        OPEN PAYMENT
+
+    </button>
+
+</section>
+<!-- ==========================
+      RECENT TRANSACTIONS
+========================== -->
+
+<section class="transactions-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            Recent Transactions
+
+        </h2>
+
+        <a href="transactions.html">
+
+            VIEW ALL
+
+        </a>
+
+    </div>
+
+    <div id="transactionsList">
+
+        <!-- Transaction Card -->
+
+        <div class="transaction-card">
+
+            <div class="transaction-icon">
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </div>
+
+            <div class="transaction-details">
+
+                <h3>
+
+                    Wallet Deposit
+
+                </h3>
+
+                <p>
+
+                    No transactions yet
+
+                </p>
+
+            </div>
+
+            <div class="transaction-right">
+
+                <span class="transaction-amount">
+
+                    ₦0.00
+
+                </span>
+
+                <span class="transaction-status pending">
+
+                    Pending
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+      PAYMENT POPUP
+========================== -->
+
+<div class="payment-modal" id="paymentModal">
+
+    <div class="payment-box">
+
+        <h2>
+
+            Bank Transfer
+
+        </h2>
+
+        <p>
+
+            Transfer the exact amount below.
+
+        </p>
+
+        <div class="payment-item">
+
+            <span>Amount</span>
+
+            <strong id="paymentAmount">
+
+                ₦0
+
+            </strong>
+
+        </div>
+
+        <div class="payment-item">
+
+            <span>Reference</span>
+
+            <strong id="paymentReference">
+
+                Loading...
+
+            </strong>
+
+        </div>
+
+        <div class="payment-item">
+
+            <span>Bank</span>
+
+            <strong id="bankName">
+
+                Loading...
+
+            </strong>
+
+        </div>
+
+        <div class="payment-item">
+
+            <span>Account Number</span>
+
+            <strong id="accountNumber">
+
+                Loading...
+
+            </strong>
+
+        </div>
+
+        <div class="payment-item">
+
+    <span>Amount</span>
+
+    <strong id="paymentAmount">
+        ₦0
+    </strong>
+
+</div>
+
+<div class="payment-item">
+
+    <span>Reference</span>
+
+    <strong id="paymentReference">
+        Loading...
+    </strong>
+
+</div>
+
+<div class="payment-item">
+
+    <span>Bank</span>
+
+    <strong>
+        PalmPay / OPay
+    </strong>
+
+</div>
+
+<div class="payment-item">
+
+    <span>Account Number</span>
+
+    <strong>
+        9117412352
+    </strong>
+
+</div>
+
+<div class="payment-item">
+
+    <span>Account Name</span>
+
+    <strong>
+        Ogaga Blessing Idoghe
+    </strong>
+
+</div>
+
+<div class="payment-note">
+
+    Transfer the exact amount shown above. After payment, tap the button below and send your payment receipt together with your payment reference. Your deposit will remain <b>Pending</b> until it is reviewed and approved by our team.
+
+</div>
+
+<a
+href="https://wa.me/2349117412352"
+target="_blank"
+id="sendReceiptBtn"
+class="receipt-btn">
+
+    SEND RECEIPT ON WHATSAPP
+
+</a>
+
+<button
+id="closePaymentModal"
+class="close-payment">
+
+    CLOSE
+
+</button>
+<!-- ==========================
+        TOAST MESSAGE
+========================== -->
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-exclamation"></i>
+
+    <span id="toastMessage">
+
+        Message
+
+    </span>
+
+</div>
+
+</main>
+
+</div>
+
+<script type="module" src="wallet.js"></script>
+
+</body>
+
+</html>
