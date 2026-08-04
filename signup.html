@@ -90,7 +90,7 @@ alt="Google">
 
 </div>
 
-<div id="signupMessage"></div>
+<div id="signupMessage" class="message"></div>
 
 <form id="signupForm">
 
@@ -296,7 +296,7 @@ displayName:firstName+" "+lastName
 
 });
 
-message.className="success";
+message.className = "message success";
 
 message.textContent="✅ Account created successfully! Redirecting...";
 
@@ -314,7 +314,7 @@ window.location.href="signin.html";
 
 .catch((error)=>{
 
-message.className="error";
+message.className = "message error";
 
 message.textContent=error.message;
 
