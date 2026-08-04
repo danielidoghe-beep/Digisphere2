@@ -239,3 +239,16 @@ markRead.addEventListener("click", () => {
     notificationCount.textContent = "0";
 
 });
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+menuBtn.addEventListener("click", () => {
+    sidebar.classList.add("show");
+    sidebarOverlay.classList.add("show");
+});
+
+sidebarOverlay.addEventListener("click", () => {
+    sidebar.classList.remove("show");
+    sidebarOverlay.classList.remove("show");
+});
