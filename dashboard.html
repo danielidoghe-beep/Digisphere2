@@ -494,12 +494,19 @@ if(snap.exists()){
 
 const data = snap.data();
 
-userName.textContent = data.name || "User";
+/* Name */
+
+userName.textContent =
+data.name || user.displayName || "User";
+
+/* Avatar */
 
 profileLetter.textContent =
-(data.name || "U")
+(data.name || user.displayName || "U")
 .charAt(0)
 .toUpperCase();
+
+/* Wallet */
 
 walletBalance.textContent =
 Number(data.wallet || 0).toFixed(2);
@@ -507,8 +514,18 @@ Number(data.wallet || 0).toFixed(2);
 walletCard.textContent =
 Number(data.wallet || 0).toFixed(2);
 
+/* Purchases */
+
 purchaseCount.textContent =
-data.purchases || "No purchases yet";
+data.totalPurchases || 0;
+
+/* Inventory */
+
+inventory.textContent =
+data.inventory || 0;
+
+inventoryText.textContent =
+`${data.logs || 0} Logs • ${data.tools || 0} Tools`;
 
 }
 
