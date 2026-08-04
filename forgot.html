@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reset Password - Digisphere</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+<h2>Digisphere</h2>
+
+</div>
+
+<div class="header-icons">
+
+<div class="moon">☾</div>
+
+<div class="menu">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="forgot-page">
+
+<div class="forgot-container">
+
+<h1>Reset password</h1>
+
+<p class="forgot-subtitle">
+
+Enter your registered email and we'll send you a password reset link.
+
+</p>
+
+<div id="forgotMessage" class="message"></div>
+
+<form id="forgotForm">
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="you@example.com"
+required>
+
+<button
+type="submit"
+class="forgot-btn"
+id="forgotBtn">
+
+Send reset link
+
+</button>
+
+</form>
+
+<div class="back-login">
+
+<a href="signin.html">
+
+← Back to sign in
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+  authDomain: "digisphere-66fdf.firebaseapp.com",
+  projectId: "digisphere-66fdf",
+  storageBucket: "digisphere-66fdf.firebasestorage.app",
+  messagingSenderId: "834194884246",
+  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+  measurementId: "G-19QS4036V7"
+};
+
+const app = initializeApp(firebaseConfig);
+
+getAnalytics(app);
+
+const auth = getAuth(app);
+
+const form = document.getElementById("forgotForm");
+
+const email = document.getElementById("email");
+
+const button = document.getElementById("forgotBtn");
+
+const message = document.getElementById("forgotMessage");
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+button.disabled = true;
+
+button.textContent = "Sending...";
+
+message.className = "message";
+
+message.style.display = "none";
+
+sendPasswordResetEmail(auth,email.value)
+
+.then(()=>{
+function startCountdown(){
+
+let timeLeft = 60;
+
+button.disabled = true;
+
+const timer = setInterval(()=>{
+
+button.textContent = `Resend link (${timeLeft}s)`;
+
+timeLeft--;
+
+if(timeLeft < 0){
+
+clearInterval(timer);
+
+button.disabled = false;
+
+button.textContent = "Send reset link";
+
+}
+
+},1000);
+
+}
+message.className = "message success";
+
+message.innerHTML = `
+✅ Password reset link sent successfully.<br><br>
+
+Please check your <strong>Inbox</strong>.<br><br>
+
+If you don't see the email within one minute,
+check your <strong>Spam/Junk</strong> folder.
+
+If the email is in Spam, tap
+<strong>Not spam</strong> (or Move to Inbox).
+
+Then return to your Inbox and open the
+password reset link.
+
+Future Digisphere emails should arrive
+directly in your Inbox.
+`;
+
+startCountdown();
+
+})
+
+.catch((error)=>{
+
+message.classList.add("error");
+
+switch(error.code){
+
+case "auth/user-not-found":
+
+message.textContent="❌ No account found with this email.";
+
+break;
+
+case "auth/invalid-email":
+
+message.textContent="❌ Please enter a valid email address.";
+
+break;
+
+default:
+
+message.textContent="❌ Failed to send reset email. Please try again.";
+
+}
+
+button.disabled=false;
+
+button.textContent="Send reset code";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
