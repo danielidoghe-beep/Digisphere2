@@ -7,7 +7,7 @@
 
     <title>Dashboard | DigiSphere</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet"
@@ -345,28 +345,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </section>
 
 <!-- ==========================
-     NOTIFICATION POPUP
+     NOTIFICATION DROPDOWN
 ========================== -->
 
-<div class="notification-popup" id="notificationPopup">
+<div class="notification-dropdown" id="notificationPopup">
 
-    <div class="popup-header">
+    <div class="notification-top">
 
         <h3>Notifications</h3>
 
-        <button id="markRead">
-
+        <button id="markRead" class="mark-read-btn">
             Mark all read
-
         </button>
 
     </div>
 
-    <div id="notificationList">
+    <div class="notification-body" id="notificationList">
 
-        <!-- Firebase notifications -->
+        <!-- Notifications from Firebase -->
 
     </div>
+
+    <div class="notification-bottom">
+
+        <a href="notifications.html">
+
+            View all notifications →
+
+        </a>
+
+    </div>
+
+</div>
+
 
     <div class="popup-footer">
 
