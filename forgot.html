@@ -79,7 +79,7 @@ required>
 
 <button
 type="submit"
-class="forgot-btn"
+class="reset-btn"
 id="forgotBtn">
 
 Send reset link
@@ -146,6 +146,26 @@ message.style.display = "none";
 sendPasswordResetEmail(auth,email.value)
 
 .then(()=>{
+
+message.className = "message success";
+
+message.innerHTML = `
+✅ Password reset link sent successfully.<br><br>
+
+Please check your <strong>Inbox</strong>.<br><br>
+
+If you don't see the email within one minute,
+check your <strong>Spam/Junk</strong> folder.
+
+If the email is in Spam, tap
+<strong>Not spam</strong> (or Move to Inbox).
+
+Then return to your Inbox and open the
+password reset link.
+
+Future Digisphere emails should arrive
+directly in your Inbox.
+`;
 function startCountdown(){
 
 let timeLeft = 60;
@@ -171,26 +191,6 @@ button.textContent = "Send reset link";
 },1000);
 
 }
-message.className = "message success";
-
-message.innerHTML = `
-✅ Password reset link sent successfully.<br><br>
-
-Please check your <strong>Inbox</strong>.<br><br>
-
-If you don't see the email within one minute,
-check your <strong>Spam/Junk</strong> folder.
-
-If the email is in Spam, tap
-<strong>Not spam</strong> (or Move to Inbox).
-
-Then return to your Inbox and open the
-password reset link.
-
-Future Digisphere emails should arrive
-directly in your Inbox.
-`;
-
 startCountdown();
 
 })
