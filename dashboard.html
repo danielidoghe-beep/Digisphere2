@@ -399,7 +399,16 @@ return;
 }
 
 const uid=user.uid;
-
+await addDoc(
+collection(db,"users",uid,"notifications"),
+{
+title:"✅ Login Successful",
+message:"You logged into your Digisphere account successfully.",
+time:"Just now",
+read:false,
+createdAt:serverTimestamp()
+}
+);
 const userRef=doc(db,"users",uid);
 
 const snap=await getDoc(userRef);
