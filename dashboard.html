@@ -5,335 +5,350 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard - Digisphere</title>
+    <title>Dashboard | DigiSphere</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- =========================
-            HEADER
-    ========================== -->
+<div class="dashboard">
+    <header class="topbar">
 
-    <header class="header">
+    <button class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <div class="menu-btn">
-            ☰
-        </div>
+    <div class="wallet-pill">
+        ₦<span id="walletBalance">0</span>
+    </div>
 
-        <div class="wallet-pill">
-            ₦<span id="headerWallet">0</span>
-        </div>
+    <button class="theme-btn" id="themeBtn">
+        <i class="fa-regular fa-moon"></i>
+    </button>
 
-        <div class="header-right">
+    <button class="notification-btn" id="notificationBtn">
 
-            <button class="theme-btn">
-                ☾
-            </button>
+        <i class="fa-regular fa-bell"></i>
 
-            <button class="notification-btn" id="notificationBtn">
+        <span class="notification-count" id="notificationCount">
+            0
+        </span>
 
-                🔔
+    </button>
 
-                <span class="notification-count" id="notificationCount">
-                    0
-                </span>
+    <div class="profile-avatar" id="profileLetter">
+        D
+    </div>
 
-            </button>
+</header>
+<main class="dashboard-content">
 
-            <div class="profile-avatar" id="profileLetter">
-                D
-            </div>
-
-        </div>
-
-    </header>
-
-    <!-- =========================
-          DASHBOARD
-    ========================== -->
-
-    <main class="dashboard">
-            <!-- =========================
-            WELCOME
-    ========================== -->
+    <!-- Welcome -->
 
     <section class="welcome-section">
 
-        <h1>
+        <h1 class="welcome-title">
+
             Welcome back,
             <span id="userName">Loading...</span> 👋
+
         </h1>
 
-        <p>
+        <p class="welcome-text">
+
             Here's what's going on with your account
+
         </p>
 
     </section>
+    <!-- Dashboard Cards -->
 
-    <!-- =========================
-            SUMMARY CARDS
-    ========================== -->
+<section class="dashboard-cards">
 
-    <section class="cards">
+    <!-- Wallet -->
+
+    <div class="dashboard-card">
+
+        <span class="card-label">
+            Wallet balance
+        </span>
+
+        <h2>
+
+            ₦<span id="walletCard">0.00</span>
+
+        </h2>
+
+        <a href="wallet.html">
+
+            View wallet →
+
+        </a>
+
+    </div>
+
+    <!-- Purchases -->
+
+    <div class="dashboard-card">
+
+        <span class="card-label">
+            Total purchases
+        </span>
+
+        <h2 id="purchaseCount">
+
+            No purchases yet
+
+        </h2>
+
+        <a href="orders.html">
+
+            View orders →
+
+        </a>
+
+    </div>
+
+    <!-- Inventory -->
+
+    <div class="dashboard-card">
+
+        <span class="card-label">
+            Available inventory
+        </span>
+
+        <h2 id="inventoryTotal">
+
+            0
+
+        </h2>
+
+        <p class="inventory-text">
+
+            <span id="logsCount">0</span> logs ·
+            <span id="toolsCount">0</span> tools
+
+        </p>
+
+    </div>
+
+</section>
+<!-- ==========================
+        QUICK ACTIONS
+========================== -->
+
+<section class="quick-actions">
+
+    <h2 class="section-title">
+        Quick Actions
+    </h2>
+
+    <div class="quick-grid">
+
+        <!-- Buy Logs -->
+
+        <a href="logs.html" class="quick-card">
+
+            <div class="quick-icon blue">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+            </div>
+
+            <h3>Buy Logs</h3>
+
+            <p>
+                Social media accounts, VPNs, proxies and more.
+            </p>
+
+        </a>
+
+        <!-- Buy Tools -->
+
+        <a href="tools.html" class="quick-card">
+
+            <div class="quick-icon purple">
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            </div>
+
+            <h3>Buy Tools</h3>
+
+            <p>
+                Premium digital tools and software.
+            </p>
+
+        </a>
 
         <!-- Wallet -->
 
-        <div class="card">
+        <a href="wallet.html" class="quick-card">
 
-            <span class="card-title">
-                Wallet balance
-            </span>
+            <div class="quick-icon green">
 
-            <h2>
-                ₦<span id="walletBalance">0</span>
-            </h2>
-
-            <a href="wallet.html">
-                View wallet →
-            </a>
-
-        </div>
-
-        <!-- Purchases -->
-
-        <div class="card">
-
-            <span class="card-title">
-                Total purchases
-            </span>
-
-            <h2 id="purchaseCount">
-                No purchases yet
-            </h2>
-
-            <a href="orders.html">
-                View orders →
-            </a>
-
-        </div>
-
-        <!-- Inventory -->
-
-        <div class="card">
-
-            <span class="card-title">
-                Available inventory
-            </span>
-
-            <h2 id="inventoryTotal">
-                0
-            </h2>
-
-            <p id="inventoryText">
-                0 logs · 0 tools
-            </p>
-
-        </div>
-
-    </section>
-        <!-- =========================
-            QUICK ACTIONS
-    ========================== -->
-
-    <section class="quick-actions">
-
-        <h2 class="section-title">
-
-            Quick Actions
-
-        </h2>
-
-        <div class="quick-grid">
-
-            <a href="logs.html" class="quick-card">
-
-                <div class="quick-icon blue">
-                    📦
-                </div>
-
-                <h3>Buy Logs</h3>
-
-                <p>
-                    Social media accounts, VPNs, proxies and more.
-                </p>
-
-            </a>
-
-            <a href="tools.html" class="quick-card">
-
-                <div class="quick-icon purple">
-                    🛠
-                </div>
-
-                <h3>Buy Tools</h3>
-
-                <p>
-                    Updates and digital tools.
-                </p>
-
-            </a>
-
-            <a href="wallet.html" class="quick-card">
-
-                <div class="quick-icon green">
-                    💳
-                </div>
-
-                <h3>Top Up Wallet</h3>
-
-                <p>
-                    Add funds to your wallet balance.
-                </p>
-
-            </a>
-
-            <a href="support.html" class="quick-card">
-
-                <div class="quick-icon orange">
-                    🎧
-                </div>
-
-                <h3>Get Support</h3>
-
-                <p>
-                    Open a support ticket and chat with our team.
-                </p>
-
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- =========================
-            SUPPORT
-    ========================== -->
-
-    <section class="support-section">
-
-        <h2 class="section-title">
-
-            Support Tickets
-
-        </h2>
-
-        <div class="support-card">
-
-            <p>
-
-                Manage your support tickets in the dedicated support page.
-
-            </p>
-
-            <a href="support.html" class="support-button">
-
-                GO TO SUPPORT
-
-            </a>
-
-        </div>
-
-    </section>
-        <!-- =========================
-            RECENT ORDERS
-    ========================== -->
-
-    <section class="recent-section">
-
-        <div class="section-header">
-
-            <h2>Recent Orders</h2>
-
-            <a href="orders.html">VIEW ALL</a>
-
-        </div>
-
-        <div class="recent-card">
-
-            <div class="recent-icon">
-
-                🕒
+                <i class="fa-solid fa-wallet"></i>
 
             </div>
 
-            <div>
+            <h3>Top Up Wallet</h3>
 
-                <h3>No recent orders</h3>
+            <p>
+                Add funds to your wallet balance.
+            </p>
 
-                <p>
-                    You haven't made any purchases yet —
-                    browse the store to get started.
-                </p>
+        </a>
+
+        <!-- Support -->
+
+        <a href="support.html" class="quick-card">
+
+            <div class="quick-icon orange">
+
+                <i class="fa-solid fa-headset"></i>
 
             </div>
 
+            <h3>Get Support</h3>
+
+            <p>
+                Open a support ticket and chat with our team.
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+<!-- ==========================
+        SUPPORT TICKETS
+========================== -->
+
+<section class="support-section">
+
+    <h2 class="section-title">
+        Support Tickets
+    </h2>
+
+    <div class="support-card">
+
+        <div class="support-message">
+
+            Manage your support tickets in the dedicated support page.
+
         </div>
 
-    </section>
+        <a href="support.html" class="support-btn">
 
-    <!-- =========================
-            HELP CARD
-    ========================== -->
+            GO TO SUPPORT
 
-    <section class="help-section">
+        </a>
 
-        <div class="help-card">
+    </div>
 
-            <h2>
+</section>
 
-                Need quick help?
+<!-- ==========================
+        RECENT ORDERS
+========================== -->
 
-            </h2>
+<section class="orders-section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            Recent Orders
+        </h2>
+
+        <a href="orders.html" class="view-all">
+
+            VIEW ALL
+
+        </a>
+
+    </div>
+
+    <div class="recent-order-card">
+
+        <div class="order-icon">
+
+            <i class="fa-regular fa-clock"></i>
+
+        </div>
+
+        <div class="order-content">
+
+            <h3>No recent orders</h3>
 
             <p>
 
-                Reach support directly if you want a faster
-                response outside tickets.
-
-            </p>
-
-            <a
-                href="https://wa.me/2349117412352"
-                class="whatsapp-btn">
-
-                WhatsApp Support
-
-            </a>
-
-            <a
-                href="https://t.me/+Xbt-w6-TwsozYjY0"
-                class="telegram-btn">
-
-                Telegram
-
-            </a>
-
-            <p class="support-email">
-
-                support@digisphere.com
+                You haven't made any purchases yet — browse the store to get started.
 
             </p>
 
         </div>
 
-    </section>
+    </div>
 
-</main>
+</section>
+<!-- ==========================
+        NEED QUICK HELP
+========================== -->
 
-<!-- =========================
-      NOTIFICATION POPUP
-========================= -->
+<section class="help-section">
 
-<div
-class="notification-popup"
-id="notificationPopup">
+    <div class="help-card">
+
+        <h2>Need quick help?</h2>
+
+        <p>
+
+            Reach support directly if you want a faster response outside tickets.
+
+        </p>
+
+        <div class="help-buttons">
+
+            <a href="https://wa.me/2349117412352"
+               target="_blank"
+               class="whatsapp-btn">
+
+                Chat on WhatsApp
+
+            </a>
+
+            <a href="https://t.me/+Xbt-w6-TwsozYjY0"
+               target="_blank"
+               class="telegram-btn">
+
+                Open Telegram
+
+            </a>
+
+        </div>
+
+        <div class="support-email">
+
+            support@digisphere.com
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     NOTIFICATION POPUP
+========================== -->
+
+<div class="notification-popup" id="notificationPopup">
 
     <div class="popup-header">
 
@@ -349,19 +364,23 @@ id="notificationPopup">
 
     <div id="notificationList">
 
+        <!-- Firebase notifications -->
+
     </div>
 
     <div class="popup-footer">
 
         <a href="notifications.html">
 
-            View all notifications →
+            View all notifications
 
         </a>
 
     </div>
 
 </div>
+
+</main>
 
 <script type="module" src="dashboard.js"></script>
 
