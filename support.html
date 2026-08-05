@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Support</title>
+
+<link rel="stylesheet"
+href="support.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+<!--=========================
+TOP HEADER
+==========================-->
+
+<header class="topbar">
+
+<button
+id="menuBtn"
+class="menu-btn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+<div class="top-actions">
+
+<button
+class="theme-btn"
+id="themeBtn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button
+class="notification-btn"
+id="notificationBtn">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+id="notificationCount">
+
+0
+
+</span>
+
+</button>
+
+<div
+class="profile-avatar"
+id="profileLetter">
+
+D
+
+</div>
+
+</div>
+
+</header>
+
+<!--=========================
+PAGE TITLE
+==========================-->
+
+<section class="hero">
+
+<h1>
+
+Support
+
+</h1>
+
+<p>
+
+Get help with your orders and your account.
+
+</p>
+
+</section>
+
+<!--=========================
+HEADER
+==========================-->
+
+<section class="support-header">
+
+<div>
+
+<h2>
+
+Support tickets
+
+</h2>
+
+<p>
+
+Submit and manage your requests from a single place.
+
+</p>
+
+</div>
+
+<button
+id="newTicketBtn"
+class="new-ticket-btn">
+
++ NEW<br>
+
+TICKET
+
+</button>
+
+</section>
+
+<!--=========================
+TICKETS
+==========================-->
+
+<div
+id="ticketsContainer"
+class="tickets-container">
+
+<!-- Firebase tickets appear here -->
+
+</div>
+
+</div>
+
+<!--=========================
+NEW TICKET POPUP
+==========================-->
+
+<div
+id="ticketModal"
+class="ticket-modal">
+
+<div class="ticket-box">
+
+<h2>
+
+Open Support Ticket
+
+</h2>
+
+<input
+
+id="ticketSubject"
+
+type="text"
+
+placeholder="Subject">
+
+<select
+id="ticketCategory">
+
+<option value="Wallet">
+
+Wallet
+
+</option>
+
+<option value="Order">
+
+Order
+
+</option>
+
+<option value="Logs Store">
+
+Logs Store
+
+</option>
+
+<option value="Tools Store">
+
+Tools Store
+
+</option>
+
+<option value="Account">
+
+Account
+
+</option>
+
+<option value="Other">
+
+Other
+
+</option>
+
+</select>
+
+<textarea
+
+id="ticketMessage"
+
+placeholder="Describe your issue...">
+
+</textarea>
+
+<div class="ticket-buttons">
+
+<button
+id="cancelTicket">
+
+Cancel
+
+</button>
+
+<button
+id="submitTicket">
+
+Submit Ticket
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="support.js">
+
+</script>
+
+</body>
+
+</html>
