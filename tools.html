@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Tools Store</title>
+
+<link rel="stylesheet" href="tools.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+<button id="menuBtn" class="menu-btn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+<div class="top-actions">
+
+<button id="themeBtn" class="theme-btn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button id="notificationBtn" class="notification-btn">
+
+<i class="fa-regular fa-bell"></i>
+
+<span id="notificationCount">0</span>
+
+</button>
+
+<div id="profileLetter" class="profile-avatar">
+
+D
+
+</div>
+
+</div>
+
+</header>
+
+<!-- TITLE -->
+
+<section class="hero">
+
+<h1>Tools Store</h1>
+
+<p>
+
+Updates, picture sets, and more
+
+</p>
+
+<p id="toolCount">
+
+0 tools available
+
+</p>
+
+</section>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search tools...">
+
+</div>
+
+<!-- CATEGORIES -->
+
+<div
+id="categoryContainer"
+class="categories">
+
+<!-- Firebase categories -->
+
+</div>
+
+<!-- TOOLS -->
+
+<div
+id="toolsContainer"
+class="tools-grid">
+
+<!-- Firebase products -->
+
+</div>
+
+</div>
+
+<!-- BUY MODAL -->
+
+<div id="buyModal" class="buy-modal">
+
+<div class="buy-box">
+
+<img
+id="buyImage"
+class="buy-image">
+
+<h2 id="buyTitle">
+
+Product
+
+</h2>
+
+<div id="buyPrice" class="buy-price">
+
+₦0
+
+</div>
+
+<p id="buyDescription">
+
+Description
+
+</p>
+
+<div class="important-box">
+
+<h3>
+
+Important
+
+</h3>
+
+<p>
+
+Products sold on DigiSphere are intended only for lawful use.
+
+Do not use any purchased product for fraud, impersonation or illegal activity.
+
+You are responsible for how you use every purchased product.
+
+</p>
+
+</div>
+
+<div class="buy-buttons">
+
+<button id="cancelBuy">
+
+Cancel
+
+</button>
+
+<button id="confirmBuy">
+
+Buy Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="tools.js">
+
+</script>
+
+</body>
+
+</html>
