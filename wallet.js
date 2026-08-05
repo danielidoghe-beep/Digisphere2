@@ -17,77 +17,68 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-/*==============================
-        FIREBASE CONFIG
-==============================*/
+/*====================================
+            FIREBASE
+====================================*/
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
-  authDomain: "digisphere-66fdf.firebaseapp.com",
-  projectId: "digisphere-66fdf",
-  storageBucket: "digisphere-66fdf.firebasestorage.app",
-  messagingSenderId: "834194884246",
-  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
-  measurementId: "G-19QS4036V7"
+    apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+    authDomain: "digisphere-66fdf.firebaseapp.com",
+    projectId: "digisphere-66fdf",
+    storageBucket: "digisphere-66fdf.firebasestorage.app",
+    messagingSenderId: "834194884246",
+    appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+    measurementId: "G-19QS4036V7"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
-/*==============================
-        ELEMENTS
-==============================*/
+/*====================================
+            HTML
+====================================*/
 
 const walletBalance = document.getElementById("walletBalance");
 const headerWalletBalance = document.getElementById("headerWalletBalance");
 
 const profileLetter = document.getElementById("profileLetter");
 
-const notificationCount = document.getElementById("notificationCount");
-
 const depositAmount = document.getElementById("depositAmount");
-
-const openPaymentBtn = document.getElementById("openPaymentBtn");
 
 const bankTab = document.getElementById("bankTab");
 const flutterwaveTab = document.getElementById("flutterwaveTab");
 
+const openPaymentBtn = document.getElementById("openPaymentBtn");
+
 const paymentModal = document.getElementById("paymentModal");
-
 const paymentAmount = document.getElementById("paymentAmount");
-
 const paymentReference = document.getElementById("paymentReference");
 
 const sendReceiptBtn = document.getElementById("sendReceiptBtn");
-
 const closePaymentModal = document.getElementById("closePaymentModal");
 
 const toast = document.getElementById("toast");
-
 const toastMessage = document.getElementById("toastMessage");
 
 const transactionsList = document.getElementById("transactionsList");
 
-/*==============================
-        VARIABLES
-==============================*/
+/*====================================
+            VARIABLES
+====================================*/
 
 let currentUser = null;
-
 let paymentMethod = "bank";
-/*==============================
-      AUTHENTICATION
-==============================*/
+
+/*====================================
+          AUTHENTICATION
+====================================*/
 
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
         window.location.href = "signin.html";
-
         return;
 
     }
@@ -95,20 +86,27 @@ onAuthStateChanged(auth, async (user) => {
     currentUser = user;
 
     const userRef = doc(db, "users", user.uid);
-
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
 
         const data = userSnap.data();
 
-        const balance = data.wallet || 0;
+        const balance = Number(data.wallet || 0);
 
-        walletBalance.textContent = balance.toFixed(2);
+        walletBalance.textContent =
+            balance.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            });
 
-        headerWalletBalance.textContent = balance.toFixed(2);
+        headerWalletBalance.textContent =
+            balance.toLocaleString(undefined,{
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            });
 
-        if (data.name) {
+        if(data.name){
 
             profileLetter.textContent =
                 data.name.charAt(0).toUpperCase();
@@ -120,11 +118,11 @@ onAuthStateChanged(auth, async (user) => {
     loadTransactions(user.uid);
 
 });
-/*==============================
-        TOAST MESSAGE
-==============================*/
+/*====================================
+            TOAST MESSAGE
+====================================*/
 
-function showToast(message){
+function showToast(message) {
 
     toastMessage.textContent = message;
 
@@ -134,107 +132,118 @@ function showToast(message){
 
         toast.classList.remove("show");
 
-    },3000);
+    }, 3000);
 
 }
 
-/*==============================
-      PAYMENT METHOD
-==============================*/
+/*====================================
+          QUICK AMOUNTS
+====================================*/
 
-bankTab.addEventListener("click",()=>{
+document.querySelectorAll(".quick-btn").forEach((button) => {
 
-    paymentMethod="bank";
+    button.addEventListener("click", () => {
 
-    bankTab.classList.add("active");
+        depositAmount.value = button.dataset.amount;
 
-    flutterwaveTab.classList.remove("active");
-
-    openPaymentBtn.disabled=false;
-
-    openPaymentBtn.textContent="OPEN PAYMENT";
+    });
 
 });
 
-flutterwaveTab.addEventListener("click",()=>{
+/*====================================
+        PAYMENT METHOD
+====================================*/
 
-    paymentMethod="flutterwave";
+bankTab.addEventListener("click", () => {
+
+    paymentMethod = "bank";
+
+    bankTab.classList.add("active");
+    flutterwaveTab.classList.remove("active");
+
+    openPaymentBtn.disabled = false;
+
+    openPaymentBtn.textContent = "OPEN PAYMENT";
+
+});
+
+flutterwaveTab.addEventListener("click", () => {
+
+    paymentMethod = "flutterwave";
 
     flutterwaveTab.classList.add("active");
-
     bankTab.classList.remove("active");
 
-    openPaymentBtn.disabled=true;
+    openPaymentBtn.disabled = true;
 
-    openPaymentBtn.textContent="PAY WITH FLUTTERWAVE";
+    openPaymentBtn.textContent = "PAY WITH FLUTTERWAVE";
 
     showToast("Flutterwave payment coming soon.");
 
 });
+/*====================================
+          OPEN PAYMENT
+====================================*/
 
-/*==============================
-      OPEN PAYMENT
-==============================*/
+openPaymentBtn.addEventListener("click", async () => {
 
-openPaymentBtn.addEventListener("click",async()=>{
+    if (paymentMethod === "flutterwave") {
 
-    const amount=Number(depositAmount.value);
-
-    if(amount<1000){
-
-        showToast("Minimum deposit is ₦1,000.");
-
+        showToast("Flutterwave payment coming soon.");
         return;
 
     }
 
-    openPaymentBtn.textContent="OPENING PAYMENT...";
+    const amount = Number(depositAmount.value);
 
-    openPaymentBtn.disabled=true;
+    if (!amount || amount < 1000) {
 
-    const reference="DGS"+Date.now();
+        showToast("Minimum deposit is ₦1,000.");
+        return;
 
-    paymentAmount.textContent="₦"+amount.toLocaleString();
+    }
 
-    paymentReference.textContent=reference;
+    openPaymentBtn.disabled = true;
+    openPaymentBtn.textContent = "OPENING PAYMENT...";
 
     try {
 
-    await addDoc(
+        const reference = "DGS" + Date.now();
 
-        collection(db, "users", currentUser.uid, "transactions"),
+        paymentAmount.textContent =
+            "₦" + amount.toLocaleString();
 
-        {
+        paymentReference.textContent =
+            reference;
 
-            type: "Wallet Deposit",
+        await addDoc(
 
-            amount: amount,
+            collection(
+                db,
+                "users",
+                currentUser.uid,
+                "transactions"
+            ),
 
-            reference: reference,
+            {
 
-            method: "Bank Transfer",
+                type: "Wallet Deposit",
 
-            status: "Pending",
+                amount: amount,
 
-            createdAt: serverTimestamp()
+                method: "Bank Transfer",
 
-        }
+                status: "Pending",
 
-    );
+                reference: reference,
 
-    console.log("Transaction saved successfully.");
+                createdAt: serverTimestamp()
 
-} catch (error) {
+            }
 
-    console.error("Firestore Error:", error);
+        );
 
-    alert(error.message);
-
-    return;
-
-}
-
-    const whatsappMessage=
+        const whatsappMessage =
 
 `Hello DigiSphere,
 
@@ -246,180 +255,201 @@ Amount: ₦${amount.toLocaleString()}
 
 Please find my payment receipt attached.`;
 
-    sendReceiptBtn.href=
-
+        sendReceiptBtn.href =
 `https://wa.me/2349117412352?text=${encodeURIComponent(whatsappMessage)}`;
 
-    paymentModal.classList.add("show");
+        paymentModal.classList.add("show");
 
-    openPaymentBtn.textContent="OPEN PAYMENT";
+    } catch (error) {
 
-    openPaymentBtn.disabled=false;
+        console.error(error);
 
-});
-
-/*==============================
-      CLOSE POPUP
-==============================*/
-
-closePaymentModal.addEventListener("click",()=>{
-
-    paymentModal.classList.remove("show");
-
-});
-
-paymentModal.addEventListener("click",(e)=>{
-
-    if(e.target===paymentModal){
-
-        paymentModal.classList.remove("show");
+        showToast("Unable to create payment. Please try again.");
 
     }
 
+    openPaymentBtn.disabled = false;
+
+    openPaymentBtn.textContent = "OPEN PAYMENT";
+
 });
-/*==============================
-      LOAD TRANSACTIONS
-==============================*/
+/*====================================
+        LOAD TRANSACTIONS
+====================================*/
 
-function loadTransactions(uid){
+function loadTransactions(uid) {
 
-    const q = query(
+    const transactionsRef = query(
 
-        collection(db,"users",uid,"transactions"),
+        collection(db, "users", uid, "transactions"),
 
-        orderBy("createdAt","desc")
+        orderBy("createdAt", "desc")
 
     );
 
-    onSnapshot(q,(snapshot)=>{
+    onSnapshot(transactionsRef, (snapshot) => {
 
         transactionsList.innerHTML = "";
 
-        if(snapshot.empty){
+        if (snapshot.empty) {
 
-            transactionsList.innerHTML = \`
+            transactionsList.innerHTML = `
 
-            <div class="transaction-card">
+                <div class="transaction-card">
 
-                <div class="transaction-icon">
+                    <div class="transaction-icon">
 
-                    <i class="fa-solid fa-arrow-down"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
 
-                </div>
+                    </div>
 
-                <div class="transaction-details">
+                    <div class="transaction-details">
 
-                    <h3>Wallet Deposit</h3>
+                        <h3>No Transactions</h3>
 
-                    <p>No transactions yet</p>
+                        <p>Your transactions will appear here.</p>
 
-                </div>
+                    </div>
 
-                <div class="transaction-right">
+                    <div class="transaction-right">
 
-                    <span class="transaction-amount">₦0.00</span>
+                        <span class="transaction-amount">
+                            ₦0.00
+                        </span>
 
-                    <span class="transaction-status pending">
-
-                        Pending
-
-                    </span>
+                    </div>
 
                 </div>
 
-            </div>
-
-            \`;
+            `;
 
             return;
 
         }
 
-        snapshot.forEach((docSnap)=>{
+        snapshot.forEach((doc) => {
 
-            const data = docSnap.data();
+            const data = doc.data();
 
             const amount = Number(data.amount || 0);
 
-            const status = (data.status || "Pending").toLowerCase();
-
-            const statusClass =
-
-                status === "approved"
-                    ? "approved"
-                    : status === "declined"
-                    ? "declined"
-                    : "pending";
-
-            const statusText =
-
-                status === "approved"
-                    ? "Approved"
-                    : status === "declined"
-                    ? "Declined"
-                    : "Pending";
-
-            const date = data.createdAt?.toDate
+            const date = data.createdAt
                 ? data.createdAt.toDate().toLocaleDateString()
                 : "Just now";
 
-            transactionsList.innerHTML += \`
+            let statusClass = "pending";
 
-            <div class="transaction-card">
+            if (data.status === "Approved") {
 
-                <div class="transaction-icon">
+                statusClass = "approved";
 
-                    <i class="fa-solid fa-arrow-down"></i>
+            }
+
+            if (data.status === "Declined") {
+
+                statusClass = "declined";
+
+            }
+
+            transactionsList.innerHTML += `
+
+                <div class="transaction-card">
+
+                    <div class="transaction-icon">
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </div>
+
+                    <div class="transaction-details">
+
+                        <h3>${data.type}</h3>
+
+                        <p>
+
+                            ${data.reference}
+
+                            •
+
+                            ${date}
+
+                        </p>
+
+                    </div>
+
+                    <div class="transaction-right">
+
+                        <span class="transaction-amount">
+
+                            ₦${amount.toLocaleString()}
+
+                        </span>
+
+                        <span class="transaction-status ${statusClass}">
+
+                            ${data.status}
+
+                        </span>
+
+                    </div>
 
                 </div>
 
-                <div class="transaction-details">
-
-                    <h3>\${data.type || "Wallet Deposit"}</h3>
-
-                    <p>
-
-                        \${data.reference || "No reference"} · \${date}
-
-                    </p>
-
-                </div>
-
-                <div class="transaction-right">
-
-                    <span class="transaction-amount">
-
-                        ₦\${amount.toLocaleString()}
-
-                    </span>
-
-                    <span class="transaction-status \${statusClass}">
-
-                        \${statusText}
-
-                    </span>
-
-                </div>
-
-            </div>
-
-            \`;
+            `;
 
         });
 
     });
 
 }
-/*==============================
-      QUICK AMOUNTS
-==============================*/
+/*====================================
+        CLOSE PAYMENT POPUP
+====================================*/
 
-document.querySelectorAll(".quick-btn").forEach((button)=>{
+closePaymentModal.addEventListener("click", () => {
 
-    button.addEventListener("click",()=>{
-
-        depositAmount.value = button.dataset.amount;
-
-    });
+    paymentModal.classList.remove("show");
 
 });
+
+paymentModal.addEventListener("click", (event) => {
+
+    if (event.target === paymentModal) {
+
+        paymentModal.classList.remove("show");
+
+    }
+
+});
+
+/*====================================
+        SEND RECEIPT
+====================================*/
+
+sendReceiptBtn.addEventListener("click", () => {
+
+    showToast("Opening WhatsApp...");
+
+});
+
+/*====================================
+        RESET BUTTON
+====================================*/
+
+window.addEventListener("pageshow", () => {
+
+    openPaymentBtn.disabled = false;
+
+    if (paymentMethod === "bank") {
+
+        openPaymentBtn.textContent = "OPEN PAYMENT";
+
+    }
+
+});
+
+/*====================================
+            FINISHED
+====================================*/
+
+console.log("Wallet page loaded successfully.");
