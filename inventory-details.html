@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Purchased Product</title>
+
+<link rel="stylesheet" href="inventory-details.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+<button id="backBtn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</button>
+
+<h2>Purchased Product</h2>
+
+</header>
+
+<div class="container">
+
+<img id="productImage" class="product-image">
+
+<img id="platformIcon" class="platform-icon">
+
+<h1 id="productTitle"></h1>
+
+<p id="productDescription"></p>
+
+<div class="credential">
+
+<label>Email</label>
+
+<input id="email" readonly>
+
+<button class="copy-btn" data-copy="email">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>Password</label>
+
+<input id="password"
+type="password"
+readonly>
+
+<button id="togglePassword">
+
+Show
+
+</button>
+
+<button class="copy-btn" data-copy="password">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>Recovery Email</label>
+
+<input id="recoveryEmail" readonly>
+
+<button class="copy-btn" data-copy="recoveryEmail">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>Recovery Password</label>
+
+<input id="recoveryPassword"
+readonly>
+
+<button class="copy-btn"
+data-copy="recoveryPassword">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>2FA</label>
+
+<textarea id="twoFactor"
+readonly></textarea>
+
+<button class="copy-btn"
+data-copy="twoFactor">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>Cookies</label>
+
+<textarea id="cookies"
+readonly></textarea>
+
+<button class="copy-btn"
+data-copy="cookies">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="credential">
+
+<label>Notes</label>
+
+<textarea id="notes"
+readonly></textarea>
+
+</div>
+
+</div>
+
+<script type="module"
+src="inventory-details.js"></script>
+
+</body>
+
+</html>
