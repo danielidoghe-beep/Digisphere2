@@ -555,33 +555,49 @@ return;
 
     await addDoc(
 
-        collection(
+collection(
 
-        db,
+db,
 
-        "users",
+"users",
 
-        currentUser.uid,
+currentUser.uid,
 
-        "inventory"
+"inventory"
 
-        ),
+),
 
-        {
+{
 
-            title:selectedProduct.title,
+title:selectedProduct.title,
 
-            description:selectedProduct.description,
+description:selectedProduct.description,
 
-            image:selectedProduct.image,
+image:selectedProduct.image,
 
-            platform:selectedProduct.platform,
+platform:selectedProduct.platform,
 
-            purchasedAt:serverTimestamp()
+price:selectedProduct.price,
 
-        }
+email:selectedProduct.email || "",
 
-    );
+password:selectedProduct.password || "",
+
+recoveryEmail:selectedProduct.recoveryEmail || "",
+
+recoveryPassword:selectedProduct.recoveryPassword || "",
+
+twoFactor:selectedProduct.twoFactor || "",
+
+cookies:selectedProduct.cookies || "",
+
+notes:selectedProduct.notes || "",
+
+purchasedAt:serverTimestamp()
+
+}
+
+);
 
     currentWallet=newBalance;
 
@@ -590,3 +606,122 @@ return;
     alert("Purchase Successful.");
 
 };
+/*=========================
+MENU BUTTON
+=========================*/
+
+menuBtn.addEventListener("click", () => {
+
+    window.location.href = "dashboard.html";
+
+});
+/*=========================
+OPEN FILTER SIDEBAR
+=========================*/
+
+filterBtn.addEventListener("click", () => {
+
+    categorySidebar.classList.add("show");
+
+    sidebarOverlay.classList.add("show");
+
+});
+/*=========================
+CLOSE SIDEBAR
+=========================*/
+
+closeSidebar.addEventListener("click", () => {
+
+    categorySidebar.classList.remove("show");
+
+    sidebarOverlay.classList.remove("show");
+
+});
+
+sidebarOverlay.addEventListener("click", () => {
+
+    categorySidebar.classList.remove("show");
+
+    sidebarOverlay.classList.remove("show");
+
+});
+/*=========================
+LOAD CATEGORIES
+=========================*/
+
+function loadCategories() {
+
+    const categories = [
+
+        "All listings",
+
+        "Facebook",
+
+        "Instagram",
+
+        "TikTok",
+
+        "Twitter",
+
+        "Telegram",
+
+        "Netflix",
+
+        "VPN"
+
+    ];
+
+    categoryList.innerHTML = "";
+
+    categories.forEach(category => {
+
+        categoryList.innerHTML += `
+
+        <button class="category-item">
+
+            ${category}
+
+        </button>
+
+        `;
+
+    });
+
+    document.querySelectorAll(".category-item").forEach(button => {
+
+        button.onclick = () => {
+
+            selectedCategory = button.textContent.trim();
+
+            loadProducts(selectedCategory);
+
+            categorySidebar.classList.remove("show");
+
+            sidebarOverlay.classList.remove("show");
+
+        };
+
+    });
+
+}
+/*=========================
+SEARCH CATEGORY
+=========================*/
+
+categorySearch.addEventListener("input", () => {
+
+    const search = categorySearch.value.toLowerCase();
+
+    document.querySelectorAll(".category-item").forEach(item => {
+
+        item.style.display =
+
+            item.textContent.toLowerCase().includes(search)
+
+            ? "block"
+
+            : "none";
+
+    });
+
+});
