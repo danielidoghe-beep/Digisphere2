@@ -2,483 +2,295 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | DigiSphere</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="dashboard.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<title>DigiSphere Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
 
-<!-- MENU OVERLAY -->
+<div class="app">
 
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- =========================
+HEADER
+========================= -->
 
-<!-- SIDEBAR -->
+<header class="header">
 
-<aside class="sidebar" id="sidebar">
+<button id="menuBtn" class="icon-btn">
 
-    <div class="sidebar-content">
+<i class="fa-solid fa-bars"></i>
 
-        <span class="sidebar-title">MAIN</span>
+</button>
 
-        <a href="dashboard.html" class="sidebar-link active">
-            <i class="fa-solid fa-table-cells-large"></i>
-            <span>Dashboard</span>
-        </a>
+<div class="header-right">
 
-        <a href="wallet.html" class="sidebar-link">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Wallet</span>
-        </a>
+<div class="wallet-pill">
 
-        <a href="orders.html" class="sidebar-link">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Orders</span>
-        </a>
+<i class="fa-solid fa-wallet"></i>
 
-        <a href="transactions.html" class="sidebar-link">
-            <i class="fa-regular fa-rectangle-list"></i>
-            <span>Transactions</span>
-        </a>
+<span id="headerWallet">
 
-        <span class="sidebar-title">STORE</span>
+₦0.00
 
-        <a href="logs.html" class="sidebar-link">
-            <i class="fa-solid fa-cube"></i>
-            <span>Logs Store</span>
-        </a>
+</span>
 
-        <a href="tools.html" class="sidebar-link">
-            <i class="fa-solid fa-wrench"></i>
-            <span>Tools Store</span>
-        </a>
-
-        <div class="menu-item" id="smsNumbers">
-    <i class="fa-regular fa-message"></i>
-    <span>SMS Numbers</span>
 </div>
 
-<div class="menu-item" id="smeBoosting">
-    <i class="fa-solid fa-bolt"></i>
-    <span>SME Boosting</span>
+<button id="themeBtn" class="icon-btn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button id="notificationBtn" class="icon-btn notification-btn">
+
+<i class="fa-regular fa-bell"></i>
+
+<span id="notificationBadge">
+
+0
+
+</span>
+
+</button>
+
+<div id="profileAvatar" class="avatar">
+
+D
+
 </div>
 
-<div class="menu-item" id="esim">
-    <i class="fa-solid fa-sim-card"></i>
-    <span>E-Sim</span>
 </div>
 
-<div class="menu-item" id="community">
-    <i class="fa-regular fa-comments"></i>
-    <span>Community</span>
+</header>
+
+<!-- =========================
+NOTIFICATION DROPDOWN
+========================= -->
+
+<div id="notificationDropdown" class="notification-dropdown">
+
+<!-- Firebase notifications -->
+
 </div>
 
-        <span class="sidebar-title">ACCOUNT</span>
+<!-- =========================
+SIDEBAR
+========================= -->
 
-        <a href="support.html" class="sidebar-link">
-            <i class="fa-regular fa-bell"></i>
-            <span>Support</span>
-        </a>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-        <a href="profile.html" class="sidebar-link">
-            <i class="fa-regular fa-user"></i>
-            <span>Profile</span>
-        </a>
+<aside id="sidebar" class="sidebar">
 
-        <a href="signin.html" class="sidebar-link logout" id="logoutBtn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Sign out</span>
-        </a>
+<div class="sidebar-top">
 
-    </div>
+<div class="logo">
+
+<h2>
+
+DigiSphere
+
+</h2>
+
+<p>
+
+Digital Marketplace
+
+</p>
+
+</div>
+
+<button id="closeSidebar">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<nav class="sidebar-menu">
+
+<a href="dashboard.html" class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>Wallet</span>
+
+</a>
+
+<a href="orders.html">
+
+<i class="fa-solid fa-box"></i>
+
+<span>Orders</span>
+
+</a>
+
+<a href="transactions.html">
+
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+<span>Transactions</span>
+
+</a>
+
+<a href="admin.html" id="adminMenu">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<span>Admin Panel</span>
+
+</a>
+
+<h4>
+
+STORE
+
+</h4>
+
+<a href="logs.html">
+
+<i class="fa-solid fa-user-lock"></i>
+
+<span>Logs Store</span>
+
+</a>
+
+<a href="tools.html">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+<span>Tools Store</span>
+
+</a>
+
+<a href="#" id="smsNumbers">
+
+<i class="fa-solid fa-comment-dots"></i>
+
+<span>SMS Numbers</span>
+
+</a>
+
+<a href="#" id="smeBoost">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>SME Boosting</span>
+
+</a>
+
+<a href="#" id="esim">
+
+<i class="fa-solid fa-sim-card"></i>
+
+<span>E-SIM</span>
+
+</a>
+
+<a href="#" id="community">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+<span>Community</span>
+
+</a>
+
+<h4>
+
+ACCOUNT
+
+</h4>
+
+<a href="support.html">
+
+<i class="fa-regular fa-life-ring"></i>
+
+<span>Support</span>
+
+</a>
+
+<a href="profile.html">
+
+<i class="fa-regular fa-user"></i>
+
+<span>Profile</span>
+
+</a>
+
+<a href="#" id="logoutBtn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>Sign Out</span>
+
+</a>
+
+</nav>
 
 </aside>
 
-<div class="dashboard">
-    <header class="topbar">
+<!-- =========================
+MAIN CONTENT
+========================= -->
 
-    <button class="menu-btn" id="menuBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+<main class="content">
 
-    <div class="wallet-pill">
-        ₦<span id="walletBalance">0</span>
-    </div>
+<section class="welcome">
 
-    <button class="theme-btn" id="themeBtn">
-        <i class="fa-regular fa-moon"></i>
-    </button>
+<h1>
 
-    <button class="notification-btn" id="notificationBtn">
+Welcome back,
 
-        <i class="fa-regular fa-bell"></i>
+<span id="userName">
 
-        <span class="notification-count" id="notificationCount">
-            0
-        </span>
+Daniel
 
-    </button>
+</span>
 
-    <div class="profile-avatar" id="profileLetter">
-        D
-    </div>
+👋
 
-</header>
-<main class="dashboard-content">
+</h1>
 
-    <!-- Welcome -->
+<p>
 
-    <section class="welcome-section">
+Manage your digital products with ease.
 
-        <h1 class="welcome-title">
-
-            Welcome back,
-            <span id="userName">Loading...</span> 👋
-
-        </h1>
-
-        <p class="welcome-text">
-
-            Here's what's going on with your account
-
-        </p>
-
-    </section>
-    <!-- Dashboard Cards -->
-
-<section class="dashboard-cards">
-
-    <!-- Wallet -->
-
-    <div class="dashboard-card">
-
-        <span class="card-label">
-            Wallet balance
-        </span>
-
-        <h2>
-
-            ₦<span id="walletCard">0.00</span>
-
-        </h2>
-
-        <a href="wallet.html">
-
-            View wallet →
-
-        </a>
-
-    </div>
-
-    <!-- Purchases -->
-
-    <div class="dashboard-card">
-
-        <span class="card-label">
-            Total purchases
-        </span>
-
-        <h2 id="purchaseCount">
-
-            No purchases yet
-
-        </h2>
-
-        <a href="orders.html">
-
-            View orders →
-
-        </a>
-
-    </div>
-
-    <!-- Inventory -->
-
-    <div class="dashboard-card">
-
-        <span class="card-label">
-            Available inventory
-        </span>
-
-        <h2 id="inventoryTotal">
-
-            0
-
-        </h2>
-
-        <p class="inventory-text">
-
-            <span id="logsCount">0</span> logs ·
-            <span id="toolsCount">0</span> tools
-
-        </p>
-
-    </div>
+</p>
 
 </section>
-<!-- ==========================
-        QUICK ACTIONS
-========================== -->
 
-<section class="quick-actions">
-
-    <h2 class="section-title">
-        Quick Actions
-    </h2>
-
-    <div class="quick-grid">
-
-        <!-- Buy Logs -->
-
-        <a href="logs.html" class="quick-card">
-
-            <div class="quick-icon blue">
-
-                <i class="fa-solid fa-layer-group"></i>
-
-            </div>
-
-            <h3>Buy Logs</h3>
-
-            <p>
-                Social media accounts, VPNs, proxies and more.
-            </p>
-
-        </a>
-
-        <!-- Buy Tools -->
-
-        <a href="tools.html" class="quick-card">
-
-            <div class="quick-icon purple">
-
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-
-            </div>
-
-            <h3>Buy Tools</h3>
-
-            <p>
-                Premium digital tools and software.
-            </p>
-
-        </a>
-
-        <!-- Wallet -->
-
-        <a href="wallet.html" class="quick-card">
-
-            <div class="quick-icon green">
-
-                <i class="fa-solid fa-wallet"></i>
-
-            </div>
-
-            <h3>Top Up Wallet</h3>
-
-            <p>
-                Add funds to your wallet balance.
-            </p>
-
-        </a>
-
-        <!-- Support -->
-
-        <a href="support.html" class="quick-card">
-
-            <div class="quick-icon orange">
-
-                <i class="fa-solid fa-headset"></i>
-
-            </div>
-
-            <h3>Get Support</h3>
-
-            <p>
-                Open a support ticket and chat with our team.
-            </p>
-
-        </a>
-
-    </div>
-
-</section>
-<!-- ==========================
-        SUPPORT TICKETS
-========================== -->
-
-<section class="support-section">
-
-    <h2 class="section-title">
-        Support Tickets
-    </h2>
-
-    <div class="support-card">
-
-        <div class="support-message">
-
-            Manage your support tickets in the dedicated support page.
-
-        </div>
-
-        <a href="support.html" class="support-btn">
-
-            GO TO SUPPORT
-
-        </a>
-
-    </div>
-
-</section>
-
-<!-- ==========================
-        RECENT ORDERS
-========================== -->
-
-<section class="orders-section">
-
-    <div class="section-header">
-
-        <h2 class="section-title">
-            Recent Orders
-        </h2>
-
-        <a href="orders.html" class="view-all">
-
-            VIEW ALL
-
-        </a>
-
-    </div>
-
-    <div class="recent-order-card">
-
-        <div class="order-icon">
-
-            <i class="fa-regular fa-clock"></i>
-
-        </div>
-
-        <div class="order-content">
-
-            <h3>No recent orders</h3>
-
-            <p>
-
-                You haven't made any purchases yet — browse the store to get started.
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-<!-- ==========================
-        NEED QUICK HELP
-========================== -->
-
-<section class="help-section">
-
-    <div class="help-card">
-
-        <h2>Need quick help?</h2>
-
-        <p>
-
-            Reach support directly if you want a faster response outside tickets.
-
-        </p>
-
-        <div class="help-buttons">
-
-            <a href="https://wa.me/2349117412352"
-               target="_blank"
-               class="whatsapp-btn">
-
-                Chat on WhatsApp
-
-            </a>
-
-            <a href="https://t.me/+Xbt-w6-TwsozYjY0"
-               target="_blank"
-               class="telegram-btn">
-
-                Open Telegram
-
-            </a>
-
-        </div>
-
-        <div class="support-email">
-
-            support@digisphere.com
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================
-     NOTIFICATION DROPDOWN
-========================== -->
-
-<div class="notification-dropdown" id="notificationPopup">
-
-    <div class="notification-top">
-
-        <h3>Notifications</h3>
-
-        <button id="markRead" class="mark-read-btn">
-            Mark all read
-        </button>
-
-    </div>
-
-    <div class="notification-body" id="notificationList">
-
-        <!-- Notifications from Firebase -->
-
-    </div>
-
-    <div class="notification-bottom">
-
-        <a href="notifications.html">
-
-            View all notifications →
-
-        </a>
-
-    </div>
-
-</div>
-
-
-    <div class="notification-bottom">
-
-        <a href="notifications.html">
-
-            View all notifications
-
-        </a>
-
-    </div>
-
-</div>
+<!-- Wallet card, quick actions, statistics, support, and recent orders will be added in the next parts. -->
 
 </main>
+
+</div>
 
 <script type="module" src="dashboard.js"></script>
 
 </body>
+
 </html>
