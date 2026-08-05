@@ -23,17 +23,19 @@ FIREBASE CONFIG
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
 
-    authDomain: "YOUR_AUTH_DOMAIN",
+  authDomain: "digisphere-66fdf.firebaseapp.com",
 
-    projectId: "YOUR_PROJECT_ID",
+  projectId: "digisphere-66fdf",
 
-    storageBucket: "YOUR_STORAGE_BUCKET",
+  storageBucket: "digisphere-66fdf.firebasestorage.app",
 
-    messagingSenderId: "YOUR_SENDER_ID",
+  messagingSenderId: "834194884246",
 
-    appId: "YOUR_APP_ID"
+  appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+
+  measurementId: "G-19QS4036V7"
 
 };
 
