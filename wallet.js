@@ -396,3 +396,16 @@ function loadTransactions(uid){
     });
 
 }`
+/*==============================
+      QUICK AMOUNTS
+==============================*/
+
+document.querySelectorAll(".quick-btn").forEach((button)=>{
+
+    button.addEventListener("click",()=>{
+
+        depositAmount.value = button.dataset.amount;
+
+    });
+
+});
