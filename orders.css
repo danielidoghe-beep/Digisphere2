@@ -1,0 +1,221 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Poppins",sans-serif;
+    background:#f7f7f7;
+    color:#111;
+}
+
+.orders-page{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    background:#f7f7f7;
+}
+
+/*==============================
+        TOPBAR
+==============================*/
+
+.topbar{
+    height:72px;
+    padding:0 18px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #e8e8e8;
+}
+
+.menu-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    background:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    cursor:pointer;
+}
+
+.menu-btn span{
+    width:22px;
+    height:2px;
+    background:#555;
+    border-radius:20px;
+}
+
+.wallet-pill{
+    background:#ececec;
+    color:#4e9c17;
+    font-weight:700;
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:18px;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.theme-btn,
+.notification-btn{
+    border:none;
+    background:none;
+    cursor:pointer;
+    position:relative;
+    font-size:26px;
+    color:#555;
+}
+
+.notification-count{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    min-width:22px;
+    height:22px;
+    border-radius:999px;
+    background:#63a51d;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:700;
+}
+
+.profile-avatar{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:#ffa500;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:700;
+}
+
+/*==============================
+        CONTENT
+==============================*/
+
+.orders-content{
+    padding:34px 20px 40px;
+}
+
+.orders-header h1{
+    font-size:60px;
+    font-weight:800;
+    line-height:1;
+}
+
+.orders-header p{
+    margin-top:18px;
+    font-size:26px;
+    color:#555;
+}
+
+/*==============================
+      ORDERS CARD
+==============================*/
+
+.orders-card{
+    margin-top:42px;
+    background:#fff;
+    border:2px solid #ececec;
+    border-radius:28px;
+    padding:28px;
+}
+
+.orders-card h2{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:28px;
+}
+
+.empty-order{
+    background:#fff;
+    border:2px solid #ececec;
+    border-radius:22px;
+    padding:34px 24px;
+}
+
+.empty-order h3{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.empty-order p{
+    font-size:18px;
+    color:#666;
+    line-height:1.6;
+}
+
+/*==============================
+      ORDER CARD
+==============================*/
+
+.order-item{
+    background:#fff;
+    border:2px solid #ececec;
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.order-title{
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.order-info{
+    font-size:15px;
+    color:#666;
+    line-height:1.6;
+}
+
+.order-bottom{
+    margin-top:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.order-price{
+    font-size:22px;
+    font-weight:700;
+}
+
+.order-status{
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.order-status.pending{
+    background:#fff4e8;
+    color:#d67b00;
+}
+
+.order-status.approved{
+    background:#eaf8ec;
+    color:#15803d;
+}
+
+.order-status.declined{
+    background:#ffe9e9;
+    color:#dc2626;
+}
