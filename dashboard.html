@@ -1,576 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DigiSphere Dashboard</title>
 
-    <link rel="stylesheet"
-        href="dashboard.css">
-
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <!-- Icons -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
 
-<div class="app">
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loader"></div>
+    </div>
 
-    <!--=========================
-        HEADER
-    ==========================-->
+    <!-- Overlay -->
+    <div id="overlay"></div>
 
-    <header class="topbar">
+    <!-- Sidebar -->
+    <aside id="sidebar">
 
-        <button
-            id="menuBtn"
-            class="icon-btn">
+        <div class="sidebar-header">
 
-            <i class="fa-solid fa-bars"></i>
+            <div class="logo">
+                <span>DigiSphere</span>
+            </div>
 
-        </button>
+            <button id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-        <div class="top-actions">
+        </div>
 
-            <button
-                id="walletBtn"
-                class="wallet-pill">
+        <div class="sidebar-scroll">
+
+            <div class="menu-title">
+                MAIN
+            </div>
+
+            <a href="#" class="menu-item active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Orders</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <span>Transactions</span>
+            </a>
+
+            <!-- Only your Gmail will see this -->
+            <a href="admin.html"
+               class="menu-item"
+               id="adminMenu"
+               style="display:none">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <span>Admin Panel</span>
+
+            </a>
+
+            <div class="menu-title">
+                STORE
+            </div>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-box"></i>
+                <span>Logs Store</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Tools Store</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-sim-card"></i>
+                <span>Virtual Numbers</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-globe"></i>
+                <span>eSIM</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-rocket"></i>
+                <span>Boosting</span>
+            </a>
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-headset"></i>
+                <span>Support</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="#" class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+    <main id="mainContent">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <button id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="wallet-pill">
 
                 <i class="fa-solid fa-wallet"></i>
 
-                <span id="headerWallet">
-
-                    ₦0.00
-
+                <span id="walletBalance">
+                    ₦0
                 </span>
-
-            </button>
-
-            <button
-                id="themeBtn"
-                class="icon-btn">
-
-                <i class="fa-regular fa-moon"></i>
-
-            </button>
-
-            <button
-                id="notificationBtn"
-                class="icon-btn notification-btn">
-
-                <i class="fa-regular fa-bell"></i>
-
-                <span
-                    id="notificationBadge">
-
-                    0
-
-                </span>
-
-            </button>
-
-            <button
-                id="profileBtn"
-                class="profile-btn">
-
-                <span
-                    id="profileLetter">
-
-                    D
-
-                </span>
-
-            </button>
-
-        </div>
-
-    </header>
-
-    <!--=========================
-        NOTIFICATION DROPDOWN
-    ==========================-->
-
-    <!--==================================
-NOTIFICATION DROPDOWN
-===================================-->
-
-<div id="notificationDropdown" class="notification-dropdown">
-
-    <div class="notification-header">
-
-        <h2>
-
-            Notifications
-
-        </h2>
-
-        <button id="markAllRead">
-
-            Mark all read
-
-        </button>
-
-    </div>
-
-    <div id="notificationList" class="notification-list">
-
-        <!-- Firebase Notifications -->
-
-    </div>
-
-    <button id="viewAllNotifications"
-
-        class="view-all-btn">
-
-        View all notifications
-
-    </button>
-
-</div>
-
-    <!--=========================
-        SIDEBAR
-    ==========================-->
-
-    <div
-        id="sidebarOverlay"
-        class="sidebar-overlay">
-
-    </div>
-
-    <aside id="sidebar" class="sidebar">
-
-    <!-- Header -->
-
-    <div class="sidebar-header">
-
-        <div class="sidebar-user">
-
-            <div class="sidebar-avatar">
-
-                <span id="sidebarProfileLetter">D</span>
 
             </div>
 
-            <div class="sidebar-user-info">
+            <div class="header-right">
 
-                <h3 id="sidebarUserName"></h3>
+                <button id="themeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
 
-                <p id="sidebarUserEmail"></p>
+                <div class="notification-area">
+
+                    <button id="notificationBtn">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span id="notificationBadge">
+                            0
+                        </span>
+
+                    </button>
+
+                    <!-- Notification Dropdown -->
+
+                    <div id="notificationDropdown">
+
+                        <div class="notification-header">
+
+                            <h3>Notifications</h3>
+
+                            <button id="markAllRead">
+                                Mark all read
+                            </button>
+
+                        </div>
+
+                        <div id="notificationList">
+
+                        </div>
+
+                        <div class="notification-footer">
+
+                            <a href="#">
+                                View all notifications
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <img
+                    id="profileImage"
+                    src=""
+                    alt="Profile">
 
             </div>
 
-        </div>
+        </header>
 
-        <button id="closeSidebar" class="close-btn">
+        <!-- Welcome -->
 
-            <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-    </div>
-
-    <!-- MAIN -->
-
-    <div class="sidebar-section">
-
-        <p class="sidebar-title">
-
-            MAIN
-
-        </p>
-
-        <a href="dashboard.html" class="sidebar-link active">
-
-            <i class="fa-solid fa-house"></i>
-
-            <span>Dashboard</span>
-
-        </a>
-
-        <a href="wallet.html" class="sidebar-link">
-
-            <i class="fa-solid fa-wallet"></i>
-
-            <span>Wallet</span>
-
-        </a>
-
-        <a href="orders.html" class="sidebar-link">
-
-            <i class="fa-solid fa-box"></i>
-
-            <span>Orders</span>
-
-        </a>
-
-        <a href="transactions.html" class="sidebar-link">
-
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-
-            <span>Transactions</span>
-
-        </a>
-
-        <!-- Only visible for admin -->
-
-        <a href="admin.html"
-
-            class="sidebar-link"
-
-            id="adminPanelItem"
-
-            style="display:none;">
-
-            <i class="fa-solid fa-user-shield"></i>
-
-            <span>Admin Panel</span>
-
-        </a>
-
-    </div>
-
-    <!-- STORE -->
-
-    <div class="sidebar-section">
-
-        <p class="sidebar-title">
-
-            STORE
-
-        </p>
-
-        <a href="logs.html" class="sidebar-link">
-
-            <i class="fa-solid fa-user-lock"></i>
-
-            <span>Logs Store</span>
-
-        </a>
-
-        <a href="tools.html" class="sidebar-link">
-
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-
-            <span>Tools Store</span>
-
-        </a>
-
-        <a href="#" id="smsNumbersBtn" class="sidebar-link">
-
-            <i class="fa-solid fa-comment-dots"></i>
-
-            <span>SMS Numbers</span>
-
-        </a>
-
-        <a href="#" id="smeBtn" class="sidebar-link">
-
-            <i class="fa-solid fa-bullhorn"></i>
-
-            <span>SME Boosting</span>
-
-        </a>
-
-        <a href="#" id="esimBtn" class="sidebar-link">
-
-            <i class="fa-solid fa-sim-card"></i>
-
-            <span>E-SIM</span>
-
-        </a>
-
-        <a href="#" id="communityBtn" class="sidebar-link">
-
-            <i class="fa-brands fa-whatsapp"></i>
-
-            <span>Community</span>
-
-        </a>
-
-    </div>
-
-    <!-- ACCOUNT -->
-
-    <div class="sidebar-section">
-
-        <p class="sidebar-title">
-
-            ACCOUNT
-
-        </p>
-
-        <a href="support.html" class="sidebar-link">
-
-            <i class="fa-regular fa-life-ring"></i>
-
-            <span>Support</span>
-
-        </a>
-
-        <a href="profile.html" class="sidebar-link">
-
-            <i class="fa-regular fa-user"></i>
-
-            <span>Profile</span>
-
-        </a>
-
-        <button id="logoutBtn" class="logout-btn">
-
-            <i class="fa-solid fa-right-from-bracket"></i>
-
-            <span>Sign Out</span>
-
-        </button>
-
-    </div>
-
-</aside>
-
-    <!--=========================
-        MAIN CONTENT
-    ==========================-->
-
-    <main class="dashboard-content">
-
-    <!--=========================
-        WELCOME
-    ==========================-->
-
-    <section class="welcome-section">
-
-        <h1 id="welcomeTitle">
-
-            Welcome Back 👋
-
-        </h1>
-
-        <p>
-
-            Manage your DigiSphere account from one place.
-
-        </p>
-
-    </section>
-
-    <!--=========================
-        WALLET CARD
-    ==========================-->
-
-    <section class="wallet-card">
-
-        <div class="wallet-left">
-
-            <span class="wallet-label">
-
-                Available Balance
-
-            </span>
-
-            <h2 id="walletBalance">
-
-                ₦0.00
-
-            </h2>
-
-        </div>
-
-        <button
-            id="fundWalletBtn"
-            class="wallet-action">
-
-            Fund Wallet
-
-        </button>
-
-    </section>
-
-    <!--=========================
-        QUICK ACTIONS
-    ==========================-->
-
-    <section class="quick-actions">
-
-        <div class="section-header">
+        <section class="welcome-section">
 
             <h2>
-
-                Quick Actions
-
+                Welcome back,
+                <span id="userName">
+                    Loading...
+                </span>
             </h2>
 
-        </div>
+            <p>
+                Manage your digital products with ease.
+            </p>
 
-        <div class="action-grid">
+        </section>
 
-            <a href="logs.html" class="action-card">
+        <!-- Dashboard Grid -->
 
-                <div class="action-icon">
+        <section class="dashboard-grid">
 
-                    <i class="fa-solid fa-user-lock"></i>
+            <!-- Wallet -->
+            <div class="card wallet-card">
 
-                </div>
+                <div class="card-top">
 
-                <h3>Logs Store</h3>
-
-                <p>Buy verified account logs.</p>
-
-            </a>
-
-            <a href="tools.html" class="action-card">
-
-                <div class="action-icon">
-
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
-
-                </div>
-
-                <h3>Tools Store</h3>
-
-                <p>Premium digital tools.</p>
-
-            </a>
-
-            <a href="wallet.html" class="action-card">
-
-                <div class="action-icon">
+                    <h3>Wallet</h3>
 
                     <i class="fa-solid fa-wallet"></i>
 
                 </div>
 
-                <h3>Wallet</h3>
+                <h1 id="walletAmount">
+                    ₦0
+                </h1>
 
-                <p>Fund your wallet.</p>
+                <button id="fundWalletBtn">
+                    Add Funds
+                </button>
 
-            </a>
+            </div>
 
-            <a href="support.html" class="action-card">
+            <!-- Purchases -->
 
-                <div class="action-icon">
+            <div class="card">
 
-                    <i class="fa-regular fa-life-ring"></i>
+                <div class="card-top">
+
+                    <h3>Purchases</h3>
+
+                    <i class="fa-solid fa-cart-shopping"></i>
 
                 </div>
 
-                <h3>Support</h3>
+                <h1 id="purchaseCount">
+                    0
+                </h1>
 
-                <p>Need help?</p>
+            </div>
 
-            </a>
+            <!-- Inventory -->
 
-        </div>
+            <div class="card">
 
-    </section>
+                <div class="card-top">
 
-    <!--=========================
-        RECENT ORDERS
-    ==========================-->
+                    <h3>Inventory</h3>
 
-    <section class="recent-orders">
+                    <i class="fa-solid fa-box"></i>
 
-        <div class="section-header">
+                </div>
 
-            <h2>
+                <h1 id="inventoryCount">
+                    0
+                </h1>
 
-                Recent Orders
+            </div>
 
-            </h2>
+        </section>
 
-            <a href="orders.html">
+        <!-- Quick Actions -->
 
-                View All
+        <section class="quick-actions">
 
-            </a>
+            <h3>
+                Quick Actions
+            </h3>
 
-        </div>
+            <div class="action-grid">
 
-        <div
-            id="recentOrdersContainer">
+                <button class="action-card" id="buyLogs">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Logs</span>
+                </button>
 
-            <!-- Firebase Orders -->
+                <button class="action-card" id="buyTools">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <span>Tools</span>
+                </button>
 
-        </div>
+                <button class="action-card" id="buyNumbers">
+                    <i class="fa-solid fa-sim-card"></i>
+                    <span>Numbers</span>
+                </button>
 
-    </section>
+                <button class="action-card" id="buyEsim">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>eSIM</span>
+                </button>
 
-    <!--=========================
-        SERVICES
-    ==========================-->
+            </div>
 
-    <section class="services">
+        </section>
 
-        <div class="section-header">
+        <!-- Support -->
 
-            <h2>
+        <section class="support-card">
 
-                Other Services
+            <h3>
+                Need Help?
+            </h3>
 
-            </h2>
+            <p>
+                Contact our support team.
+            </p>
 
-        </div>
-
-        <div class="service-list">
-
-            <button
-                id="smsNumbersBtn"
-                class="service-item">
-
-                <i class="fa-solid fa-comment-dots"></i>
-
-                <span>SMS Numbers</span>
-
+            <button id="supportBtn">
+                Contact Support
             </button>
 
-            <button
-                id="smeBtn"
-                class="service-item">
+        </section>
 
-                <i class="fa-solid fa-bullhorn"></i>
+        <!-- Recent Orders -->
 
-                <span>SME Boosting</span>
+        <section class="recent-orders">
 
-            </button>
+            <div class="section-header">
 
-            <button
-                id="esimBtn"
-                class="service-item">
+                <h3>
+                    Recent Orders
+                </h3>
 
-                <i class="fa-solid fa-sim-card"></i>
+                <a href="#">
+                    View All
+                </a>
 
-                <span>E-SIM</span>
+            </div>
 
-            </button>
+            <div id="recentOrders">
 
-            <button
-                id="communityBtn"
-                class="service-item">
+            </div>
 
-                <i class="fa-brands fa-whatsapp"></i>
+        </section>
 
-                <span>Community</span>
+    </main>
 
-            </button>
+    <script type="module" src="dashboard.js"></script>
 
-        </div>
-
-    </section>
-
-</main>
+</body>
+</html>
