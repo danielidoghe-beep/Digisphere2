@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Logs Store</title>
+
+<link rel="stylesheet" href="logs.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+<!--=========================
+TOP HEADER
+==========================-->
+
+<header class="topbar">
+
+<button
+id="menuBtn"
+class="menu-btn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+<div class="top-actions">
+
+<button
+class="theme-btn"
+id="themeBtn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button
+class="notification-btn"
+id="notificationBtn">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+id="notificationCount">
+
+0
+
+</span>
+
+</button>
+
+<div
+class="profile-avatar"
+id="profileLetter">
+
+D
+
+</div>
+
+</div>
+
+</header>
+
+<!--=========================
+PAGE TITLE
+==========================-->
+
+<section class="hero">
+
+<h1>
+
+Logs Store
+
+</h1>
+
+<p>
+
+Browse and purchase verified social media accounts
+
+</p>
+
+</section>
+
+<!--=========================
+LISTING HEADER
+==========================-->
+
+<section class="listing-header">
+
+<div>
+
+<h2>
+
+All listings
+
+</h2>
+
+<p
+id="listingCount">
+
+0 accounts available
+
+</p>
+
+<p>
+
+Browse available verified social media accounts and buy instantly from your wallet.
+
+</p>
+
+</div>
+
+<button
+id="filterBtn"
+class="filter-btn">
+
+<i class="fa-solid fa-sliders"></i>
+
+</button>
+
+</section>
+
+<!--=========================
+PRODUCTS
+==========================-->
+
+<div
+id="productsContainer"
+class="products">
+
+<!-- Firebase products will appear here -->
+
+</div>
+
+</div>
+
+<!--=========================
+CATEGORY SIDEBAR
+==========================-->
+
+<div
+id="categorySidebar"
+class="category-sidebar">
+
+<div class="sidebar-header">
+
+<div>
+
+<h2>
+
+Browse categories
+
+</h2>
+
+<p>
+
+Switch between listings and jump straight into the category you want.
+
+</p>
+
+</div>
+
+<button
+id="closeSidebar">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="categorySearch"
+placeholder="Search categories...">
+
+</div>
+
+<div
+id="categoryList"
+class="category-list">
+
+<!-- Categories from Firebase -->
+
+</div>
+
+</div>
+
+<div
+id="sidebarOverlay"
+class="sidebar-overlay">
+
+</div>
+
+<!--=========================
+BUY POPUP
+==========================-->
+
+<div
+id="buyModal"
+class="buy-modal">
+
+<div class="buy-box">
+
+<img
+id="buyImage"
+class="buy-image">
+
+<div class="buy-content">
+
+<img
+id="buyIcon"
+class="buy-icon">
+
+<h3
+id="buyTitle">
+
+Product
+
+</h3>
+
+<h2
+id="buyPrice">
+
+₦0
+
+</h2>
+
+<p
+id="buyDescription">
+
+Description
+
+</p>
+
+<div class="important">
+
+<strong>
+
+Important
+
+</strong>
+
+<p>
+
+Products purchased on DigiSphere must only be used for lawful purposes.
+
+Do not use any purchased product for impersonation, fraud or illegal activities.
+
+You are solely responsible for how you use purchased products.
+
+</p>
+
+</div>
+
+<div class="buy-buttons">
+
+<button
+id="cancelBuy">
+
+Cancel
+
+</button>
+
+<button
+id="confirmBuy">
+
+Buy Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="logs.js">
+
+</script>
+
+</body>
+
+</html>
