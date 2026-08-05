@@ -252,3 +252,53 @@ sidebarOverlay.addEventListener("click", () => {
     sidebar.classList.remove("show");
     sidebarOverlay.classList.remove("show");
 });
+/*=========================
+WHATSAPP LINKS
+=========================*/
+
+const whatsappNumber = "2349117412352";
+
+document.getElementById("smsNumbers").onclick = () => {
+
+    const message =
+        "Hey DigiSphere, I want to buy SMS Numbers.";
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+        "_blank"
+    );
+
+};
+
+document.getElementById("smeBoosting").onclick = () => {
+
+    const message =
+        "Hey DigiSphere, I want to buy SME Boosting.";
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+        "_blank"
+    );
+
+};
+
+document.getElementById("esim").onclick = () => {
+
+    const message =
+        "Hey DigiSphere, I want to buy E-Sim.";
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+        "_blank"
+    );
+
+};
+
+document.getElementById("community").onclick = () => {
+
+    window.open(
+        "https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
+        "_blank"
+    );
+
+};
