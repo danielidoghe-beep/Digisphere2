@@ -348,19 +348,229 @@ NOTIFICATION DROPDOWN
         MAIN CONTENT
     ==========================-->
 
-    <main
-        class="dashboard-content">
+    <main class="dashboard-content">
 
-    </main>
+    <!--=========================
+        WELCOME
+    ==========================-->
 
-</div>
+    <section class="welcome-section">
 
-<script
-type="module"
-src="dashboard.js">
+        <h1 id="welcomeTitle">
 
-</script>
+            Welcome Back 👋
 
-</body>
+        </h1>
 
-</html>
+        <p>
+
+            Manage your DigiSphere account from one place.
+
+        </p>
+
+    </section>
+
+    <!--=========================
+        WALLET CARD
+    ==========================-->
+
+    <section class="wallet-card">
+
+        <div class="wallet-left">
+
+            <span class="wallet-label">
+
+                Available Balance
+
+            </span>
+
+            <h2 id="walletBalance">
+
+                ₦0.00
+
+            </h2>
+
+        </div>
+
+        <button
+            id="fundWalletBtn"
+            class="wallet-action">
+
+            Fund Wallet
+
+        </button>
+
+    </section>
+
+    <!--=========================
+        QUICK ACTIONS
+    ==========================-->
+
+    <section class="quick-actions">
+
+        <div class="section-header">
+
+            <h2>
+
+                Quick Actions
+
+            </h2>
+
+        </div>
+
+        <div class="action-grid">
+
+            <a href="logs.html" class="action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-solid fa-user-lock"></i>
+
+                </div>
+
+                <h3>Logs Store</h3>
+
+                <p>Buy verified account logs.</p>
+
+            </a>
+
+            <a href="tools.html" class="action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                </div>
+
+                <h3>Tools Store</h3>
+
+                <p>Premium digital tools.</p>
+
+            </a>
+
+            <a href="wallet.html" class="action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                </div>
+
+                <h3>Wallet</h3>
+
+                <p>Fund your wallet.</p>
+
+            </a>
+
+            <a href="support.html" class="action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-regular fa-life-ring"></i>
+
+                </div>
+
+                <h3>Support</h3>
+
+                <p>Need help?</p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!--=========================
+        RECENT ORDERS
+    ==========================-->
+
+    <section class="recent-orders">
+
+        <div class="section-header">
+
+            <h2>
+
+                Recent Orders
+
+            </h2>
+
+            <a href="orders.html">
+
+                View All
+
+            </a>
+
+        </div>
+
+        <div
+            id="recentOrdersContainer">
+
+            <!-- Firebase Orders -->
+
+        </div>
+
+    </section>
+
+    <!--=========================
+        SERVICES
+    ==========================-->
+
+    <section class="services">
+
+        <div class="section-header">
+
+            <h2>
+
+                Other Services
+
+            </h2>
+
+        </div>
+
+        <div class="service-list">
+
+            <button
+                id="smsNumbersBtn"
+                class="service-item">
+
+                <i class="fa-solid fa-comment-dots"></i>
+
+                <span>SMS Numbers</span>
+
+            </button>
+
+            <button
+                id="smeBtn"
+                class="service-item">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>SME Boosting</span>
+
+            </button>
+
+            <button
+                id="esimBtn"
+                class="service-item">
+
+                <i class="fa-solid fa-sim-card"></i>
+
+                <span>E-SIM</span>
+
+            </button>
+
+            <button
+                id="communityBtn"
+                class="service-item">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                <span>Community</span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
