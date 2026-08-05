@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Orders | DigiSphere</title>
+
+    <link rel="stylesheet" href="orders.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="orders-page">
+
+    <!-- ==========================
+            TOP HEADER
+    ========================== -->
+
+    <header class="topbar">
+
+        <button class="menu-btn" id="menuBtn">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="wallet-pill">
+
+            ₦<span id="headerWalletBalance">0</span>
+
+        </div>
+
+        <div class="topbar-right">
+
+            <button class="theme-btn" id="themeBtn">
+
+                <i class="fa-regular fa-moon"></i>
+
+            </button>
+
+            <button
+                class="notification-btn"
+                id="notificationBtn">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="notification-count"
+                    id="notificationCount">
+
+                    0
+
+                </span>
+
+            </button>
+
+            <div
+                class="profile-avatar"
+                id="profileLetter">
+
+                D
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ==========================
+            PAGE CONTENT
+    ========================== -->
+
+    <main class="orders-content">
+
+        <section class="orders-header">
+
+            <h1>
+
+                Orders
+
+            </h1>
+
+            <p>
+
+                Your purchase history
+
+            </p>
+
+        </section>
+
+        <!-- ==========================
+              RECENT ORDERS
+        ========================== -->
+
+        <section class="orders-card">
+
+            <h2>
+
+                RECENT ORDERS
+
+            </h2>
+
+            <div
+                id="ordersList">
+
+                <div class="empty-order">
+
+                    <h3>
+
+                        No orders yet
+
+                    </h3>
+
+                    <p>
+
+                        You have not made any purchases yet.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="orders.js"></script>
+
+</body>
+
+</html>
