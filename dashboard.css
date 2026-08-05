@@ -1,5 +1,5 @@
 /*=========================
-RESET
+GOOGLE FONT
 =========================*/
 
 *{
@@ -18,9 +18,9 @@ body{
 
 font-family:"Poppins",sans-serif;
 
-background:#f5f7fb;
+background:#f5f6fa;
 
-color:#111827;
+color:#1f2937;
 
 overflow-x:hidden;
 
@@ -28,27 +28,37 @@ overflow-x:hidden;
 
 .app{
 
+width:100%;
+
 max-width:430px;
 
-margin:auto;
+margin:0 auto;
 
 min-height:100vh;
 
-background:#f5f7fb;
+background:#f5f6fa;
 
 position:relative;
 
 }
 
 /*=========================
-HEADER
+TOP BAR
 =========================*/
 
-.header{
+.topbar{
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
 
 height:72px;
 
 padding:0 18px;
+
+background:#ffffff;
 
 display:flex;
 
@@ -56,27 +66,13 @@ align-items:center;
 
 justify-content:space-between;
 
-background:#fff;
-
-border-bottom:1px solid #ececec;
-
-position:sticky;
-
-top:0;
-
-z-index:100;
+border-bottom:1px solid #eceff3;
 
 }
 
-.header-right{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-}
+/*=========================
+LEFT MENU
+=========================*/
 
 .icon-btn{
 
@@ -86,84 +82,82 @@ height:42px;
 
 border:none;
 
-background:none;
+background:transparent;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-font-size:22px;
+justify-content:center;
 
-color:#555;
+font-size:21px;
+
+color:#374151;
 
 cursor:pointer;
 
 }
 
 /*=========================
-WALLET PILL
+RIGHT SIDE
 =========================*/
 
-.wallet-pill{
+.top-actions{
 
 display:flex;
 
 align-items:center;
 
-gap:6px;
+gap:12px;
 
-padding:8px 14px;
+}
 
-background:#f3f4f6;
+/*=========================
+WALLET
+=========================*/
 
-border-radius:30px;
+.wallet-pill{
 
-font-size:13px;
+height:40px;
 
-font-weight:600;
+padding:0 14px;
 
-color:#111827;
+border:none;
+
+border-radius:22px;
+
+background:#edf1f5;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+cursor:pointer;
 
 }
 
 .wallet-pill i{
 
-color:#58a817;
+font-size:14px;
+
+color:#59b117;
 
 }
 
-/*=========================
-PROFILE
-=========================*/
+.wallet-pill span{
 
-.avatar{
-
-width:42px;
-
-height:42px;
-
-border-radius:50%;
-
-background:#f59e0b;
-
-color:#fff;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
+font-size:13px;
 
 font-weight:700;
 
-font-size:18px;
+color:#111827;
 
 }
 
 /*=========================
-NOTIFICATION BADGE
+NOTIFICATION
 =========================*/
 
 .notification-btn{
@@ -172,23 +166,23 @@ position:relative;
 
 }
 
-.notification-btn span{
+#notificationBadge{
 
 position:absolute;
 
-top:2px;
+top:3px;
 
-right:3px;
+right:2px;
 
-width:18px;
+min-width:18px;
 
 height:18px;
 
-border-radius:50%;
+padding:0 5px;
 
-background:#58a817;
+border-radius:999px;
 
-color:#fff;
+background:#6ac31d;
 
 display:flex;
 
@@ -200,44 +194,58 @@ font-size:10px;
 
 font-weight:700;
 
+color:#111827;
+
 }
 
 /*=========================
-CONTENT
+PROFILE
 =========================*/
 
-.content{
+.profile-btn{
+
+width:42px;
+
+height:42px;
+
+border:none;
+
+border-radius:50%;
+
+background:#f4a622;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+}
+
+#profileLetter{
+
+font-size:17px;
+
+font-weight:700;
+
+color:#fff;
+
+}
+
+/*=========================
+MAIN CONTENT
+=========================*/
+
+.dashboard-content{
 
 padding:22px 18px 90px;
 
 }
 
 /*=========================
-WELCOME
-=========================*/
-
-.welcome h1{
-
-font-size:30px;
-
-font-weight:700;
-
-line-height:1.2;
-
-margin-bottom:6px;
-
-}
-
-.welcome p{
-
-font-size:14px;
-
-color:#6b7280;
-
-}
-
-/*=========================
-SIDEBAR
+SIDEBAR PLACEHOLDER
 =========================*/
 
 .sidebar{
@@ -250,703 +258,18 @@ left:-320px;
 
 width:290px;
 
-height:100%;
+height:100vh;
 
-background:#ffffff;
+background:#fff;
 
-transition:.30s;
+transition:.28s ease;
 
-z-index:500;
-
-overflow-y:auto;
-
-padding-bottom:40px;
-
-box-shadow:0 0 30px rgba(0,0,0,.15);
-
-}
-
-.sidebar.show{
-
-left:0;
+z-index:1500;
 
 }
 
 .sidebar-overlay{
 
-position:fixed;
-
-inset:0;
-
-background:rgba(0,0,0,.45);
-
 display:none;
-
-z-index:450;
-
-}
-
-.sidebar-overlay.show{
-
-display:block;
-
-}
-
-/*=========================
-SIDEBAR TOP
-=========================*/
-
-.sidebar-top{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:22px 20px;
-
-border-bottom:1px solid #eee;
-
-}
-
-.logo h2{
-
-font-size:22px;
-
-font-weight:700;
-
-}
-
-.logo p{
-
-font-size:12px;
-
-color:#777;
-
-margin-top:2px;
-
-}
-
-#closeSidebar{
-
-width:40px;
-
-height:40px;
-
-border:none;
-
-background:#f4f4f4;
-
-border-radius:12px;
-
-font-size:18px;
-
-cursor:pointer;
-
-}
-
-/*=========================
-MENU
-=========================*/
-
-.sidebar-menu{
-
-padding:14px;
-
-}
-
-.sidebar-menu h4{
-
-font-size:11px;
-
-font-weight:700;
-
-letter-spacing:1px;
-
-color:#9ca3af;
-
-margin:18px 12px 10px;
-
-}
-
-.sidebar-menu a{
-
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
-padding:14px 16px;
-
-border-radius:14px;
-
-text-decoration:none;
-
-color:#374151;
-
-font-size:14px;
-
-font-weight:500;
-
-margin-bottom:4px;
-
-transition:.2s;
-
-}
-
-.sidebar-menu a i{
-
-width:20px;
-
-text-align:center;
-
-font-size:18px;
-
-}
-
-.sidebar-menu a.active{
-
-background:#58a817;
-
-color:#fff;
-
-}
-
-.sidebar-menu a:hover{
-
-background:#eef7e8;
-
-}
-
-/*=========================
-NOTIFICATION DROPDOWN
-=========================*/
-
-.notification-dropdown{
-
-position:absolute;
-
-top:76px;
-
-right:14px;
-
-width:330px;
-
-max-width:calc(100% - 28px);
-
-background:#fff;
-
-border-radius:18px;
-
-box-shadow:0 10px 35px rgba(0,0,0,.12);
-
-display:none;
-
-overflow:hidden;
-
-z-index:300;
-
-}
-
-.notification-dropdown.show{
-
-display:block;
-
-}
-/*=========================
-SECTION TITLE
-=========================*/
-
-.section-title{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin:26px 0 14px;
-
-}
-
-.section-title h2{
-
-font-size:18px;
-
-font-weight:700;
-
-color:#111827;
-
-}
-
-.section-title a{
-
-text-decoration:none;
-
-font-size:13px;
-
-font-weight:600;
-
-color:#58a817;
-
-}
-
-/*=========================
-WALLET CARD
-=========================*/
-
-.wallet-card{
-
-background:linear-gradient(135deg,#5fb11d,#4b8f18);
-
-border-radius:22px;
-
-padding:20px;
-
-color:#fff;
-
-margin-top:20px;
-
-box-shadow:0 12px 30px rgba(88,168,23,.20);
-
-}
-
-.wallet-top{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:22px;
-
-}
-
-.wallet-label{
-
-font-size:13px;
-
-opacity:.9;
-
-margin-bottom:6px;
-
-}
-
-.wallet-top h2{
-
-font-size:30px;
-
-font-weight:700;
-
-}
-
-#walletBalance{
-
-letter-spacing:.3px;
-
-}
-
-#addMoneyBtn{
-
-border:none;
-
-background:#fff;
-
-color:#58a817;
-
-padding:10px 18px;
-
-border-radius:14px;
-
-font-size:13px;
-
-font-weight:700;
-
-cursor:pointer;
-
-}
-
-.wallet-bottom{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:12px;
-
-}
-
-.wallet-bottom div{
-
-background:rgba(255,255,255,.12);
-
-border-radius:16px;
-
-padding:14px 10px;
-
-text-align:center;
-
-backdrop-filter:blur(8px);
-
-}
-
-.wallet-bottom h3{
-
-font-size:22px;
-
-font-weight:700;
-
-margin-bottom:4px;
-
-}
-
-.wallet-bottom p{
-
-font-size:12px;
-
-opacity:.9;
-
-}
-
-/*=========================
-QUICK ACTIONS
-=========================*/
-
-.quick-grid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:14px;
-
-}
-
-.quick-card{
-
-background:#fff;
-
-border-radius:20px;
-
-padding:18px;
-
-text-decoration:none;
-
-color:#111827;
-
-box-shadow:0 8px 24px rgba(0,0,0,.05);
-
-transition:.2s;
-
-}
-
-.quick-card:active{
-
-transform:scale(.98);
-
-}
-
-.quick-icon{
-
-width:48px;
-
-height:48px;
-
-border-radius:14px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-margin-bottom:14px;
-
-font-size:20px;
-
-color:#fff;
-
-}
-
-.quick-icon.green{
-
-background:#58a817;
-
-}
-
-.quick-icon.blue{
-
-background:#3b82f6;
-
-}
-
-.quick-icon.orange{
-
-background:#f59e0b;
-
-}
-
-.quick-icon.purple{
-
-background:#8b5cf6;
-
-}
-
-.quick-card h3{
-
-font-size:15px;
-
-font-weight:700;
-
-margin-bottom:4px;
-
-}
-
-.quick-card p{
-
-font-size:12px;
-
-color:#6b7280;
-
-line-height:1.5;
-
-}
-
-/*=========================
-SUPPORT CARD
-=========================*/
-
-.support-card{
-
-margin-top:26px;
-
-background:#ffffff;
-
-border-radius:20px;
-
-padding:20px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-box-shadow:0 8px 24px rgba(0,0,0,.05);
-
-}
-
-.support-card h2{
-
-font-size:18px;
-
-font-weight:700;
-
-margin-bottom:5px;
-
-}
-
-.support-card p{
-
-font-size:13px;
-
-color:#6b7280;
-
-line-height:1.5;
-
-}
-
-.support-card a{
-
-background:#58a817;
-
-color:#fff;
-
-text-decoration:none;
-
-padding:10px 18px;
-
-border-radius:14px;
-
-font-size:13px;
-
-font-weight:700;
-
-}
-
-/*=========================
-RECENT ORDERS
-=========================*/
-
-.recent-orders{
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
-}
-
-.order-card{
-
-background:#fff;
-
-border-radius:18px;
-
-padding:16px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-box-shadow:0 8px 22px rgba(0,0,0,.05);
-
-}
-
-.order-left{
-
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
-}
-
-.order-icon{
-
-width:46px;
-
-height:46px;
-
-border-radius:14px;
-
-background:#eef7e8;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:#58a817;
-
-font-size:18px;
-
-}
-
-.order-info h3{
-
-font-size:14px;
-
-font-weight:700;
-
-margin-bottom:3px;
-
-}
-
-.order-info p{
-
-font-size:12px;
-
-color:#6b7280;
-
-}
-
-.order-right{
-
-text-align:right;
-
-}
-
-.order-price{
-
-font-size:15px;
-
-font-weight:700;
-
-margin-bottom:4px;
-
-}
-
-.order-status{
-
-font-size:11px;
-
-font-weight:600;
-
-color:#58a817;
-
-}
-
-/*=========================
-COMMUNITY CARD
-=========================*/
-
-.community-card{
-
-margin-top:26px;
-
-background:#25D366;
-
-border-radius:22px;
-
-padding:22px;
-
-color:#fff;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:16px;
-
-}
-
-.community-card h2{
-
-font-size:18px;
-
-font-weight:700;
-
-margin-bottom:6px;
-
-}
-
-.community-card p{
-
-font-size:13px;
-
-line-height:1.5;
-
-opacity:.95;
-
-}
-
-#joinCommunity{
-
-border:none;
-
-background:#fff;
-
-color:#25D366;
-
-padding:11px 18px;
-
-border-radius:14px;
-
-font-size:13px;
-
-font-weight:700;
-
-cursor:pointer;
 
 }
