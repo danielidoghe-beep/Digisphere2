@@ -257,21 +257,16 @@ ACCOUNT
 MAIN CONTENT
 ========================= -->
 
-<main class="content">
+<!--=========================
+WELCOME
+==========================-->
 
 <section class="welcome">
 
 <h1>
 
 Welcome back,
-
-<span id="userName">
-
-Daniel
-
-</span>
-
-👋
+<span id="userName">Daniel</span> 👋
 
 </h1>
 
@@ -283,14 +278,284 @@ Manage your digital products with ease.
 
 </section>
 
-<!-- Wallet card, quick actions, statistics, support, and recent orders will be added in the next parts. -->
+<!--=========================
+WALLET CARD
+==========================-->
 
-</main>
+<section class="wallet-card">
+
+<div class="wallet-top">
+
+<div>
+
+<p class="wallet-label">
+
+Available Balance
+
+</p>
+
+<h2 id="walletBalance">
+
+₦0.00
+
+</h2>
 
 </div>
 
-<script type="module" src="dashboard.js"></script>
+<button id="addMoneyBtn">
 
-</body>
+Add Money
 
-</html>
+</button>
+
+</div>
+
+<div class="wallet-bottom">
+
+<div>
+
+<h3 id="ordersCount">
+
+0
+
+</h3>
+
+<p>
+
+Orders
+
+</p>
+
+</div>
+
+<div>
+
+<h3 id="inventoryCount">
+
+0
+
+</h3>
+
+<p>
+
+Inventory
+
+</p>
+
+</div>
+
+<div>
+
+<h3 id="notificationsCount">
+
+0
+
+</h3>
+
+<p>
+
+Notifications
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+QUICK ACTIONS
+==========================-->
+
+<section class="section-title">
+
+<h2>
+
+Quick Actions
+
+</h2>
+
+</section>
+
+<div class="quick-grid">
+
+<a href="wallet.html" class="quick-card">
+
+<div class="quick-icon green">
+
+<i class="fa-solid fa-wallet"></i>
+
+</div>
+
+<h3>
+
+Wallet
+
+</h3>
+
+<p>
+
+Deposit funds
+
+</p>
+
+</a>
+
+<a href="logs.html" class="quick-card">
+
+<div class="quick-icon blue">
+
+<i class="fa-solid fa-user-lock"></i>
+
+</div>
+
+<h3>
+
+Logs Store
+
+</h3>
+
+<p>
+
+Premium accounts
+
+</p>
+
+</a>
+
+<a href="tools.html" class="quick-card">
+
+<div class="quick-icon orange">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+</div>
+
+<h3>
+
+Tools
+
+</h3>
+
+<p>
+
+Premium tools
+
+</p>
+
+</a>
+
+<a href="orders.html" class="quick-card">
+
+<div class="quick-icon purple">
+
+<i class="fa-solid fa-box"></i>
+
+</div>
+
+<h3>
+
+Orders
+
+</h3>
+
+<p>
+
+View purchases
+
+</p>
+
+</a>
+
+</div>
+
+<!--=========================
+SUPPORT CARD
+==========================-->
+
+<section class="support-card">
+
+<div>
+
+<h2>
+
+Need Help?
+
+</h2>
+
+<p>
+
+Our support team is available anytime.
+
+</p>
+
+</div>
+
+<a href="support.html">
+
+Contact
+
+</a>
+
+</section>
+
+<!--=========================
+RECENT ORDERS
+==========================-->
+
+<section class="section-title">
+
+<h2>
+
+Recent Orders
+
+</h2>
+
+<a href="orders.html">
+
+View All
+
+</a>
+
+</section>
+
+<div
+id="recentOrders"
+class="recent-orders">
+
+<!-- Firebase Orders -->
+
+</div>
+
+<!--=========================
+WHATSAPP CARD
+==========================-->
+
+<section class="community-card">
+
+<div>
+
+<h2>
+
+Join Our Community
+
+</h2>
+
+<p>
+
+Stay updated with products and announcements.
+
+</p>
+
+</div>
+
+<button id="joinCommunity">
+
+Join Now
+
+</button>
+
+</section>
+
+</main>
