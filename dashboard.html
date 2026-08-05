@@ -122,11 +122,195 @@
 
     </div>
 
-    <aside
-        id="sidebar"
-        class="sidebar">
+    <aside id="sidebar" class="sidebar">
 
-    </aside>
+    <!-- Header -->
+
+    <div class="sidebar-header">
+
+        <div class="sidebar-user">
+
+            <div class="sidebar-avatar">
+
+                <span id="sidebarProfileLetter">D</span>
+
+            </div>
+
+            <div class="sidebar-user-info">
+
+                <h3 id="sidebarUserName"></h3>
+
+                <p id="sidebarUserEmail"></p>
+
+            </div>
+
+        </div>
+
+        <button id="closeSidebar" class="close-btn">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="sidebar-section">
+
+        <p class="sidebar-title">
+
+            MAIN
+
+        </p>
+
+        <a href="dashboard.html" class="sidebar-link active">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+        <a href="wallet.html" class="sidebar-link">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <span>Wallet</span>
+
+        </a>
+
+        <a href="orders.html" class="sidebar-link">
+
+            <i class="fa-solid fa-box"></i>
+
+            <span>Orders</span>
+
+        </a>
+
+        <a href="transactions.html" class="sidebar-link">
+
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+            <span>Transactions</span>
+
+        </a>
+
+        <!-- Only visible for admin -->
+
+        <a href="admin.html"
+
+            class="sidebar-link"
+
+            id="adminPanelItem"
+
+            style="display:none;">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            <span>Admin Panel</span>
+
+        </a>
+
+    </div>
+
+    <!-- STORE -->
+
+    <div class="sidebar-section">
+
+        <p class="sidebar-title">
+
+            STORE
+
+        </p>
+
+        <a href="logs.html" class="sidebar-link">
+
+            <i class="fa-solid fa-user-lock"></i>
+
+            <span>Logs Store</span>
+
+        </a>
+
+        <a href="tools.html" class="sidebar-link">
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            <span>Tools Store</span>
+
+        </a>
+
+        <a href="#" id="smsNumbersBtn" class="sidebar-link">
+
+            <i class="fa-solid fa-comment-dots"></i>
+
+            <span>SMS Numbers</span>
+
+        </a>
+
+        <a href="#" id="smeBtn" class="sidebar-link">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            <span>SME Boosting</span>
+
+        </a>
+
+        <a href="#" id="esimBtn" class="sidebar-link">
+
+            <i class="fa-solid fa-sim-card"></i>
+
+            <span>E-SIM</span>
+
+        </a>
+
+        <a href="#" id="communityBtn" class="sidebar-link">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <span>Community</span>
+
+        </a>
+
+    </div>
+
+    <!-- ACCOUNT -->
+
+    <div class="sidebar-section">
+
+        <p class="sidebar-title">
+
+            ACCOUNT
+
+        </p>
+
+        <a href="support.html" class="sidebar-link">
+
+            <i class="fa-regular fa-life-ring"></i>
+
+            <span>Support</span>
+
+        </a>
+
+        <a href="profile.html" class="sidebar-link">
+
+            <i class="fa-regular fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+        <button id="logoutBtn" class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Sign Out</span>
+
+        </button>
+
+    </div>
+
+</aside>
 
     <!--=========================
         MAIN CONTENT
