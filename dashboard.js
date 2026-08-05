@@ -1,37 +1,41 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
 import {
-    getAuth,
-    onAuthStateChanged
+getAuth,
+onAuthStateChanged,
+signOut
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 import {
-    getFirestore,
-    doc,
-    getDoc,
-    collection,
-    getDocs,
-    query,
-    orderBy
+getFirestore,
+doc,
+getDoc,
+collection,
+query,
+orderBy,
+limit,
+onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-/* Firebase */
+/*=========================
+FIREBASE
+=========================*/
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+apiKey:"AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
 
-    authDomain: "digisphere-66fdf.firebaseapp.com",
+authDomain:"digisphere-66fdf.firebaseapp.com",
 
-    projectId: "digisphere-66fdf",
+projectId:"digisphere-66fdf",
 
-    storageBucket: "digisphere-66fdf.firebasestorage.app",
+storageBucket:"digisphere-66fdf.firebasestorage.app",
 
-    messagingSenderId: "834194884246",
+messagingSenderId:"834194884246",
 
-    appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+appId:"1:834194884246:web:72672ca253c3d7dd9d24b7",
 
-    measurementId: "G-19QS4036V7"
+measurementId:"G-19QS4036V7"
 
 };
 
@@ -41,264 +45,206 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-/* HTML */
+/*=========================
+ADMIN
+=========================*/
 
-const userName = document.getElementById("userName");
+const ADMIN_EMAIL = "danielidoghe@gmail.com";
 
-const walletBalance = document.getElementById("walletBalance");
+/*=========================
+ELEMENTS
+=========================*/
 
-const headerWallet = document.getElementById("headerWallet");
+const sidebar=document.getElementById("sidebar");
 
-const purchaseCount = document.getElementById("purchaseCount");
+const sidebarOverlay=document.getElementById("sidebarOverlay");
 
-const inventoryTotal = document.getElementById("inventoryTotal");
+const menuBtn=document.getElementById("menuBtn");
 
-const inventoryText = document.getElementById("inventoryText");
+const closeSidebar=document.getElementById("closeSidebar");
 
-const profileLetter = document.getElementById("profileLetter");
+const adminMenu=document.getElementById("adminMenu");
 
-const notificationBtn = document.getElementById("notificationBtn");
+const userName=document.getElementById("userName");
 
-const notificationPopup = document.getElementById("notificationPopup");
+const walletBalance=document.getElementById("walletBalance");
 
-const notificationList = document.getElementById("notificationList");
+const headerWallet=document.getElementById("headerWallet");
 
-const notificationCount = document.getElementById("notificationCount");
+const profileAvatar=document.getElementById("profileAvatar");
 
-const markRead = document.getElementById("markRead");
-/* ===========================
-      CHECK LOGIN
-=========================== */
+const ordersCount=document.getElementById("ordersCount");
 
-onAuthStateChanged(auth, async (user) => {
+const inventoryCount=document.getElementById("inventoryCount");
 
-    if (!user) {
+const notificationsCount=document.getElementById("notificationsCount");
 
-        window.location.href = "signin.html";
+const notificationBadge=document.getElementById("notificationBadge");
 
-        return;
+const recentOrders=document.getElementById("recentOrders");
 
-    }
+const joinCommunity=document.getElementById("joinCommunity");
 
-    const userRef = doc(db, "users", user.uid);
+const logoutBtn=document.getElementById("logoutBtn");
+/*=========================
+AUTH
+=========================*/
 
-    const userSnap = await getDoc(userRef);
+onAuthStateChanged(auth,async(user)=>{
 
-    if (userSnap.exists()) {
+if(!user){
 
-        const data = userSnap.data();
+location.href="signin.html";
 
-        /* User Name */
-
-        userName.textContent =
-            data.name ||
-            user.displayName ||
-            "User";
-
-        /* Profile Letter */
-
-        profileLetter.textContent =
-            (data.name || user.displayName || "U")
-            .charAt(0)
-            .toUpperCase();
-
-        /* Wallet */
-
-        const wallet = Number(data.wallet || 0);
-
-        walletBalance.textContent =
-            wallet.toLocaleString();
-
-        headerWallet.textContent =
-            wallet.toLocaleString();
-
-        /* Purchases */
-
-        purchaseCount.textContent =
-            data.totalPurchases || 0;
-
-        /* Inventory */
-
-        inventoryTotal.textContent =
-            data.inventory || 0;
-
-        inventoryText.textContent =
-            `${data.logs || 0} Logs • ${data.tools || 0} Tools`;
-
-    } else {
-
-        userName.textContent =
-            user.displayName || "User";
-
-        profileLetter.textContent =
-            (user.displayName || "U")
-            .charAt(0)
-            .toUpperCase();
-
-    }
-
-    loadNotifications(user.uid);
-
-});
-/* ===========================
-      NOTIFICATIONS
-=========================== */
-
-async function loadNotifications(uid) {
-
-    notificationList.innerHTML = "";
-
-    let unread = 0;
-
-    const notificationsRef = collection(
-        db,
-        "users",
-        uid,
-        "notifications"
-    );
-
-    const q = query(
-        notificationsRef,
-        orderBy("createdAt", "desc")
-    );
-
-    const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-
-        notificationList.innerHTML = `
-            <div class="notify-card">
-                <h4>No notifications</h4>
-                <p>You don't have any notifications yet.</p>
-            </div>
-        `;
-
-        notificationCount.textContent = "0";
-
-        return;
-
-    }
-
-    snapshot.forEach((docSnap) => {
-
-        const data = docSnap.data();
-
-        if (!data.read) unread++;
-
-        notificationList.innerHTML += `
-
-            <div class="notify-card">
-
-                <h4>${data.title || "Notification"}</h4>
-
-                <p>${data.message || ""}</p>
-
-                <small>${data.time || "Just now"}</small>
-
-            </div>
-
-        `;
-
-    });
-
-    notificationCount.textContent = unread;
+return;
 
 }
 
-/* ===========================
-      POPUP
-=========================== */
+const snap=await getDoc(
 
-notificationBtn.addEventListener("click", () => {
+doc(db,"users",user.uid)
 
-    notificationPopup.classList.toggle("show");
+);
 
-});
+if(snap.exists()){
 
-/* Close popup when clicking outside */
+const data=snap.data();
 
-document.addEventListener("click", (e) => {
+userName.textContent=data.name||"User";
 
-    if (
-        !notificationPopup.contains(e.target) &&
-        !notificationBtn.contains(e.target)
-    ) {
+profileAvatar.textContent=
 
-        notificationPopup.classList.remove("show");
+(data.name||"D")
 
-    }
+.charAt(0)
 
-});
+.toUpperCase();
 
-/* ===========================
-      MARK ALL READ
-=========================== */
+const wallet=Number(data.wallet||0);
 
-markRead.addEventListener("click", () => {
+walletBalance.textContent=
 
-    notificationCount.textContent = "0";
+"₦"+wallet.toLocaleString();
 
-});
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-const sidebarOverlay = document.getElementById("sidebarOverlay");
+headerWallet.textContent=
 
-menuBtn.addEventListener("click", () => {
-    sidebar.classList.add("show");
-    sidebarOverlay.classList.add("show");
-});
+"₦"+wallet.toLocaleString();
 
-sidebarOverlay.addEventListener("click", () => {
-    sidebar.classList.remove("show");
-    sidebarOverlay.classList.remove("show");
+}
+
+if(user.email===ADMIN_EMAIL){
+
+adminMenu.style.display="flex";
+
+}else{
+
+adminMenu.style.display="none";
+
+}
+
+loadOrders(user.uid);
+
+loadInventory(user.uid);
+
+loadNotifications(user.uid);
+
 });
 /*=========================
-WHATSAPP LINKS
+SIDEBAR
 =========================*/
 
-const whatsappNumber = "2349117412352";
+menuBtn.onclick=()=>{
 
-document.getElementById("smsNumbers").onclick = () => {
+sidebar.classList.add("show");
 
-    const message =
-        "Hey DigiSphere, I want to buy SMS Numbers.";
-
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-        "_blank"
-    );
+sidebarOverlay.classList.add("show");
 
 };
 
-document.getElementById("smeBoosting").onclick = () => {
+closeSidebar.onclick=closeSidebarMenu;
 
-    const message =
-        "Hey DigiSphere, I want to buy SME Boosting.";
+sidebarOverlay.onclick=closeSidebarMenu;
 
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-        "_blank"
-    );
+function closeSidebarMenu(){
+
+sidebar.classList.remove("show");
+
+sidebarOverlay.classList.remove("show");
+
+}
+joinCommunity.onclick=()=>{
+
+window.open(
+
+"https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
+
+"_blank"
+
+);
+
+};
+document.getElementById("smsNumbers").onclick=()=>{
+
+window.open(
+
+"https://wa.me/2349117412352?text="+
+
+encodeURIComponent(
+
+"Hey DigiSphere, I want to buy SMS Numbers."
+
+)
+
+);
 
 };
 
-document.getElementById("esim").onclick = () => {
+document.getElementById("smeBoost").onclick=()=>{
 
-    const message =
-        "Hey DigiSphere, I want to buy E-Sim.";
+window.open(
 
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-        "_blank"
-    );
+"https://wa.me/2349117412352?text="+
+
+encodeURIComponent(
+
+"Hey DigiSphere, I want SME Boosting."
+
+)
+
+);
 
 };
 
-document.getElementById("community").onclick = () => {
+document.getElementById("esim").onclick=()=>{
 
-    window.open(
-        "https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
-        "_blank"
-    );
+window.open(
+
+"https://wa.me/2349117412352?text="+
+
+encodeURIComponent(
+
+"Hey DigiSphere, I want to buy an E-SIM."
+
+)
+
+);
+
+};
+
+document.getElementById("community").onclick=()=>{
+
+window.open(
+
+"https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
+
+"_blank"
+
+);
+};
+logoutBtn.onclick=async()=>{
+
+await signOut(auth);
+
+location.href="signin.html";
 
 };
