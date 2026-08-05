@@ -24,13 +24,14 @@ from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 FIREBASE
 =========================*/
 
-const firebaseConfig={
-apiKey:"YOUR_API_KEY",
-authDomain:"YOUR_AUTH_DOMAIN",
-projectId:"YOUR_PROJECT_ID",
-storageBucket:"YOUR_STORAGE_BUCKET",
-messagingSenderId:"YOUR_SENDER_ID",
-appId:"YOUR_APP_ID"
+const firebaseConfig = {
+    apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+    authDomain: "digisphere-66fdf.firebaseapp.com",
+    projectId: "digisphere-66fdf",
+    storageBucket: "digisphere-66fdf.firebasestorage.app",
+    messagingSenderId: "834194884246",
+    appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+    measurementId: "G-19QS4036V7"
 };
 
 const app=initializeApp(firebaseConfig);
