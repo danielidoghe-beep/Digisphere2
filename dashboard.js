@@ -1,250 +1,57 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-
 import {
-getAuth,
-onAuthStateChanged,
-signOut
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-import {
-getFirestore,
-doc,
-getDoc,
-collection,
-query,
-orderBy,
-limit,
-onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-
-/*=========================
-FIREBASE
-=========================*/
-
-const firebaseConfig = {
-
-apiKey:"AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
-
-authDomain:"digisphere-66fdf.firebaseapp.com",
-
-projectId:"digisphere-66fdf",
-
-storageBucket:"digisphere-66fdf.firebasestorage.app",
-
-messagingSenderId:"834194884246",
-
-appId:"1:834194884246:web:72672ca253c3d7dd9d24b7",
-
-measurementId:"G-19QS4036V7"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-/*=========================
-ADMIN
-=========================*/
+    auth,
+    db,
+    onAuthStateChanged,
+    doc,
+    getDoc
+} from "./firebase.js";
 
 const ADMIN_EMAIL = "danielidoghe@gmail.com";
 
-/*=========================
-ELEMENTS
-=========================*/
+const userName = document.getElementById("userName");
+const profileImage = document.getElementById("profileImage");
+const walletBalance = document.getElementById("walletBalance");
+const headerWallet = document.getElementById("headerWallet");
+const adminMenu = document.getElementById("adminMenu");
 
-const sidebar=document.getElementById("sidebar");
+onAuthStateChanged(auth, async(user)=>{
 
-const sidebarOverlay=document.getElementById("sidebarOverlay");
+    if(!user){
 
-const menuBtn=document.getElementById("menuBtn");
+        location.href="login.html";
 
-const closeSidebar=document.getElementById("closeSidebar");
+        return;
 
-const adminMenu=document.getElementById("adminMenu");
+    }
 
-const userName=document.getElementById("userName");
+    if(user.email===ADMIN_EMAIL){
 
-const walletBalance=document.getElementById("walletBalance");
+        adminMenu.style.display="flex";
 
-const headerWallet=document.getElementById("headerWallet");
+    }
 
-const profileAvatar=document.getElementById("profileAvatar");
+    const userRef=doc(db,"users",user.uid);
 
-const ordersCount=document.getElementById("ordersCount");
+    const snap=await getDoc(userRef);
 
-const inventoryCount=document.getElementById("inventoryCount");
+    if(!snap.exists()) return;
 
-const notificationsCount=document.getElementById("notificationsCount");
+    const data=snap.data();
 
-const notificationBadge=document.getElementById("notificationBadge");
+    userName.textContent=data.firstName||"User";
 
-const recentOrders=document.getElementById("recentOrders");
+    const balance=data.wallet||0;
 
-const joinCommunity=document.getElementById("joinCommunity");
+    walletBalance.textContent=
+    "₦"+Number(balance).toLocaleString();
 
-const logoutBtn=document.getElementById("logoutBtn");
-/*=========================
-AUTH
-=========================*/
+    headerWallet.textContent=
+    "₦"+Number(balance).toLocaleString();
 
-onAuthStateChanged(auth,async(user)=>{
+    if(data.photoURL){
 
-if(!user){
+        profileImage.src=data.photoURL;
 
-location.href="signin.html";
-
-return;
-
-}
-
-const snap=await getDoc(
-
-doc(db,"users",user.uid)
-
-);
-
-if(snap.exists()){
-
-const data=snap.data();
-
-userName.textContent=data.name||"User";
-
-profileAvatar.textContent=
-
-(data.name||"D")
-
-.charAt(0)
-
-.toUpperCase();
-
-const wallet=Number(data.wallet||0);
-
-walletBalance.textContent=
-
-"₦"+wallet.toLocaleString();
-
-headerWallet.textContent=
-
-"₦"+wallet.toLocaleString();
-
-}
-
-if(user.email===ADMIN_EMAIL){
-
-adminMenu.style.display="flex";
-
-}else{
-
-adminMenu.style.display="none";
-
-}
-
-loadOrders(user.uid);
-
-loadInventory(user.uid);
-
-loadNotifications(user.uid);
+    }
 
 });
-/*=========================
-SIDEBAR
-=========================*/
-
-menuBtn.onclick=()=>{
-
-sidebar.classList.add("show");
-
-sidebarOverlay.classList.add("show");
-
-};
-
-closeSidebar.onclick=closeSidebarMenu;
-
-sidebarOverlay.onclick=closeSidebarMenu;
-
-function closeSidebarMenu(){
-
-sidebar.classList.remove("show");
-
-sidebarOverlay.classList.remove("show");
-
-}
-joinCommunity.onclick=()=>{
-
-window.open(
-
-"https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
-
-"_blank"
-
-);
-
-};
-document.getElementById("smsNumbers").onclick=()=>{
-
-window.open(
-
-"https://wa.me/2349117412352?text="+
-
-encodeURIComponent(
-
-"Hey DigiSphere, I want to buy SMS Numbers."
-
-)
-
-);
-
-};
-
-document.getElementById("smeBoost").onclick=()=>{
-
-window.open(
-
-"https://wa.me/2349117412352?text="+
-
-encodeURIComponent(
-
-"Hey DigiSphere, I want SME Boosting."
-
-)
-
-);
-
-};
-
-document.getElementById("esim").onclick=()=>{
-
-window.open(
-
-"https://wa.me/2349117412352?text="+
-
-encodeURIComponent(
-
-"Hey DigiSphere, I want to buy an E-SIM."
-
-)
-
-);
-
-};
-
-document.getElementById("community").onclick=()=>{
-
-window.open(
-
-"https://chat.whatsapp.com/BvzLHIbNl0a0SclNT58bKy",
-
-"_blank"
-
-);
-};
-logoutBtn.onclick=async()=>{
-
-await signOut(auth);
-
-location.href="signin.html";
-
-};
