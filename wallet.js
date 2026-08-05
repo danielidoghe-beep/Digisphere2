@@ -198,27 +198,41 @@ openPaymentBtn.addEventListener("click",async()=>{
 
     paymentReference.textContent=reference;
 
+    try {
+
     await addDoc(
 
-        collection(db,"users",currentUser.uid,"transactions"),
+        collection(db, "users", currentUser.uid, "transactions"),
 
         {
 
-            type:"Wallet Deposit",
+            type: "Wallet Deposit",
 
-            amount:amount,
+            amount: amount,
 
-            reference:reference,
+            reference: reference,
 
-            method:"Bank Transfer",
+            method: "Bank Transfer",
 
-            status:"Pending",
+            status: "Pending",
 
-            createdAt:serverTimestamp()
+            createdAt: serverTimestamp()
 
         }
 
     );
+
+    console.log("Transaction saved successfully.");
+
+} catch (error) {
+
+    console.error("Firestore Error:", error);
+
+    alert(error.message);
+
+    return;
+
+}
 
     const whatsappMessage=
 
