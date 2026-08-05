@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Transactions | DigiSphere</title>
+
+<link rel="stylesheet" href="transactions.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="transactions-page">
+
+<header class="topbar">
+
+<button class="menu-btn" id="menuBtn">
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
+
+<div class="wallet-pill">
+
+₦<span id="headerWalletBalance">0</span>
+
+</div>
+
+<div class="topbar-right">
+
+<button class="theme-btn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button class="notification-btn">
+
+<i class="fa-regular fa-bell"></i>
+
+<span id="notificationCount"
+class="notification-count">
+
+0
+
+</span>
+
+</button>
+
+<div
+class="profile-avatar"
+id="profileLetter">
+
+D
+
+</div>
+
+</div>
+
+</header>
+
+<main class="transactions-content">
+
+<section class="page-header">
+
+<h1>Transactions</h1>
+
+<p>
+
+Your complete transaction history
+
+</p>
+
+</section>
+
+<section class="search-section">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="Search by reference, type, or description">
+
+</div>
+
+</section>
+
+<section class="transactions-wrapper">
+
+<h2>
+
+RECENT TRANSACTIONS
+
+</h2>
+
+<div id="transactionsList">
+
+<!-- Firebase transactions appear here -->
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script type="module" src="transactions.js"></script>
+
+</body>
+
+</html>
