@@ -1,7 +1,9 @@
-// Firebase App
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
-// Authentication
 import {
     getAuth,
     GoogleAuthProvider,
@@ -9,48 +11,102 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
-// Firestore
 import {
     getFirestore,
     doc,
     getDoc,
+    getDocs,
+    setDoc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
     collection,
     query,
     where,
     orderBy,
+    limit,
     onSnapshot,
-    updateDoc,
-    writeBatch
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
+
 const firebaseConfig = {
+
     apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+
     authDomain: "digisphere-66fdf.firebaseapp.com",
+
     projectId: "digisphere-66fdf",
+
     storageBucket: "digisphere-66fdf.firebasestorage.app",
+
     messagingSenderId: "834194884246",
+
     appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+
     measurementId: "G-19QS4036V7"
+
 };
 
-export const app = initializeApp(firebaseConfig);
+// ==========================================
+// INITIALIZE
+// ==========================================
 
-export const auth = getAuth(app);
+const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+const auth = getAuth(app);
 
-export const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
+
+const provider = new GoogleAuthProvider();
+
+// ==========================================
+// EXPORTS
+// ==========================================
 
 export {
+
+    app,
+
+    auth,
+
+    db,
+
+    provider,
+
     onAuthStateChanged,
+
     signOut,
+
     doc,
+
     getDoc,
-    collection,
-    query,
-    where,
-    orderBy,
-    onSnapshot,
+
+    getDocs,
+
+    setDoc,
+
+    addDoc,
+
     updateDoc,
-    writeBatch
+
+    deleteDoc,
+
+    collection,
+
+    query,
+
+    where,
+
+    orderBy,
+
+    limit,
+
+    onSnapshot,
+
+    serverTimestamp
+
 };
