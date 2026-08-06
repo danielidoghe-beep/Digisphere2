@@ -9,334 +9,203 @@ import {
     getFirestore,
     doc,
     getDoc,
+    updateDoc,
     collection,
     addDoc,
-    onSnapshot,
     query,
     orderBy,
+    onSnapshot,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-/*====================================
-            FIREBASE
-====================================*/
+/*==================================
+FIREBASE
+==================================*/
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyDnpsEIlXwPLSCJAGMS7feM2JMhmxzCCfs",
+
     authDomain: "digisphere-66fdf.firebaseapp.com",
+
     projectId: "digisphere-66fdf",
+
     storageBucket: "digisphere-66fdf.firebasestorage.app",
+
     messagingSenderId: "834194884246",
+
     appId: "1:834194884246:web:72672ca253c3d7dd9d24b7",
+
     measurementId: "G-19QS4036V7"
+
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+
 const db = getFirestore(app);
 
-/*====================================
-            HTML
-====================================*/
+/*==================================
+ELEMENTS
+==================================*/
 
-const walletBalance = document.getElementById("walletBalance");
-const headerWalletBalance = document.getElementById("headerWalletBalance");
-const bankName = document.getElementById("bankName");
-const accountNumber = document.getElementById("accountNumber");
-const paymentAmount2 = document.getElementById("paymentAmount2");
-const profileLetter = document.getElementById("profileLetter");
+const walletBalance =
+document.getElementById("walletBalance");
 
-const depositAmount = document.getElementById("depositAmount");
+const amountInput =
+document.getElementById("amountInput");
 
-const bankTab = document.getElementById("bankTab");
-const flutterwaveTab = document.getElementById("flutterwaveTab");
+const amountError =
+document.getElementById("amountError");
 
-const openPaymentBtn = document.getElementById("openPaymentBtn");
+const payButton =
+document.getElementById("payButton");
 
-const paymentModal = document.getElementById("paymentModal");
-const paymentAmount = document.getElementById("paymentAmount");
-const paymentReference = document.getElementById("paymentReference");
+const transactionsContainer =
+document.getElementById("transactionsContainer");
 
-const sendReceiptBtn = document.getElementById("sendReceiptBtn");
-const closePaymentModal = document.getElementById("closePaymentModal");
+const bankTransferTab =
+document.getElementById("bankTransferTab");
 
-const toast = document.getElementById("toast");
-const toastMessage = document.getElementById("toastMessage");
+const flutterwaveTab =
+document.getElementById("flutterwaveTab");
 
-const transactionsList = document.getElementById("transactionsList");
+const bankTransferModal =
+document.getElementById("bankTransferModal");
 
-/*====================================
-            VARIABLES
-====================================*/
+const comingSoonModal =
+document.getElementById("comingSoonModal");
+
+const paymentAmount =
+document.getElementById("paymentAmount");
+
+const paymentCharge =
+document.getElementById("paymentCharge");
+
+const paymentTotal =
+document.getElementById("paymentTotal");
+
+const paymentReference =
+document.getElementById("paymentReference");
+
+const accountNumber =
+document.getElementById("accountNumber");
+
+const accountName =
+document.getElementById("accountName");
+
+const bankName =
+document.getElementById("bankName");
+
+/*==================================
+VARIABLES
+==================================*/
 
 let currentUser = null;
-let paymentMethod = "bank";
-/*====================================
-        BANK DETAILS
-====================================*/
 
-const BANK_DETAILS = {
-    bankName: "PalmPay",
-    accountNumber: "9117412352",
-    accountName: "Ogaga Blessing Idoghe",
-    whatsapp: "2349117412352"
-};
-/*====================================
-          AUTHENTICATION
-====================================*/
+let currentWallet = 0;
 
-onAuthStateChanged(auth, async (user) => {
+let selectedAmount = 0;
 
-    if (!user) {
+let charge = 0;
 
-        window.location.href = "signin.html";
+let total = 0;
+
+/*==================================
+AUTH
+==================================*/
+
+onAuthStateChanged(auth, async(user)=>{
+
+    if(!user){
+
+        location.href="signin.html";
+
         return;
 
     }
 
     currentUser = user;
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+    loadWallet();
 
-    if (userSnap.exists()) {
+    loadTransactions();
+
+});
+/*==================================
+LOAD WALLET
+==================================*/
+
+async function loadWallet(){
+
+    try{
+
+        const userRef = doc(db,"users",currentUser.uid);
+
+        const userSnap = await getDoc(userRef);
+
+        if(!userSnap.exists()) return;
 
         const data = userSnap.data();
 
-        const balance = Number(data.wallet || 0);
+        currentWallet = Number(data.wallet || 0);
 
         walletBalance.textContent =
-            balance.toLocaleString(undefined,{
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            });
+        "₦" + currentWallet.toLocaleString();
 
-        headerWalletBalance.textContent =
-            balance.toLocaleString(undefined,{
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            });
-
-        if(data.name){
-
-            profileLetter.textContent =
-                data.name.charAt(0).toUpperCase();
-
-        }
-
-    }
-
-    loadTransactions(user.uid);
-
-});
-/*====================================
-            TOAST MESSAGE
-====================================*/
-
-function showToast(message) {
-
-    toastMessage.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    }, 3000);
-
-}
-
-/*====================================
-          QUICK AMOUNTS
-====================================*/
-
-document.querySelectorAll(".quick-btn").forEach((button) => {
-
-    button.addEventListener("click", () => {
-
-        depositAmount.value = button.dataset.amount;
-
-    });
-
-});
-
-/*====================================
-        PAYMENT METHOD
-====================================*/
-
-bankTab.addEventListener("click", () => {
-
-    paymentMethod = "bank";
-
-    bankTab.classList.add("active");
-    flutterwaveTab.classList.remove("active");
-
-    openPaymentBtn.disabled = false;
-
-    openPaymentBtn.textContent = "OPEN PAYMENT";
-
-});
-
-flutterwaveTab.addEventListener("click", () => {
-
-    paymentMethod = "flutterwave";
-
-    flutterwaveTab.classList.add("active");
-    bankTab.classList.remove("active");
-
-    openPaymentBtn.disabled = true;
-
-    openPaymentBtn.textContent = "PAY WITH FLUTTERWAVE";
-
-    showToast("Flutterwave payment coming soon.");
-
-});
-/*====================================
-          OPEN PAYMENT
-====================================*/
-
-openPaymentBtn.addEventListener("click", async () => {
-
-    if (paymentMethod === "flutterwave") {
-
-        showToast("Flutterwave payment coming soon.");
-        return;
-
-    }
-
-    const amount = Number(depositAmount.value);
-
-    if (!amount || amount < 1000) {
-
-        showToast("Minimum deposit is ₦1,000.");
-        return;
-
-    }
-
-    openPaymentBtn.disabled = true;
-    openPaymentBtn.textContent = "OPENING PAYMENT...";
-
-    try {
-
-        const reference = "DGS" + Date.now();
-
-        paymentAmount.textContent =
-            "₦" + amount.toLocaleString();
-
-        paymentReference.textContent =
-            reference;
-     bankName.textContent = BANK_DETAILS.bankName;
-
-accountNumber.textContent =
-    BANK_DETAILS.accountNumber;
-
-paymentAmount2.textContent =
-    "₦" + amount.toLocaleString();
-        await addDoc(
-
-            collection(
-                db,
-                "users",
-                currentUser.uid,
-                "transactions"
-            ),
-
-            {
-
-                type: "Wallet Deposit",
-
-                amount: amount,
-
-                method: "Bank Transfer",
-
-                status: "Pending",
-
-                reference: reference,
-
-                createdAt: serverTimestamp()
-
-            }
-
-        );
-
-        const whatsappMessage =
-
-`Hello DigiSphere,
-
-I have made a wallet deposit.
-
-Reference: ${reference}
-
-Amount: ₦${amount.toLocaleString()}
-
-Please find my payment receipt attached.`;
-
-        sendReceiptBtn.href =
-`https://wa.me/${BANK_DETAILS.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
-
-        paymentModal.classList.add("show");
-
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-        showToast("Unable to create payment. Please try again.");
-
     }
 
-    openPaymentBtn.disabled = false;
+}
 
-    openPaymentBtn.textContent = "OPEN PAYMENT";
+/*==================================
+LOAD TRANSACTIONS
+==================================*/
 
-});
-/*====================================
-        LOAD TRANSACTIONS
-====================================*/
-
-function loadTransactions(uid) {
+function loadTransactions(){
 
     const transactionsRef = query(
 
-        collection(db, "users", uid, "transactions"),
+        collection(
+            db,
+            "users",
+            currentUser.uid,
+            "transactions"
+        ),
 
-        orderBy("createdAt", "desc")
+        orderBy("createdAt","desc")
 
     );
 
-    onSnapshot(transactionsRef, (snapshot) => {
+    onSnapshot(transactionsRef,(snapshot)=>{
 
-        transactionsList.innerHTML = "";
+        transactionsContainer.innerHTML="";
 
-        if (snapshot.empty) {
+        if(snapshot.empty){
 
-            transactionsList.innerHTML = `
+            transactionsContainer.innerHTML=`
 
-                <div class="transaction-card">
+            <div class="empty-transactions">
 
-                    <div class="transaction-icon">
+                <i class="fa-solid fa-wallet"></i>
 
-                        <i class="fa-solid fa-arrow-down"></i>
+                <h3>
 
-                    </div>
+                    No Transactions Yet
 
-                    <div class="transaction-details">
+                </h3>
 
-                        <h3>No Transactions</h3>
+                <p>
 
-                        <p>Your transactions will appear here.</p>
+                    Your wallet history will appear here.
 
-                    </div>
+                </p>
 
-                    <div class="transaction-right">
-
-                        <span class="transaction-amount">
-                            ₦0.00
-                        </span>
-
-                    </div>
-
-                </div>
+            </div>
 
             `;
 
@@ -344,73 +213,76 @@ function loadTransactions(uid) {
 
         }
 
-        snapshot.forEach((doc) => {
+        snapshot.forEach((docSnap)=>{
 
-            const data = doc.data();
+            const tx = docSnap.data();
 
-            const amount = Number(data.amount || 0);
+            const amount = Number(tx.amount || 0);
 
-            const date = data.createdAt
-                ? data.createdAt.toDate().toLocaleDateString()
-                : "Just now";
+            const status =
+            (tx.status || "Pending").toLowerCase();
 
-            let statusClass = "pending";
+            let icon = "fa-wallet";
 
-            if (data.status === "Approved") {
+            if(tx.type==="Deposit"){
 
-                statusClass = "approved";
-
-            }
-
-            if (data.status === "Declined") {
-
-                statusClass = "declined";
+                icon="fa-arrow-down";
 
             }
 
-            transactionsList.innerHTML += `
+            if(tx.type==="Purchase"){
 
-                <div class="transaction-card">
+                icon="fa-cart-shopping";
+
+            }
+
+            transactionsContainer.innerHTML += `
+
+            <div class="transaction-card">
+
+                <div class="transaction-left">
 
                     <div class="transaction-icon">
 
-                        <i class="fa-solid fa-arrow-down"></i>
+                        <i class="fa-solid ${icon}"></i>
 
                     </div>
 
-                    <div class="transaction-details">
+                    <div class="transaction-info">
 
-                        <h3>${data.type}</h3>
+                        <h3>
+
+                            ${tx.type || "Transaction"}
+
+                        </h3>
 
                         <p>
 
-                            ${data.reference}
-
-                            •
-
-                            ${date}
+                            ${tx.reference || ""}
 
                         </p>
 
                     </div>
 
-                    <div class="transaction-right">
+                </div>
 
-                        <span class="transaction-amount">
+                <div class="transaction-right">
 
-                            ₦${amount.toLocaleString()}
+                    <h4>
 
-                        </span>
+                        ₦${amount.toLocaleString()}
 
-                        <span class="transaction-status ${statusClass}">
+                    </h4>
 
-                            ${data.status}
+                    <span class="transaction-status ${status}">
 
-                        </span>
+                        ${tx.status || "Pending"}
 
-                    </div>
+                    </span>
 
                 </div>
+
+            </div>
 
             `;
 
@@ -419,71 +291,320 @@ function loadTransactions(uid) {
     });
 
 }
-/*====================================
-        CLOSE PAYMENT POPUP
-====================================*/
+/*==================================
+QUICK AMOUNT BUTTONS
+==================================*/
 
-closePaymentModal.addEventListener("click", () => {
+const quickButtons =
+document.querySelectorAll(".quick-amount");
 
-    paymentModal.classList.remove("show");
+quickButtons.forEach((button)=>{
 
-});
+    button.addEventListener("click",()=>{
 
-paymentModal.addEventListener("click", (event) => {
+        quickButtons.forEach(btn=>
+            btn.classList.remove("active")
+        );
 
-    if (event.target === paymentModal) {
+        button.classList.add("active");
 
-        paymentModal.classList.remove("show");
+        amountInput.value =
 
-    }
+        button.dataset.amount;
 
-});
-
-/*====================================
-        SEND RECEIPT
-====================================*/
-
-sendReceiptBtn.addEventListener("click", () => {
-
-    showToast("Opening WhatsApp...");
-
-});
-
-/*====================================
-        RESET BUTTON
-====================================*/
-
-window.addEventListener("pageshow", () => {
-
-    openPaymentBtn.disabled = false;
-
-    if (paymentMethod === "bank") {
-
-        openPaymentBtn.textContent = "OPEN PAYMENT";
-
-    }
-
-});
-/*====================================
-        COPY BUTTONS
-====================================*/
-
-document.querySelectorAll(".copy-btn").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const target =
-            document.getElementById(button.dataset.copy);
-
-        navigator.clipboard.writeText(target.textContent);
-
-        showToast("Copied successfully.");
+        validateAmount();
 
     });
 
 });
-/*====================================
-            FINISHED
-====================================*/
 
-console.log("Wallet page loaded successfully.");
+/*==================================
+AMOUNT INPUT
+==================================*/
+
+amountInput.addEventListener("input",()=>{
+
+    quickButtons.forEach(btn=>
+        btn.classList.remove("active")
+    );
+
+    validateAmount();
+
+});
+
+/*==================================
+VALIDATE AMOUNT
+==================================*/
+
+function validateAmount(){
+
+    selectedAmount =
+
+    Number(amountInput.value || 0);
+
+    if(selectedAmount < 1000){
+
+        amountError.classList.add("show");
+
+        payButton.disabled = true;
+
+        charge = 0;
+
+        total = 0;
+
+        return;
+
+    }
+
+    amountError.classList.remove("show");
+
+    payButton.disabled = false;
+
+    calculateCharges();
+
+}
+
+/*==================================
+CALCULATE CHARGES
+==================================*/
+
+function calculateCharges(){
+
+    charge = Math.ceil(selectedAmount * 0.01);
+
+    total = selectedAmount + charge;
+
+}
+
+/*==================================
+AUTO FILL AMOUNT
+==================================*/
+
+const params =
+
+new URLSearchParams(window.location.search);
+
+const requestedAmount =
+
+Number(params.get("amount") || 0);
+
+if(requestedAmount >= 1000){
+
+    amountInput.value = requestedAmount;
+
+    validateAmount();
+
+}
+/*==================================
+BANK DETAILS
+==================================*/
+
+const BANK_NAME = "YOUR_BANK_NAME";
+
+const ACCOUNT_NUMBER = "YOUR_ACCOUNT_NUMBER";
+
+const ACCOUNT_NAME = "YOUR_ACCOUNT_NAME";
+
+/*==================================
+OPEN PAYMENT
+==================================*/
+
+payButton.addEventListener("click",()=>{
+
+    if(selectedAmount < 1000){
+
+        amountError.classList.add("show");
+
+        return;
+
+    }
+
+    paymentAmount.textContent =
+    "₦" + selectedAmount.toLocaleString();
+
+    paymentCharge.textContent =
+    "₦" + charge.toLocaleString();
+
+    paymentTotal.textContent =
+    "₦" + total.toLocaleString();
+
+    bankName.textContent = palmpay;
+
+    accountNumber.value = 9117412352;
+
+    accountName.textContent = Ogaga Blessing Idoghe;
+
+    paymentReference.value =
+    generateReference();
+
+    bankTransferModal.classList.add("show");
+
+});
+
+/*==================================
+GENERATE REFERENCE
+==================================*/
+
+function generateReference(){
+
+    const random =
+
+    Math.floor(
+
+        100000 + Math.random() * 900000
+
+    );
+
+    return "DS" + Date.now() + random;
+
+}
+
+/*==================================
+CLOSE PAYMENT
+==================================*/
+
+document
+.getElementById("closePayment")
+.onclick=()=>{
+
+    bankTransferModal.classList.remove("show");
+
+};
+
+document
+.getElementById("cancelPayment")
+.onclick=()=>{
+
+    bankTransferModal.classList.remove("show");
+
+};
+
+bankTransferModal.onclick=(e)=>{
+
+    if(e.target===bankTransferModal){
+
+        bankTransferModal.classList.remove("show");
+
+    }
+
+};
+
+/*==================================
+COPY REFERENCE
+==================================*/
+
+document
+.getElementById("copyReference")
+.onclick=async()=>{
+
+    await navigator.clipboard.writeText(
+
+        paymentReference.value
+
+    );
+
+    alert("Reference copied.");
+
+};
+
+/*==================================
+COPY ACCOUNT
+==================================*/
+
+document
+.getElementById("copyAccount")
+.onclick=async()=>{
+
+    await navigator.clipboard.writeText(
+
+        ACCOUNT_NUMBER
+
+    );
+
+    alert("Account number copied.");
+
+};
+/*==================================
+I'VE MADE PAYMENT
+==================================*/
+
+const madePayment =
+document.getElementById("madePayment");
+
+/*==================================
+YOUR WHATSAPP
+==================================*/
+
+const WHATSAPP_NUMBER =
+"2349117412352";
+
+madePayment.onclick = async()=>{
+
+    const reference =
+    paymentReference.value;
+
+    /*-------------------------
+    SAVE REQUEST
+    -------------------------*/
+
+    await addDoc(
+
+        collection(db,"deposit_requests"),
+
+        {
+
+            uid:currentUser.uid,
+
+            amount:selectedAmount,
+
+            charge:charge,
+
+            total:total,
+
+            reference:reference,
+
+            status:"Pending",
+
+            createdAt:serverTimestamp()
+
+        }
+
+    );
+
+    /*-------------------------
+    WHATSAPP MESSAGE
+    -------------------------*/
+
+    const message=
+
+`Hello DigiSphere,
+
+I have made a wallet deposit.
+
+Reference: ${reference}
+
+Deposit Amount: ₦${selectedAmount.toLocaleString()}
+
+Amount Sent: ₦${total.toLocaleString()}
+
+Kindly confirm my payment.
+
+I have attached my payment receipt.
+
+Thank you.`;
+
+    const url=
+
+`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(url,"_blank");
+
+    bankTransferModal.classList.remove("show");
+
+    alert(
+
+"Your payment request has been submitted.\n\nPlease send your payment receipt on WhatsApp."
+
+    );
+
+};
