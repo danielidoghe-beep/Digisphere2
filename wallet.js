@@ -41,7 +41,9 @@ const db = getFirestore(app);
 
 const walletBalance = document.getElementById("walletBalance");
 const headerWalletBalance = document.getElementById("headerWalletBalance");
-
+const bankName = document.getElementById("bankName");
+const accountNumber = document.getElementById("accountNumber");
+const paymentAmount2 = document.getElementById("paymentAmount2");
 const profileLetter = document.getElementById("profileLetter");
 
 const depositAmount = document.getElementById("depositAmount");
@@ -69,7 +71,16 @@ const transactionsList = document.getElementById("transactionsList");
 
 let currentUser = null;
 let paymentMethod = "bank";
+/*====================================
+        BANK DETAILS
+====================================*/
 
+const BANK_DETAILS = {
+    bankName: "PalmPay",
+    accountNumber: "9117412352",
+    accountName: "Ogaga Blessing Idoghe",
+    whatsapp: "2349117412352"
+};
 /*====================================
           AUTHENTICATION
 ====================================*/
@@ -215,7 +226,13 @@ openPaymentBtn.addEventListener("click", async () => {
 
         paymentReference.textContent =
             reference;
+     bankName.textContent = BANK_DETAILS.bankName;
 
+accountNumber.textContent =
+    BANK_DETAILS.accountNumber;
+
+paymentAmount2.textContent =
+    "₦" + amount.toLocaleString();
         await addDoc(
 
             collection(
@@ -256,7 +273,7 @@ Amount: ₦${amount.toLocaleString()}
 Please find my payment receipt attached.`;
 
         sendReceiptBtn.href =
-`https://wa.me/2349117412352?text=${encodeURIComponent(whatsappMessage)}`;
+`https://wa.me/${BANK_DETAILS.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
         paymentModal.classList.add("show");
 
@@ -447,7 +464,24 @@ window.addEventListener("pageshow", () => {
     }
 
 });
+/*====================================
+        COPY BUTTONS
+====================================*/
 
+document.querySelectorAll(".copy-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const target =
+            document.getElementById(button.dataset.copy);
+
+        navigator.clipboard.writeText(target.textContent);
+
+        showToast("Copied successfully.");
+
+    });
+
+});
 /*====================================
             FINISHED
 ====================================*/
