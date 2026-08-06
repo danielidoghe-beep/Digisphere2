@@ -26,615 +26,916 @@ button,
 input{
     font-family:'Poppins',sans-serif;
 }
-
-/*==================================
-        WALLET PAGE
-==================================*/
+/* ==========================================
+   WALLET PAGE
+========================================== */
 
 .wallet-page{
+
     width:100%;
-    min-height:100vh;
-    background:#f5f7fb;
+    max-width:520px;
+    margin:0 auto;
+    padding:24px 16px 40px;
+
 }
 
-/*==================================
-        TOP BAR
-==================================*/
+/* ==========================================
+   HEADER
+========================================== */
 
-.topbar{
-    height:75px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    padding:0 20px;
-    box-shadow:0 2px 15px rgba(0,0,0,.05);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
+.wallet-header{
 
-.menu-btn{
-    width:46px;
-    height:46px;
-    border:none;
-    background:#f5f7fb;
-    border-radius:12px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:5px;
-    cursor:pointer;
-}
+    margin-bottom:28px;
 
-.menu-btn span{
-    width:22px;
-    height:2px;
-    background:#111827;
-    margin:auto;
-}
-
-.wallet-pill{
-    margin-left:18px;
-    background:#65a30d;
-    color:#fff;
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:15px;
-    font-weight:700;
-}
-
-.topbar-right{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.theme-btn,
-.notification-btn{
-    width:46px;
-    height:46px;
-    border:none;
-    background:#fff;
-    border-radius:50%;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-    cursor:pointer;
-    position:relative;
-}
-
-.theme-btn i,
-.notification-btn i{
-    font-size:18px;
-    color:#374151;
-}
-
-.notification-count{
-    position:absolute;
-    top:-4px;
-    right:-4px;
-    width:20px;
-    height:20px;
-    background:#ef4444;
-    color:#fff;
-    border-radius:50%;
-    font-size:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-}
-
-.profile-avatar{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:#65a30d;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-    font-size:18px;
-}
-
-/*==================================
-        CONTENT
-==================================*/
-
-.wallet-content{
-    max-width:1100px;
-    margin:auto;
-    padding:30px 20px 50px;
 }
 
 .wallet-header h1{
-    font-size:34px;
+
+    font-family:"Poppins",sans-serif;
+    font-size:52px;
     font-weight:800;
-    color:#111827;
+    line-height:1.05;
+    letter-spacing:-1.2px;
+    color:#121212;
+    margin:0 0 10px;
+
 }
 
 .wallet-header p{
-    margin-top:8px;
-    color:#6b7280;
-    font-size:15px;
-}
-/*==================================
-      BALANCE CARD
-==================================*/
 
-.balance-card{
-    margin-top:30px;
-    background:linear-gradient(135deg,#67b51d 0%,#5aa315 100%);
+    font-size:18px;
+    line-height:1.7;
+    color:#5F6368;
+    font-weight:500;
+    margin:0;
+
+}
+
+/* ==========================================
+   BALANCE CARD
+========================================== */
+
+.wallet-balance-card{
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(135deg,#F7FFF3,#EEF9E8);
+
+    border:1px solid #DCEFD3;
+
     border-radius:24px;
-    padding:30px;
-    color:#fff;
-    box-shadow:0 18px 40px rgba(103,181,29,.28);
+
+    padding:32px 28px;
+
+    margin-bottom:28px;
+
+    box-shadow:
+    0 10px 35px rgba(103,162,27,.10);
+
 }
 
-.balance-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.wallet-balance-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-120px;
+    top:-120px;
+
+    border-radius:50%;
+
+    background:rgba(103,162,27,.05);
+
 }
 
-.balance-top span{
-    font-size:15px;
+.wallet-balance-card small{
+
+    display:block;
+
+    font-size:17px;
+
+    color:#4D4D4D;
+
     font-weight:600;
-    opacity:.95;
+
+    margin-bottom:18px;
+
 }
 
-.balance-card h2{
-    margin-top:18px;
-    font-size:42px;
+.wallet-balance-card h2{
+
+    font-size:58px;
+
     font-weight:800;
+
+    color:#5EA514;
+
+    margin-bottom:20px;
+
     letter-spacing:-1px;
+
 }
 
-.balance-card p{
-    margin-top:12px;
-    font-size:15px;
-    line-height:1.7;
-    opacity:.95;
+.wallet-balance-card p{
+
+    margin:0;
+
+    font-size:17px;
+
+    color:#555;
+
+    line-height:1.8;
+
+    max-width:320px;
+
 }
 
-/*==================================
-        TOP UP CARD
-==================================*/
+/* ==========================================
+   SECTION CARD
+========================================== */
 
-.topup-card{
-    margin-top:30px;
-    background:#fff;
-    border-radius:24px;
-    padding:28px;
-    box-shadow:0 8px 30px rgba(0,0,0,.05);
+.wallet-section{
+
+    background:#FFFFFF;
+
+    border-radius:26px;
+
+    padding:30px;
+
+    margin-bottom:28px;
+
+    border:1px solid #ECECEC;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.06);
+
 }
+/* ==========================================
+   TOP UP WALLET
+========================================== */
 
-.topup-title{
-    font-size:26px;
+.wallet-section h2{
+
+    font-size:24px;
     font-weight:800;
-    color:#111827;
+    color:#151515;
+    margin:0 0 10px;
+
 }
 
-.topup-text{
-    margin-top:8px;
-    color:#6b7280;
-    font-size:15px;
+.wallet-section .section-desc{
+
+    font-size:16px;
+    color:#666;
     line-height:1.7;
+    margin-bottom:26px;
+
 }
 
-/*==================================
-      PAYMENT TABS
-==================================*/
+/* ==========================================
+   PAYMENT METHOD
+========================================== */
 
-.payment-tabs{
+.payment-method{
+
     display:flex;
+
     gap:14px;
-    margin-top:25px;
-    margin-bottom:25px;
+
+    margin-bottom:28px;
+
 }
 
-.payment-tab{
+.payment-method button{
+
     flex:1;
-    height:52px;
-    border:2px solid #e5e7eb;
-    background:#fff;
-    border-radius:14px;
-    font-size:15px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    border:2px solid #E8E8E8;
+
+    background:#FFFFFF;
+
+    color:#2185F5;
+
+    font-size:18px;
+
     font-weight:700;
+
     cursor:pointer;
+
     transition:.25s;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+
 }
 
-.payment-tab.active{
-    background:#111827;
-    color:#fff;
-    border-color:#111827;
+/* Selected button */
+
+.payment-method button.active{
+
+    background:#121827;
+
+    color:#FFFFFF;
+
+    border-color:#121827;
+
+    box-shadow:0 10px 25px rgba(18,24,39,.20);
+
 }
 
-/*==================================
-        AMOUNT INPUT
-==================================*/
+/* Hover */
+
+.payment-method button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Icons */
+
+.payment-method button i{
+
+    margin-right:8px;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   FLUTTERWAVE BUTTON
+========================================== */
+
+/*
+If your Flutterwave button has a class like
+.flutterwave-btn or an id such as #flutterwaveBtn,
+add that class/id to this selector.
+*/
+
+.payment-method button:not(.active){
+
+    color:#2185F5;
+
+    font-weight:700;
+
+}
+/* ==========================================
+   AMOUNT SECTION
+========================================== */
 
 .amount-group{
-    margin-bottom:22px;
+
+    margin-top:8px;
+    margin-bottom:28px;
+
 }
 
 .amount-group label{
+
     display:block;
-    margin-bottom:10px;
-    font-size:14px;
+
+    font-size:18px;
+
     font-weight:700;
-    color:#374151;
+
+    color:#1A1A1A;
+
+    margin-bottom:12px;
+
 }
 
 .amount-input{
-    height:58px;
-    display:flex;
-    align-items:center;
-    border:2px solid #e5e7eb;
-    border-radius:16px;
-    overflow:hidden;
-    background:#fff;
+
+    position:relative;
+
+    width:100%;
+
 }
 
 .amount-input span{
-    padding:0 18px;
-    font-size:18px;
+
+    position:absolute;
+
+    left:22px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:30px;
+
     font-weight:700;
-    color:#111827;
+
+    color:#222;
+
 }
 
 .amount-input input{
-    flex:1;
-    height:100%;
-    border:none;
-    outline:none;
-    font-size:18px;
-    font-weight:600;
-    padding-right:18px;
-    background:transparent;
-}
 
-/*==================================
-      QUICK AMOUNTS
-==================================*/
-
-.quick-amounts{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:25px;
-}
-
-.quick-btn{
-    height:48px;
-    border:none;
-    background:#f3f4f6;
-    border-radius:12px;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.quick-btn:hover{
-    background:#67b51d;
-    color:#fff;
-}
-
-/*==================================
-      PAYMENT BUTTON
-==================================*/
-
-.payment-btn{
     width:100%;
-    height:56px;
-    border:none;
-    border-radius:16px;
-    background:#67b51d;
-    color:#fff;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
+
+    height:66px;
+
+    border:2px solid #E7E7E7;
+
+    border-radius:18px;
+
+    background:#FFFFFF;
+
+    padding:0 20px 0 58px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#121212;
+
+    outline:none;
+
     transition:.25s;
+
 }
 
-.payment-btn:hover{
-    background:#5aa315;
+.amount-input input::placeholder{
+
+    color:#A5A5A5;
+
+    font-weight:600;
+
 }
 
-.payment-btn:disabled{
-    background:#d1d5db;
-    color:#6b7280;
-    cursor:not-allowed;
+.amount-input input:focus{
+
+    border-color:#67A21B;
+
+    box-shadow:0 0 0 4px rgba(103,162,27,.12);
+
 }
-/*==================================
-    RECENT TRANSACTIONS
-==================================*/
+
+/* ==========================================
+   QUICK AMOUNT BUTTONS
+========================================== */
+
+.quick-amount{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+    margin-top:20px;
+
+}
+
+.quick-amount button{
+
+    height:56px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#F3F5F9;
+
+    color:#2185F5;
+
+    font-size:19px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.quick-amount button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.quick-amount button.active{
+
+    background:#67A21B;
+
+    color:#FFFFFF;
+
+}
+/* ==========================================
+   PAYMENT BUTTON
+========================================== */
+
+.open-payment-btn,
+#openPayment,
+.pay-btn{
+
+    width:100%;
+    height:60px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#67A21B;
+
+    color:#FFFFFF;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+    0 12px 28px rgba(103,162,27,.28);
+
+}
+
+.open-payment-btn:hover,
+#openPayment:hover,
+.pay-btn:hover{
+
+    background:#5A8F18;
+
+    transform:translateY(-2px);
+
+}
+
+.open-payment-btn:active,
+#openPayment:active,
+.pay-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================
+   RECENT TRANSACTIONS
+========================================== */
 
 .transactions-section{
-    margin-top:35px;
+
+    margin-top:34px;
+
 }
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
+.transactions-section h2{
 
-.section-header h2{
-    font-size:24px;
+    font-size:26px;
+
     font-weight:800;
+
     color:#111827;
+
+    margin-bottom:20px;
+
 }
 
-.section-header a{
-    text-decoration:none;
-    color:#67b51d;
-    font-size:14px;
-    font-weight:700;
-}
+/* ==========================================
+   TRANSACTION CARD
+========================================== */
 
 .transaction-card{
-    background:#fff;
-    border-radius:22px;
-    padding:22px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
-    gap:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
-    margin-bottom:18px;
+
+    gap:16px;
+
+    background:#FFFFFF;
+
+    border:1px solid #ECECEC;
+
+    border-radius:22px;
+
+    padding:18px;
+
+    margin-bottom:16px;
+
+    transition:.25s;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,.05);
+
+}
+
+.transaction-card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Left Side */
+
+.transaction-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
 }
 
 .transaction-icon{
-    width:58px;
-    height:58px;
-    border-radius:18px;
-    background:#edf8e4;
-    color:#67b51d;
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:16px;
+
+    background:#EEF7E6;
+
+    color:#67A21B;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     font-size:22px;
+
 }
 
-.transaction-details{
-    flex:1;
-}
+/* Text */
 
-.transaction-details h3{
+.transaction-title{
+
     font-size:17px;
+
     font-weight:700;
+
     color:#111827;
+
     margin-bottom:6px;
+
 }
 
-.transaction-details p{
+.transaction-date{
+
     font-size:14px;
-    color:#6b7280;
+
+    color:#6B7280;
+
 }
+
+/* Right Side */
 
 .transaction-right{
+
     text-align:right;
+
 }
 
 .transaction-amount{
-    display:block;
+
     font-size:18px;
+
     font-weight:800;
+
     color:#111827;
+
     margin-bottom:8px;
+
 }
 
-.transaction-status{
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status{
+
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
-    padding:6px 14px;
+
+    padding:6px 12px;
+
     border-radius:999px;
+
     font-size:12px;
+
     font-weight:700;
+
 }
 
-.transaction-status.pending{
-    background:#fff7ed;
-    color:#ea580c;
+.status.pending{
+
+    background:#FFF8E6;
+
+    color:#C58A00;
+
 }
 
-.transaction-status.approved{
-    background:#ecfdf3;
-    color:#16a34a;
+.status.success{
+
+    background:#EAF8EC;
+
+    color:#1E8E3E;
+
 }
 
-.transaction-status.declined{
-    background:#fef2f2;
-    color:#dc2626;
+.status.failed{
+
+    background:#FFECEC;
+
+    color:#D93025;
+
 }
 
-/*==================================
-      PAYMENT POPUP
-==================================*/
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+    .wallet-page{
+
+        padding:20px 14px 40px;
+
+    }
+
+    .wallet-header h1{
+
+        font-size:44px;
+
+    }
+
+    .wallet-balance-card h2{
+
+        font-size:48px;
+
+    }
+
+    .transaction-card{
+
+        padding:16px;
+
+    }
+
+}
+/* ==========================
+   PAYMENT MODAL OVERLAY
+========================== */
 
 .payment-modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.45);
-    display:none;
-    align-items:center;
+    background:rgba(0,0,0,.55);
+    display:flex;
     justify-content:center;
-    z-index:9999;
+    align-items:flex-end;
     padding:20px;
+    z-index:9999;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
 }
 
-.payment-modal.show{
-    display:flex;
+.payment-modal.active{
+    opacity:1;
+    visibility:visible;
 }
+
+/* ==========================
+   MODAL BOX
+========================== */
 
 .payment-box{
-    width:92%;
-    max-width:360px;
+    width:100%;
+    max-width:500px;
+    max-height:92vh;
+    overflow-y:auto;
     background:#fff;
-    border-radius:20px;
-    padding:20px;
-    animation:popup .25s ease;
+    border-radius:28px 28px 0 0;
+    animation:popup .3s ease;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
 }
 
-.payment-box h2{
-    font-size:22px;
-    font-weight:800;
-    margin-bottom:6px;
+@keyframes popup{
+    from{
+        transform:translateY(60px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
 }
 
-.payment-box p{
-    color:#6b7280;
-    margin-bottom:24px;
-}
+/* ==========================
+   HEADER
+========================== */
 
-.payment-item{
+.payment-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid #ececec;
+    padding:28px;
+    border-bottom:1px solid #ECECEC;
 }
 
-.payment-item span{
-    color:#6b7280;
-    font-size:15px;
+.payment-header h2{
+    font-size:18px;
+    font-weight:800;
+    color:#101828;
+    margin:0;
 }
 
-.payment-item strong{
-    color:#111827;
-    font-size:16px;
-    font-weight:700;
+.payment-close{
+    font-size:24px;
+    cursor:pointer;
+    color:#666;
 }
 
-.payment-note{
-    margin-top:16px;
-    padding:14px;
-    border-radius:14px;
-    background:#fff8e6;
-    color:#92400e;
-    font-size:13px;
-    line-height:1.6;
+/* ==========================
+   BODY
+========================== */
+
+.payment-body{
+    padding:24px;
 }
 
-.receipt-btn{
-    width:100%;
-    height:56px;
-    background:#25D366;
-    color:#fff;
-    border-radius:16px;
+/* ==========================
+   TOP CARD
+========================== */
+
+.payment-summary{
+    background:#fff;
+    border:1px solid #E9E9E9;
+    border-radius:20px;
+    padding:22px;
     display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top:22px;
-    text-decoration:none;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:24px;
+}
+
+.payment-summary small{
+    display:block;
+    color:#666;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.payment-summary h3{
+    margin:0;
+    font-size:17px;
+    color:#5AA514;
+    font-weight:800;
+}
+
+.payment-summary p{
+    margin:0;
+    font-size:18px;
     font-weight:700;
-    transition:.25s;
-}
-
-.receipt-btn:hover{
-    background:#1faa52;
-}
-
-.close-payment{
-    width:100%;
-    height:56px;
-    margin-top:14px;
-    border:none;
-    border-radius:16px;
-    background:#f3f4f6;
     color:#111827;
+    line-height:1.5;
+}
+
+.copy-btn{
+    width:38px;
+    height:38px;
+    border:none;
+    background:#F4F4F4;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* ==========================
+   BANK CARD
+========================== */
+
+.bank-card{
+    border:3px solid #5AA514;
+    border-radius:22px;
+    padding:28px;
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.bank-card .label{
+    color:#666;
     font-size:15px;
+    margin-bottom:8px;
+}
+
+.bank-card .bank-name{
+    font-size:28px;
+    font-weight:800;
+    color:#111827;
+    margin-bottom:18px;
+}
+
+.bank-card .account-title{
+    color:#666;
+    margin-bottom:8px;
+}
+
+.bank-card .account-number{
+    font-size:36px;
+    font-weight:900;
+    letter-spacing:6px;
+    color:#111827;
+    margin-bottom:22px;
+}
+
+.bank-card .amount-title{
+    color:#666;
+    margin-bottom:8px;
+}
+
+.bank-card .amount{
+    font-size:34px;
+    font-weight:900;
+    color:#5AA514;
+}
+
+/* ==========================
+   INSTRUCTIONS
+========================== */
+
+.instructions{
+    border:1px solid #E8E8E8;
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:24px;
+}
+
+.instructions h4{
+    margin:0 0 16px;
+    font-size:20px;
+    font-weight:800;
+}
+
+.instructions ol{
+    margin:0;
+    padding-left:22px;
+}
+
+.instructions li{
+    margin-bottom:10px;
+    color:#555;
+    line-height:1.6;
+    font-size:15px;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.payment-footer{
+    padding:20px 24px 28px;
+    border-top:1px solid #ECECEC;
+}
+
+.payment-buttons{
+    display:flex;
+    gap:14px;
+}
+
+.payment-buttons button{
+    flex:1;
+    height:56px;
+    border-radius:16px;
+    font-size:17px;
     font-weight:700;
     cursor:pointer;
 }
 
-/*==================================
-      TOAST MESSAGE
-==================================*/
-
-.toast{
-    position:fixed;
-    top:25px;
-    right:25px;
-    background:#fff7ed;
-    color:#ea580c;
-    padding:16px 20px;
-    border-left:5px solid #f97316;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow:0 12px 30px rgba(0,0,0,.10);
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(-15px);
-    transition:.3s;
-    z-index:10000;
+.cancel-btn{
+    background:#fff;
+    border:2px solid #E4E4E4;
+    color:#111827;
 }
 
-.toast.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+.whatsapp-btn{
+    background:#5AA514;
+    color:#fff;
+    border:none;
 }
 
-.toast i{
-    font-size:20px;
-}
-
-/*==================================
-      ANIMATION
-==================================*/
-
-@keyframes popup{
-
-    from{
-        opacity:0;
-        transform:scale(.95);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-
-}
-
-/*==================================
-      MOBILE
-==================================*/
-
-@media(max-width:768px){
-
-    .wallet-content{
-        padding:20px 15px 100px;
-    }
-
-    .balance-card h2{
-        font-size:34px;
-    }
-
-    .quick-amounts{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .transaction-card{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .transaction-right{
-        text-align:left;
-        width:100%;
-    }
-
-    .payment-box{
-        padding:22px;
-    }
-
+.payment-secure{
+    margin-top:18px;
+    text-align:center;
+    color:#777;
+    font-size:14px;
 }
