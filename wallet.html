@@ -286,142 +286,172 @@
     </div>
 
 </section>
-
 <!-- ==========================
       PAYMENT POPUP
 ========================== -->
 
 <div class="payment-modal" id="paymentModal">
 
-    <div class="payment-box">
+    <div class="payment-popup">
 
-        <h2>
+        <div class="payment-header">
 
-            Bank Transfer
+            <h2>Complete your top-up</h2>
 
-        </h2>
-
-        <p>
-
-            Transfer the exact amount below.
-
-        </p>
-
-        <div class="payment-item">
-
-            <span>Amount</span>
-
-            <strong id="paymentAmount">
-
-                ₦0
-
-            </strong>
+            <button id="closePaymentModal" class="popup-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
         </div>
 
-        <div class="payment-item">
+        <!-- Amount & Reference -->
 
-            <span>Reference</span>
+        <div class="payment-summary">
 
-            <strong id="paymentReference">
+            <div class="summary-item">
 
-                Loading...
+                <span>Amount</span>
 
-            </strong>
+                <h3 id="paymentAmount">₦0</h3>
+
+            </div>
+
+            <div class="summary-item">
+
+                <span>Reference</span>
+
+                <div class="copy-row">
+
+                    <strong id="paymentReference">
+                        Loading...
+                    </strong>
+
+                    <button class="copy-btn"
+                            data-copy="paymentReference">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="payment-item">
+        <!-- Transfer Card -->
 
-            <span>Bank</span>
+        <div class="transfer-card">
 
-            <strong id="bankName">
+            <h3>
 
-                Loading...
+                Transfer to this account
 
-            </strong>
+            </h3>
+
+            <div class="bank-box">
+
+                <small>Bank</small>
+
+                <h4 id="bankName">
+
+                    Loading...
+
+                </h4>
+
+                <small>
+
+                    Account Number
+
+                </small>
+
+                <div class="copy-row">
+
+                    <h2 id="accountNumber">
+
+                        Loading...
+
+                    </h2>
+
+                    <button class="copy-btn"
+                            data-copy="accountNumber">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                    </button>
+
+                </div>
+
+                <small>
+
+                    Amount to send
+
+                </small>
+
+                <h3 class="send-amount"
+                    id="paymentAmount2">
+
+                    ₦0
+
+                </h3>
+
+            </div>
 
         </div>
 
-        <div class="payment-item">
+        <!-- Instructions -->
 
-            <span>Account Number</span>
+        <div class="instruction-card">
 
-            <strong id="accountNumber">
+            <h3>
 
-                Loading...
+                Instructions
 
-            </strong>
+            </h3>
+
+            <ol>
+
+                <li>Open your banking app.</li>
+
+                <li>Transfer the exact amount shown above.</li>
+
+                <li>Use the account details provided.</li>
+
+                <li>After payment, send your proof on WhatsApp.</li>
+
+                <li>Your wallet will be credited after confirmation.</li>
+
+            </ol>
 
         </div>
 
-        <div class="payment-item">
+        <!-- Footer -->
 
-    <span>Amount</span>
+        <div class="payment-footer">
 
-    <strong id="paymentAmount">
-        ₦0
-    </strong>
+            <button
+                id="closePaymentModal2"
+                class="cancel-btn">
 
-</div>
+                Cancel
 
+            </button>
 
-<div class="payment-item">
+            <a
+                id="sendReceiptBtn"
+                href="#"
+                target="_blank"
+                class="receipt-btn">
 
-    <span>Bank</span>
+                Send Proof on WhatsApp
 
-    <strong>
-        PalmPay / OPay
-    </strong>
+            </a>
 
-</div>
+        </div>
 
-<div class="payment-item">
-
-    <span>Account Number</span>
-
-    <strong>
-        9117412352
-    </strong>
+    </div>
 
 </div>
-
-<div class="payment-item">
-
-    <span>Account Name</span>
-
-    <strong>
-        Ogaga Blessing Idoghe
-    </strong>
-
-</div>
-
-<div class="payment-note">
-
-    Transfer the exact amount shown above. After payment, tap the button below and send your payment receipt together with your payment reference. Your deposit will remain <b>Pending</b> until it is reviewed and approved by our team.
-
-</div>
-
-<a
-href="https://wa.me/2349117412352"
-target="_blank"
-id="sendReceiptBtn"
-class="receipt-btn">
-
-    SEND RECEIPT ON WHATSAPP
-
-</a>
-
-<button
-id="closePaymentModal"
-class="close-payment">
-
-    CLOSE
-
-</button>
-</div> <!-- payment-box -->
-
-</div> <!-- payment-modal -->
 <!-- ==========================
         TOAST MESSAGE
 ========================== -->
