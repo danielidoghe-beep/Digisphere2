@@ -1150,7 +1150,7 @@ a{
 
     border-radius:16px;
 
-    background:#6C63FF;
+    background:#67A21B;
 
     color:#fff;
 
@@ -1251,11 +1251,12 @@ a{
 
 .sidebar-menu a.active{
 
-    background:#6C63FF;
+    background:#67A21B;
 
     color:#fff;
 
 }
+
 #adminPanel{
 
     display:none;
@@ -1337,7 +1338,7 @@ a{
 
 #markAllRead{
 
-    color:#6C63FF;
+    color:#67A21B;
 
     font-size:14px;
 
@@ -1440,12 +1441,18 @@ a{
 
     border-radius:12px;
 
-    background:#6C63FF;
+    background:#67A21B;
 
     color:#FFFFFF;
 
     font-size:15px;
 
     font-weight:700;
+
+}
+
+#viewAllNotifications:hover{
+
+    background:#5A8D17;
 
 }
