@@ -1,107 +1,317 @@
+// ==========================================
+// IMPORTS
+// ==========================================
+
 import {
     auth,
     db,
     onAuthStateChanged,
+    signOut,
     doc,
-    getDoc
+    getDoc,
+    collection,
+    query,
+    where,
+    orderBy,
+    limit,
+    onSnapshot
 } from "./firebase.js";
 
-const ADMIN_EMAIL = "danielidoghe@gmail.com";
+// ==========================================
+// ELEMENTS
+// ==========================================
+const markAllRead = document.getElementById("markAllRead");
+const loadingScreen = document.getElementById("loading-screen");
+const dashboardPage = document.getElementById("dashboard-page");
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+const notificationBtn = document.getElementById("notificationBtn");
+const notificationDropdown = document.getElementById("notificationDropdown");
+
+const profileInitial = document.getElementById("profileInitial");
 
 const userName = document.getElementById("userName");
-const profileImage = document.getElementById("profileImage");
+
 const walletBalance = document.getElementById("walletBalance");
-const headerWallet = document.getElementById("headerWallet");
-const adminMenu = document.getElementById("adminMenu");
+const topWallet = document.getElementById("topWallet");
 
-onAuthStateChanged(auth, async(user)=>{
+const purchaseCount = document.getElementById("purchaseCount");
 
-    if(!user){
+const inventoryCount = document.getElementById("inventoryCount");
+const inventoryBreakdown = document.getElementById("inventoryBreakdown");
 
-        location.href="login.html";
+const notificationBadge = document.getElementById("notificationCount");
+const notificationList = document.getElementById("notificationList");
+
+const adminPanel = document.getElementById("adminPanel");
+
+const logoutBtn = document.getElementById("logoutBtn");
+// ==========================================
+// LOADING SCREEN
+// ==========================================
+
+function showDashboard() {
+
+    setTimeout(() => {
+
+        loadingScreen.style.display = "none";
+
+        dashboardPage.classList.remove("hidden");
+
+    }, 2500);
+
+}
+// ==========================================
+// SIDEBAR
+// ==========================================
+
+menuBtn.addEventListener("click", () => {
+
+    sidebar.classList.add("active");
+
+    sidebarOverlay.classList.add("active");
+
+});
+
+sidebarOverlay.addEventListener("click", () => {
+
+    sidebar.classList.remove("active");
+
+    sidebarOverlay.classList.remove("active");
+
+});
+// ==========================================
+// NOTIFICATIONS
+// ==========================================
+
+notificationBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    notificationDropdown.classList.toggle("show");
+
+});
+
+document.addEventListener("click", (e) => {
+
+    if (
+        !notificationDropdown.contains(e.target) &&
+        !notificationBtn.contains(e.target)
+    ) {
+
+        notificationDropdown.classList.remove("show");
+
+    }
+
+});
+// ==========================================
+// LOGOUT
+// ==========================================
+
+logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+});
+// ==========================================
+// AUTH STATE
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href = "login.html";
 
         return;
 
     }
 
-    if(user.email===ADMIN_EMAIL){
+    showDashboard();
 
-        adminMenu.style.display="flex";
+    // ======================================
+    // ADMIN PANEL
+    // ======================================
+
+    if (user.email === "danielidoghe@gmail.com") {
+
+        adminPanel.style.display = "flex";
+
+    } else {
+
+        adminPanel.style.display = "none";
 
     }
 
-    const userRef=doc(db,"users",user.uid);
+    // ======================================
+    // USER NAME
+    // ======================================
 
-    const snap=await getDoc(userRef);
+    let displayName = "";
+
+    if (user.displayName && user.displayName.trim() !== "") {
+
+        displayName = user.displayName;
+
+    } else {
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
+        if (userDoc.exists()) {
+
+            displayName = userDoc.data().name || "User";
+
+        } else {
+
+            displayName = "User";
+
+        }
+
+    }
+
+    // First name only
+
+    const firstName = displayName.split(" ")[0];
+
+    userName.textContent = firstName;
+
+    profileInitial.textContent = firstName.charAt(0).toUpperCase();
+
+    // ======================================
+    // LOAD USER DATA
+    // ======================================
+
+    loadWallet(user.uid);
+
+    loadPurchases(user.uid);
+
+    loadInventory();
+
+    loadNotifications(user.uid);
+
+});
+// ==========================================
+// FORMAT MONEY
+// ==========================================
+
+function formatMoney(amount){
+
+    return "₦" + Number(amount || 0).toLocaleString("en-NG");
+
+}
+// ==========================================
+// WALLET
+// ==========================================
+
+async function loadWallet(uid){
+
+    const userRef = doc(db,"users",uid);
+
+    const snap = await getDoc(userRef);
 
     if(!snap.exists()) return;
 
-    const data=snap.data();
+    const data = snap.data();
 
-    userName.textContent=data.firstName||"User";
+    const balance = data.walletBalance || 0;
 
-    const balance=data.wallet||0;
+    walletBalance.textContent = formatMoney(balance);
 
-    walletBalance.textContent=
-    "₦"+Number(balance).toLocaleString();
+    topWallet.textContent = formatMoney(balance);
 
-    headerWallet.textContent=
-    "₦"+Number(balance).toLocaleString();
+}
+// ==========================================
+// PURCHASES
+// ==========================================
 
-    if(data.photoURL){
-
-        profileImage.src=data.photoURL;
-
-    }
-
-});
-import {
-    collection,
-    query,
-    where,
-    orderBy,
-    onSnapshot,
-    updateDoc,
-    writeBatch,
-    signOut
-} from "./firebase.js";
-
-/*==================================
-NOTIFICATIONS
-==================================*/
-
-const notificationList =
-document.getElementById("notificationList");
-
-const notificationCount =
-document.getElementById("notificationCount");
-
-const markAllRead =
-document.getElementById("markAllRead");
-
-const notificationBtn =
-document.getElementById("notificationBtn");
-
-const notificationDropdown =
-document.getElementById("notificationDropdown");
-
-let currentUser = null;
-
-onAuthStateChanged(auth,(user)=>{
-
-    if(!user) return;
-
-    currentUser = user;
+async function loadPurchases(uid){
 
     const q = query(
-        collection(db,"notifications"),
-        where("uid","==",user.uid),
-        orderBy("createdAt","desc")
+
+        collection(db,"orders"),
+
+        where("uid","==",uid)
+
     );
 
     onSnapshot(q,(snapshot)=>{
 
-        notificationList.innerHTML="";
+        if(snapshot.empty){
+
+            purchaseCount.textContent = "No purchases yet";
+
+        }else{
+
+            purchaseCount.textContent = snapshot.size;
+
+        }
+
+    });
+
+}
+// ==========================================
+// INVENTORY
+// ==========================================
+
+async function loadInventory(){
+
+    const logsRef = collection(db,"logs");
+
+    const toolsRef = collection(db,"tools");
+
+    onSnapshot(logsRef,(logs)=>{
+
+        onSnapshot(toolsRef,(tools)=>{
+
+            inventoryCount.textContent =
+
+                logs.size + tools.size;
+
+            inventoryBreakdown.textContent =
+
+                `${logs.size} logs • ${tools.size} tools`;
+
+        });
+
+    });
+
+}
+// ==========================================
+// NOTIFICATIONS
+// ==========================================
+
+function loadNotifications(uid){
+
+    const q = query(
+        collection(db, "notifications"),
+        where("uid", "==", uid),
+        orderBy("createdAt", "desc"),
+        limit(20)
+    );
+
+    onSnapshot(q, (snapshot) => {
+
+        notificationList.innerHTML = "";
+
+        notificationBadge.textContent = snapshot.size;
+
+        if(snapshot.empty){
+
+            notificationList.innerHTML = `
+                <div class="notification-empty">
+                    <p>No notifications yet.</p>
+                </div>
+            `;
+
+            notificationBadge.textContent = "0";
+
+            return;
+        }
 
         let unread = 0;
 
@@ -109,7 +319,11 @@ onAuthStateChanged(auth,(user)=>{
 
             const data = docSnap.data();
 
-            if(!data.read) unread++;
+            if(!data.read){
+
+                unread++;
+
+            }
 
             notificationList.innerHTML += `
 
@@ -117,7 +331,7 @@ onAuthStateChanged(auth,(user)=>{
 
                 <div class="notification-icon">
 
-                    <i class="fa-solid fa-bell"></i>
+                    ${notificationIcon(data.type)}
 
                 </div>
 
@@ -129,7 +343,7 @@ onAuthStateChanged(auth,(user)=>{
 
                     <div class="notification-time">
 
-                        ${new Date(data.createdAt.seconds*1000).toLocaleString()}
+                        ${timeAgo(data.createdAt)}
 
                     </div>
 
@@ -141,408 +355,97 @@ onAuthStateChanged(auth,(user)=>{
 
         });
 
-        notificationCount.textContent = unread;
+        notificationBadge.textContent = unread;
 
     });
 
-});
+}
+// ==========================================
+// NOTIFICATION ICONS
+// ==========================================
 
-/*==================================
-MARK ALL READ
-==================================*/
+function notificationIcon(type){
 
-markAllRead.addEventListener("click",async()=>{
+    switch(type){
 
-    if(!currentUser) return;
+        case "wallet":
+            return '<i class="fa-solid fa-wallet"></i>';
+
+        case "order":
+            return '<i class="fa-solid fa-bag-shopping"></i>';
+
+        case "login":
+            return '<i class="fa-solid fa-right-to-bracket"></i>';
+
+        case "support":
+            return '<i class="fa-solid fa-headset"></i>';
+
+        default:
+            return '<i class="fa-solid fa-bell"></i>';
+
+    }
+
+} 
+// ==========================================
+// TIME AGO
+// ==========================================
+
+function timeAgo(timestamp){
+
+    if(!timestamp) return "Just now";
+
+    const now = Date.now();
+
+    const date = timestamp.toDate().getTime();
+
+    const seconds = Math.floor((now - date) / 1000);
+
+    if(seconds < 60){
+
+        return "Just now";
+
+    }
+
+    if(seconds < 3600){
+
+        return Math.floor(seconds / 60) + "m ago";
+
+    }
+
+    if(seconds < 86400){
+
+        return Math.floor(seconds / 3600) + "h ago";
+
+    }
+
+    return Math.floor(seconds / 86400) + "d ago";
+
+}
+// ==========================================
+// MARK ALL READ
+// ==========================================
+
+markAllRead.addEventListener("click", async () => {
+
+    const user = auth.currentUser;
+
+    if(!user) return;
 
     const q = query(
-
-        collection(db,"notifications"),
-
-        where("uid","==",currentUser.uid)
-
+        collection(db, "notifications"),
+        where("uid", "==", user.uid)
     );
 
-    onSnapshot(q,async(snapshot)=>{
+    const snapshot = await getDocs(q);
 
-        const batch = writeBatch(db);
+    for(const document of snapshot.docs){
 
-        snapshot.forEach((docSnap)=>{
+        await updateDoc(document.ref, {
 
-            batch.update(docSnap.ref,{
-                read:true
-            });
+            read:true
 
         });
-
-        await batch.commit();
-
-    });
-
-});
-
-/*==================================
-NOTIFICATION DROPDOWN
-==================================*/
-
-notificationBtn.onclick=()=>{
-
-    notificationDropdown.classList.toggle("show");
-
-};
-
-document.addEventListener("click",(e)=>{
-
-    if(
-
-        !notificationBtn.contains(e.target)
-
-        &&
-
-        !notificationDropdown.contains(e.target)
-
-    ){
-
-        notificationDropdown.classList.remove("show");
 
     }
 
 });
-/*==================================
-RECENT ORDERS
-==================================*/
-
-const ordersContainer =
-document.getElementById("ordersContainer");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user) return;
-
-const q=query(
-
-collection(db,"orders"),
-
-where("uid","==",user.uid),
-
-orderBy("createdAt","desc")
-
-);
-
-onSnapshot(q,(snapshot)=>{
-
-ordersContainer.innerHTML="";
-
-if(snapshot.empty){
-
-ordersContainer.innerHTML=`
-
-<div class="empty-state">
-
-<i class="fa-solid fa-box-open"></i>
-
-<p>No recent orders.</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-snapshot.forEach((doc)=>{
-
-const order=doc.data();
-
-ordersContainer.innerHTML+=`
-
-<div class="order-row">
-
-<div>
-
-<h4>${order.productName}</h4>
-
-<p>${order.status}</p>
-
-</div>
-
-<strong>
-
-₦${Number(order.amount).toLocaleString()}
-
-</strong>
-
-</div>
-
-`;
-
-});
-
-});
-
-});
-/*==================================
-PURCHASE COUNT
-==================================*/
-
-const purchaseCount =
-document.getElementById("purchaseCount");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user) return;
-
-const q=query(
-
-collection(db,"orders"),
-
-where("uid","==",user.uid)
-
-);
-
-onSnapshot(q,(snapshot)=>{
-
-purchaseCount.textContent=snapshot.size;
-
-});
-
-});
-/*==================================
-LOGOUT
-==================================*/
-
-const logoutButton =
-document.querySelector(".logout");
-
-logoutButton.onclick=async()=>{
-
-await signOut(auth);
-
-location.href="login.html";
-
-};
-/*=========================================
-LIVE INVENTORY
-=========================================*/
-
-const inventoryCount =
-document.getElementById("inventoryCount");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user) return;
-
-const inventoryQuery=query(
-
-collection(db,"inventory"),
-
-where("uid","==",user.uid)
-
-);
-
-onSnapshot(inventoryQuery,(snapshot)=>{
-
-inventoryCount.textContent=snapshot.size;
-
-});
-
-});
-
-/*=========================================
-LIVE TRANSACTIONS
-=========================================*/
-
-const transactionContainer =
-document.getElementById("transactionContainer");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user) return;
-
-const transactionQuery=query(
-
-collection(db,"transactions"),
-
-where("uid","==",user.uid),
-
-orderBy("createdAt","desc")
-
-);
-
-onSnapshot(transactionQuery,(snapshot)=>{
-
-transactionContainer.innerHTML="";
-
-if(snapshot.empty){
-
-transactionContainer.innerHTML=`
-
-<div class="empty-state">
-
-<i class="fa-solid fa-credit-card"></i>
-
-<p>No transactions available.</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-snapshot.forEach((doc)=>{
-
-const data=doc.data();
-
-transactionContainer.innerHTML+=`
-
-<div class="transaction-row">
-
-<div>
-
-<h4>${data.title}</h4>
-
-<p>${new Date(data.createdAt.seconds*1000).toLocaleString()}</p>
-
-</div>
-
-<strong>
-
-₦${Number(data.amount).toLocaleString()}
-
-</strong>
-
-</div>
-
-`;
-
-});
-
-});
-
-});
-
-/*=========================================
-SIDEBAR
-=========================================*/
-
-const menuBtn=
-document.getElementById("menuBtn");
-
-const sidebar=
-document.getElementById("sidebar");
-
-const overlay=
-document.getElementById("overlay");
-
-const closeSidebar=
-document.getElementById("closeSidebar");
-
-menuBtn.onclick=()=>{
-
-sidebar.classList.add("open");
-
-overlay.classList.add("show");
-
-}
-
-closeSidebar.onclick=()=>{
-
-sidebar.classList.remove("open");
-
-overlay.classList.remove("show");
-
-}
-
-overlay.onclick=()=>{
-
-sidebar.classList.remove("open");
-
-overlay.classList.remove("show");
-
-}
-
-/*=========================================
-LOADING SCREEN
-=========================================*/
-
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-
-document.getElementById("loading-screen").style.display="none";
-
-},1000);
-
-});
-
-/*=========================================
-DARK MODE
-=========================================*/
-
-const themeBtn=
-document.getElementById("themeBtn");
-
-if(localStorage.getItem("theme")=="dark"){
-
-document.body.classList.add("dark");
-
-}
-
-themeBtn.onclick=()=>{
-
-document.body.classList.toggle("dark");
-
-if(document.body.classList.contains("dark")){
-
-localStorage.setItem("theme","dark");
-
-}else{
-
-localStorage.setItem("theme","light");
-
-}
-
-}
-
-/*=========================================
-QUICK ACTIONS
-=========================================*/
-
-document.getElementById("logsStore").onclick=()=>{
-
-location.href="logs-store.html";
-
-}
-
-document.getElementById("toolsStore").onclick=()=>{
-
-location.href="tools-store.html";
-
-}
-
-document.getElementById("numbersStore").onclick=()=>{
-
-location.href="numbers.html";
-
-}
-
-document.getElementById("esimStore").onclick=()=>{
-
-location.href="esim.html";
-
-}
-
-document.getElementById("boostingStore").onclick=()=>{
-
-location.href="boosting.html";
-
-}
-
-document.getElementById("accountsStore").onclick=()=>{
-
-location.href="accounts.html";
-
-}
